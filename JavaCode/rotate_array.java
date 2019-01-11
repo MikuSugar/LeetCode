@@ -17,7 +17,7 @@ public class rotate_array {
             int t2;
             for (int i = 0; i < nums.length; i++) {
                 t2 = nums[i];
-                nums[0] = t1;
+                nums[i] = t1;
                 t1 = t2;
             }
         }
