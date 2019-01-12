@@ -1,4 +1,4 @@
-package JavaCode;
+package JavaCode.RandomRecords;
 public class rotate_array {
     class Solution {
         public void rotate(int[] nums, int k) {

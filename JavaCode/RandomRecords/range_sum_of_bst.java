@@ -1,4 +1,4 @@
-package JavaCode;
+package JavaCode.RandomRecords;
 
 public class range_sum_of_bst {
       //Definition for a binary tree node.

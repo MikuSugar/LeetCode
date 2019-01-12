@@ -1,4 +1,4 @@
-package JavaCode;
+package JavaCode.RandomRecords;
 
 public class number_of_segments_in_a_string {
     class Solution {

@@ -1,4 +1,4 @@
-package JavaCode;
+package JavaCode.RandomRecords;
 public class count_binary_substrings {
     class Solution {
 

@@ -1,4 +1,4 @@
-package JavaCode;
+package JavaCode.RandomRecords;
 
 public class compare_version_numbers {
     class Solution {

@@ -1,4 +1,4 @@
-package JavaCode;
+package JavaCode.RandomRecords;
 
 import java.util.ArrayList;
 import java.util.List;

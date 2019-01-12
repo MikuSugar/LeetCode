@@ -1,4 +1,4 @@
-package JavaCode;
+package JavaCode.RandomRecords;
 
 public class two_keys_keyboard {
     class Solution {
