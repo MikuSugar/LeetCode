@@ -15,11 +15,37 @@ public class BuildTree
      */
     class Solution {
         public TreeNode buildTree(int[] preorder, int[] inorder) {
-            if(preorder.length==0)
+            return fun0(preorder,inorder,0,0,preorder.length-1);
+        }
+
+
+        /**
+         * 通过遍历中序遍历不断地将一棵树分为左子树和右子树
+         * @param preorder 前序遍历数组
+         * @param inorder 中序遍历数组
+         * @param root_index 树的根节点
+         * @param left_index 树的左子树最左+1
+         * @param right_index 树的右子树最右
+         * @return
+         */
+        TreeNode fun0(int[] preorder,int[] inorder,int root_index,int left_index,int right_index)
+        {
+            if(root_index>preorder.length-1||left_index>right_index)
             {
                 return null;
             }
+            TreeNode root=new TreeNode(preorder[root_index]);
 
+            for(int i=left_index;i<=right_index;i++)
+            {
+                if(root.val==inorder[i])
+                {
+                    root.left=fun0(preorder,inorder,root_index+1,left_index,i-1);
+                    root.right=fun0(preorder,inorder,root_index+i-left_index+1,i+1,right_index);
+                    break;
+                }
+            }
+            return root;
         }
     }
 }
