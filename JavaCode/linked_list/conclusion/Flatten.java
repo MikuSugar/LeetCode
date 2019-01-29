@@ -1,5 +1,7 @@
 package JavaCode.linked_list.conclusion;
 
+import java.util.Stack;
+
 class Node {
     public int val;
     public Node prev;
@@ -17,7 +19,36 @@ class Node {
 };
 public class Flatten {
     public Node flatten(Node head) {
+        Stack<Node> stack=new Stack<>();
+        Node p=head;
+        while (p!=null)
+        {
+            if(p.child!=null)
+            {
+                if(p.next!=null)
+                {
+                    stack.push(p.next);
+                }
+                p.child.prev=p;
+                p.next=p.child;
+                p.child=null;
+            }
+            else if(p.next==null)
+            {
+                if(stack.isEmpty())
+                {
+                    break;
+                }
+                else
+                {
+                    p.next=stack.pop();
+                    p.next.prev=p;
+                }
+            }
+            p=p.next;
 
+        }
+        return head;
     }
 }
 /**
