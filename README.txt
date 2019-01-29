@@ -13,5 +13,8 @@ top_interview_questions_medium包为中级算法专题记录
 queue_stack包为队列和栈专题记录
 	专题地址：https://leetcode-cn.com/explore/learn/card/queue-stack/
 
-array_and_string包为数组和字符串专题
+array_and_string包为数组和字符串专题记录
 	专题地址：https://leetcode-cn.com/explore/learn/card/array-and-string/
+
+linked_list包为链表专题记录
+	专题地址：https://leetcode-cn.com/explore/learn/card/linked-list/
