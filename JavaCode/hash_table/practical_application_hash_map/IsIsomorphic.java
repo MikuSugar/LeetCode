@@ -1,8 +1,33 @@
 package JavaCode.hash_table.practical_application_hash_map;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 public class IsIsomorphic {
     public boolean isIsomorphic(String s, String t) {
-        
+        Map<Character,Character> map=new HashMap<>();
+        Set<Character> set=new HashSet<>();
+        for(int i=0;i<s.length();i++)
+        {
+            char a=s.charAt(i);
+            char b=t.charAt(i);
+            if(!map.containsKey(a))
+            {
+                map.put(a,b);
+                if(set.contains(b))return false;
+                set.add(b);
+            }
+            else
+            {
+                if(map.get(a)!=b)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
 /**
