@@ -18,3 +18,6 @@ array_and_string包为数组和字符串专题记录
 
 linked_list包为链表专题记录
 	专题地址：https://leetcode-cn.com/explore/learn/card/linked-list/
+
+hash_table包为哈希表专题记录
+	专题地址：https://leetcode-cn.com/explore/learn/card/hash-table/
