@@ -1,20 +1,52 @@
 package JavaCode.hash_table.practical_application_design_the_key;
 
-import JavaCode.top_interview_questions_medium.trees_and_graphs.TreeNode;
 
+import sun.jvm.hotspot.utilities.IntArray;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
  */
+  class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+        val = x;
+    }
+}
+
 public class FindDuplicateSubtrees {
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        List<TreeNode> list=new ArrayList<>();
+        Map<String, Integer> map=new HashMap<>();
+        dfs(root,list,map);
+        return list;
+    }
+
+    String dfs(TreeNode node, List<TreeNode> list, Map<String,Integer> map)
+    {
+        if(node==null) return "#";
+        String s=node.val+dfs(node.left,list,map)+","+dfs(node.right,list,map);
+
+        if(map.containsKey(s))
+        {
+            if(map.get(s)==0)
+            {
+                list.add(node);
+            }
+            map.put(s,map.get(s)+1);
+        }
+        else
+        {
+            map.put(s,0);
+        }
+        return s;
 
     }
 }
