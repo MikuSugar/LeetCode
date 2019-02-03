@@ -2,8 +2,60 @@ package JavaCode.binary_search.more_practices_ii;
 
 public class SplitArray {
     public int splitArray(int[] nums, int m) {
+        int left=0;
+        int right=0;
 
+        for(int i:nums)
+        {
+            right+=i;
+            left=Math.max(left,i);
+        }
+
+        while (left<right)
+        {
+            int mid=left+(right-left)/2;
+
+            if(canSplit(nums,m,mid))
+            {
+                right=mid;
+            }
+            else
+            {
+                left=mid+1;
+            }
+
+        }
+        return left;
     }
+
+    /**
+     * 判断能否划分
+     * @param nums
+     * @param m 划分的最大段数
+     * @param sum 每段的最大值
+     * @return
+     */
+    boolean canSplit(int[] nums,int m,int sum)
+    {
+        int cnt=1;
+        int tempSum=0;
+
+        for (int i=0;i<nums.length;i++)
+        {
+            tempSum+=nums[i];
+
+            if(tempSum>sum)
+            {
+                tempSum=nums[i];
+                cnt++;
+                if(cnt>m)
+                    return false;
+            }
+        }
+        return true;
+    }
+
+
 }
 /**
  * https://leetcode-cn.com/explore/learn/card/binary-search/215/more-practices-ii/861/

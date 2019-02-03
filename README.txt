@@ -21,3 +21,6 @@ linked_list包为链表专题记录
 
 hash_table包为哈希表专题记录
 	专题地址：https://leetcode-cn.com/explore/learn/card/hash-table/
+
+binary_search包为二分查找专题记录
+	专题地址：https://leetcode-cn.com/explore/learn/card/binary-search/
