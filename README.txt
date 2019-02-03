@@ -24,3 +24,6 @@ hash_table包为哈希表专题记录
 
 binary_search包为二分查找专题记录
 	专题地址：https://leetcode-cn.com/explore/learn/card/binary-search/
+
+data_structure_binary_tree包为二叉树专题记录
+	专题地址：https://leetcode-cn.com/explore/learn/card/data-structure-binary-tree/
