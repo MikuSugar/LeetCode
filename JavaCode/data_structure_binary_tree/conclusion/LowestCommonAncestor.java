@@ -1,31 +1,19 @@
-package JavaCode.data_structure_binary_tree.traverse_a_tree;
+package JavaCode.data_structure_binary_tree.conclusion;
 
 import JavaCode.data_structure_binary_tree.TreeNode;
 
 public class LowestCommonAncestor {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(hasNode(root.left,p)&&hasNode(root.left,q))
-        {
-            return lowestCommonAncestor(root.left,p,q);
-        }
-        else if(hasNode(root.right,p)&&hasNode(root.right,q))
-        {
-            return lowestCommonAncestor(root.right,p,q);
-        }
-        return root;
-    }
+        if(root==null||root==p||root==q) return root;
 
-    /**
-     * 判断以root为根是否有p节点
-     * @param root
-     * @param p
-     * @return
-     */
-    boolean hasNode(TreeNode root,TreeNode p)
-    {
-        if(root==null) return false;
-        if(root==p) return true;
-        return hasNode(root.left,p)||hasNode(root.right,p);
+        TreeNode left=lowestCommonAncestor(root.left,p,q);
+        TreeNode right=lowestCommonAncestor(root.right,p,q);
+
+        if(left!=null&&right!=null)return root;
+        else if(left!=null) return left;
+        else if(right!=null) return right;
+        return null;
+
     }
 }
 /**
