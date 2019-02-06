@@ -27,3 +27,6 @@ binary_search包为二分查找专题记录
 
 data_structure_binary_tree包为二叉树专题记录
 	专题地址：https://leetcode-cn.com/explore/learn/card/data-structure-binary-tree/
+
+introduction_to_data_structure_binary_search_tree包为二叉搜索树专题记录
+	专题地址：https://leetcode-cn.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/
