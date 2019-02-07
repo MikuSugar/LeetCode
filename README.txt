@@ -1,3 +1,4 @@
+施工中。。。
 这是一个LeetCode的刷题代码备份。
 This is a LeetCode brush code backup.
 
@@ -30,3 +31,6 @@ data_structure_binary_tree包为二叉树专题记录
 
 introduction_to_data_structure_binary_search_tree包为二叉搜索树专题记录
 	专题地址：https://leetcode-cn.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/
+
+n_ary_tree包为N叉树专题记录
+	专题地址：https://leetcode-cn.com/explore/learn/card/n-ary-tree/
