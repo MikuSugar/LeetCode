@@ -1,9 +1,71 @@
 package JavaCode.trie.practical_application_ii;
 
 public class FindMaximumXOR {
-    public int findMaximumXOR(int[] nums) {
 
+    public static void main(String[] args) {
+        int[] t={3,10,5,25,2,8};
+        System.out.println(new FindMaximumXOR().findMaximumXOR(t));
     }
+
+    public int findMaximumXOR(int[] nums) {
+        Node root=new Node();
+        for(int i:nums)
+        {
+            add(root,i);
+        }
+        int max=0;
+        for(int i:nums)
+        {
+            max=Math.max(max,findMax(root,i));
+        }
+        return max;
+    }
+
+    class Node{
+        Node[] child;
+        public Node()
+        {
+            child=new Node[2];
+        }
+    }
+
+    void add(Node root,int x)
+    {
+        for(int i=31;i>=0;i--)
+        {
+            int bit=(x>>i)&1;
+            if(root.child[bit]==null)
+            {
+                root.child[bit]=new Node();
+            }
+            root=root.child[bit];
+        }
+    }
+
+    int findMax(Node root,int x)
+    {
+        int res=0;
+        x=~x;
+        for(int i=31;i>=0;i--)
+        {
+
+            int bit=(x>>i)&1;
+            res=res<<1;
+            if(root.child[bit]!=null)
+            {
+                res++;
+                root=root.child[bit];
+            }
+            else
+            {
+                root=root.child[bit==1?0:1];
+            }
+
+        }
+        return res;
+    }
+
+
 }
 /**
  * https://leetcode-cn.com/explore/learn/card/trie/168/practical-application-ii/651/
