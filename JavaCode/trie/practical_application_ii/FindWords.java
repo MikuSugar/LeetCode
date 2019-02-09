@@ -1,11 +1,93 @@
 package JavaCode.trie.practical_application_ii;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FindWords {
-    public List<String> findWords(char[][] board, String[] words) {
-        
+
+    public static void main(String[] args) {
+        char[][] b={{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}};
+        String[] s={"oath","pea","eat","rain"};
+        for(String s1:new FindWords().findWords(b,s))
+        {
+            System.out.println(s1);
+        }
     }
+
+    public List<String> findWords(char[][] board, String[] words) {
+        Node root=new Node();
+        for(String s:words)
+        {
+            root=add(root,s);
+        }
+
+        boolean[][] book=new boolean[board.length][board[0].length];
+        Set<String> set=new HashSet<>();
+        for (int i=0;i<board.length;i++)
+        {
+            for(int j=0;j<board[0].length;j++)
+            {
+                find(board,i,j,book,set,root);
+            }
+        }
+        List<String> result=new ArrayList<>();
+        result.addAll(set);
+        return result;
+    }
+
+    private int[] row={-1,1,0,0};
+    private int[] col={0,0,-1,1};
+
+    void find(char[][] board,int i,int j,boolean[][] book,Set<String> set,Node root)
+    {
+        Node p=root.child[board[i][j]-'a'];
+        if(p==null) return;
+        book[i][j]=true;
+        if(p.word!=null) set.add(p.word);
+
+        for(int k=0;k<4;k++)
+        {
+            int ii=i+row[k];
+            int jj=j+col[k];
+            if(ii>=0&&ii<board.length&&jj>=0&&jj<board[0].length&&!book[ii][jj])
+            {
+                if(p.child[board[ii][jj]-'a']!=null)
+                {
+                    find(board, ii, jj, book, set, p);
+                }
+            }
+        }
+        book[i][j]=false;
+    }
+
+    class Node
+    {
+        String word;
+        Node[] child;
+        public Node()
+        {
+            child=new Node[26];
+        }
+
+    }
+
+    Node add(Node root,String word)
+    {
+        Node p=root;
+        for(char c:word.toCharArray())
+        {
+            if (p.child[c-'a']==null)
+            {
+                p.child[c-'a']=new Node();
+            }
+            p=p.child[c-'a'];
+        }
+        p.word=word;
+        return root;
+    }
+
 }
 /**
  * https://leetcode-cn.com/explore/learn/card/trie/168/practical-application-ii/652/
