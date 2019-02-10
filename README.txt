@@ -34,3 +34,6 @@ introduction_to_data_structure_binary_search_tree包为二叉搜索树专题记录
 
 n_ary_tree包为N叉树专题记录
 	专题地址：https://leetcode-cn.com/explore/learn/card/n-ary-tree/
+
+trie包为前缀树专题记录
+	专题地址：https://leetcode-cn.com/explore/learn/card/trie/
