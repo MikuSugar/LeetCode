@@ -1,8 +1,41 @@
 package JavaCode.top_interview_questions_hard.array_and_strings;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class LongestConsecutive {
     public int longestConsecutive(int[] nums) {
+        Set<Integer> set =new HashSet<>();
+        for(int i:nums)
+        {
+            set.add(i);
+        }
 
+        int max=0;
+        for(int i:nums)
+        {
+
+            if(set.contains(i))
+            {
+                int count=0;
+                count++;
+                set.remove(i);
+                int left=i-1;
+                while (set.contains(left))
+                {
+                    count++;
+                    set.remove(left--);
+                }
+                int right=i+1;
+                while (set.contains(right))
+                {
+                    count++;
+                    set.remove(right++);
+                }
+                max=Math.max(max,count);
+            }
+        }
+        return max;
     }
 }
 /**
