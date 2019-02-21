@@ -9,7 +9,7 @@ public class MaxCoins {
         help[help.length-1]=1;
         System.arraycopy(nums,0,help,1,nums.length);
 
-        int[][] dp=new int[help.length][help.length];//dp[i][j]表示第i个和第j个气球之间（不含i和j）的气球戳烂，最大能得到的分值。
+        int[][] dp=new int[help.length][help.length];//dp[i][j]表示第i个和第j个🎈之间（不含i和j）的🎈戳烂，最大能得到的分值。
 
         for (int i=2;i<help.length;i++)
         {
@@ -21,10 +21,6 @@ public class MaxCoins {
                 }
             }
         }
-
-
-
-
         return dp[0][help.length-1];
     }
 }
