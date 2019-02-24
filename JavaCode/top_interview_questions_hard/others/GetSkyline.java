@@ -1,9 +1,70 @@
 package JavaCode.top_interview_questions_hard.others;
 
-import java.util.List;
+import java.util.*;
 
 public class GetSkyline {
     public List<int[]> getSkyline(int[][] buildings) {
+
+        List<int[]> result=new ArrayList<>();
+
+        //存储左顶点和右顶点 左为负数，右为正数
+        List<int[]> help=new ArrayList<>();
+        for (int[] a:buildings)
+        {
+            help.add(new int[]{a[0],-a[2]});
+            help.add(new int[]{a[1],a[2]});
+        }
+
+        //根据横坐标排序
+        help.sort(new Comparator<int[]>()
+        {
+            @Override
+            public int compare(int[] o1, int[] o2)
+            {
+                if(o1[0]!=o2[0])
+                {
+                    return o1[0]-o2[0];
+                }
+                else
+                {
+                    return o1[1]-o2[1];
+                }
+            }
+        });
+
+        //构建堆，以地平线的高度来排列。
+        Queue<Integer> queue=new PriorityQueue<>(new Comparator<Integer>()
+        {
+            @Override
+            public int compare(Integer o1, Integer o2)
+            {
+                return o2-o1;
+            }
+        });
+
+        queue.add(0);//地平线入队
+        int prev=0;//记录上次的高度
+        for (int[] a:help)
+        {
+            //左顶点入队
+            if(a[1]<0)
+            {
+                queue.add(-a[1]);
+            }
+            else
+            {
+                queue.remove(a[1]);
+            }
+
+            int cur=queue.peek();
+            if(prev!=cur)
+            {
+                result.add(new int[]{a[0],cur});
+                prev=cur;
+            }
+
+        }
+        return result;
 
     }
 }

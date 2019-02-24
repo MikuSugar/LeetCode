@@ -1,8 +1,35 @@
 package JavaCode.top_interview_questions_hard.others;
 
+import java.util.Stack;
+
 public class LargestRectangleArea {
+
     public int largestRectangleArea(int[] heights) {
-        
+        if(heights.length==0)return 0;
+        int maxArea=0;
+        Stack<Integer> stack=new Stack<>();
+        for (int i=0;i<heights.length;i++)
+        {
+            if(stack.isEmpty()||heights[stack.peek()]<=heights[i])
+            {
+                stack.push(i);
+            }
+            else
+            {
+                int top=stack.pop();
+                int len=stack.isEmpty()?i:i-stack.peek()-1;
+                maxArea=Math.max(maxArea,len*heights[top]);
+                i--;
+            }
+        }
+
+        while (!stack.isEmpty())
+        {
+            int top=stack.pop();
+            int len=stack.isEmpty()?heights.length:heights.length-stack.peek()-1;
+            maxArea=Math.max(maxArea,len*heights[top]);
+        }
+        return maxArea;
     }
 }
 /**

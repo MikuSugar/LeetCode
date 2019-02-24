@@ -1,8 +1,6 @@
 package JavaCode.hash_table.practical_application_design_the_key;
 
 
-import sun.jvm.hotspot.utilities.IntArray;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
