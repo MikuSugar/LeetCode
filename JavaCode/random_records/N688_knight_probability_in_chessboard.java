@@ -2,9 +2,26 @@ package JavaCode.random_records;
 
 public class N688_knight_probability_in_chessboard
 {
+
+    private int[][] dirs={{-1,-2},{-2,-1},{-2,1},{-1,2},{1,2},{2,1},{2,-1},{1,-2}};
     public double knightProbability(int N, int K, int r, int c)
     {
+        double[][][] dp=new double[K+1][N][N];
+        return dfs(dp,K,r,c,N)/Math.pow(8,K);
+    }
 
+    double dfs(double[][][]dp,int K,int r,int c,int N)
+    {
+       if(K==0)return 1;
+       if(dp[K][r][c]!=0)return dp[K][r][c];
+       for (int i=0;i<dirs.length;i++)
+       {
+           int t_r=r+dirs[i][0];
+           int t_c=c+dirs[i][1];
+           if(t_c<0||t_r<0||t_r>=N||t_c>=N) continue;
+           dp[K][r][c]+=dfs(dp,K-1,t_r,t_c,N);
+       }
+       return dp[K][r][c];
     }
 }
 /**
