@@ -1,5 +1,5 @@
-施工中。。。
-这是一个LeetCode的刷题代码备份。
+施工中( ?? ω ?? )y
+这是一个LeetCode的刷题代码备份(●'?'●)
 This is a LeetCode brush code backup.
 
 random_records包为随机题目刷题记录
@@ -40,3 +40,6 @@ trie包为前缀树专题记录
 
 top_interview_questions_hard包为高级算法专题记录
 	专题地址：https://leetcode-cn.com/explore/interview/card/top-interview-questions-hard
+
+contest包为竞赛记录
+    竞赛地址：https://leetcode-cn.com/contest/
