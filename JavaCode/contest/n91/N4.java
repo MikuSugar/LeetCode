@@ -1,45 +1,39 @@
 package JavaCode.contest.n91;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class N4 {
 
     public static void main(String[] args) {
         //[-28,81,-20,28,-29]
         //89
-        System.out.println(new N4().shortestSubarray(new int[]{-28,91,-20,28,-29},167));
+        System.out.println(new N4().shortestSubarray(new int[]{2,-1,2},3));
     }
 
-    //暴力未通过，待补题
     public int shortestSubarray(int[] A, int K) {
-        if(A.length==0)return -1;
-        int[] sum=new int[A.length];
-        sum[0]=A[0];
-        for (int i=1;i<A.length;i++)
-        {
-            sum[i]=A[i]+sum[i-1];
-        }
         int res=Integer.MAX_VALUE;
-        if(sum[0]>=K)return 1;
-        for (int i=1;i<A.length;i++)
+        int[] sum=new int[A.length+1];
+        for (int i=0;i<A.length;i++)
         {
-            if(res==Integer.MAX_VALUE)
-            {
-                for (int j=0;j<i;j++)
-                {
-                    if(sum[i]-sum[j]>=K)
-                    {
-                        res=Math.min(res,i-j);
-                    }
-                }
-            }
-            else
-            {
-                for (int j=i-1;j>=i-res;j--)
-                {
-                    if(sum[i]-sum[j]>=K)res=Math.min(res,i-j);
-                }
-            }
-            if(sum[i]>=K)res=Math.min(res,i+1);
+            sum[i+1]=sum[i]+A[i];
         }
+
+        Deque<Integer> deque=new ArrayDeque<>();
+
+        for (int i=0;i<sum.length;i++)
+        {
+            while (deque.size()>0&&sum[i]-sum[deque.getFirst()]>=K)
+            {
+                res=Math.min(res,i-deque.pollFirst());
+            }
+            while (deque.size()>0&&sum[i]<=sum[deque.getLast()])
+            {
+                deque.pollLast();
+            }
+            deque.add(i);
+        }
+
         return res==Integer.MAX_VALUE?-1:res;
     }
 }
