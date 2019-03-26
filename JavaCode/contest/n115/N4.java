@@ -2,7 +2,30 @@ package JavaCode.contest.n115;
 
 public class N4 {
     public int minDeletionSize(String[] A) {
+        int[] dp=new int[A[0].length()];
+        int res=A[0].length();
+        for (int i=1;i<A[0].length();i++)
+        {
+            dp[i]=i;
+            for (int j=i-1;j>=0;j--)
+            {
+                if(check(i,j,A))
+                {
+                    dp[i]=Math.min(dp[i],dp[j]+i-j-1);
+                }
+                res=Math.min(res,dp[i]+A[0].length()-i-1);
+            }
+        }
+        return res;
+    }
 
+    private boolean check(int i, int j, String[] a) {
+        for (int k=0;k<a.length;k++)
+        {
+            if(a[k].charAt(i)<a[k].charAt(j))
+                return false;
+        }
+        return true;
     }
 }
 /**
