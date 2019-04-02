@@ -12,7 +12,7 @@ public class N1 {
         int sum=0;
         for (int i:A)
         {
-            sum=sum*2+i;
+            sum=(sum*2+i)%5;
             res.add(sum%5==0);
         }
         return res;
