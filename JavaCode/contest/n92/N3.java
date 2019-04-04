@@ -1,9 +1,9 @@
-package JavaCode.random_records.N801_900;
+package JavaCode.contest.n92;
+
 
 
 //参考：https://leetcode.com/problems/prime-palindrome/discuss/146798/Search-Palindrome-with-Odd-Digits
-public class N866_PrimePalindrome
-{
+public class N3 {
     public int primePalindrome(int N)
     {
         if (N <= 11) {
@@ -40,8 +40,11 @@ public class N866_PrimePalindrome
 
 }
 /**
- * https://leetcode-cn.com/contest/weekly-contest-92/problems/prime-palindrome/
- * 866. 回文素数
+ *  866. 回文素数  显示英文描述
+ * 用户通过次数 12
+ * 用户尝试次数 100
+ * 通过次数 12
+ * 提交次数 413
  * 题目难度 Medium
  * 求出大于或等于 N 的最小回文素数。
  *
@@ -67,10 +70,4 @@ public class N866_PrimePalindrome
  *
  * 输入：13
  * 输出：101
- *
- *
- * 提示：
- *
- * 1 <= N <= 10^8
- * 答案肯定存在，且小于 2 * 10^8。
  */
