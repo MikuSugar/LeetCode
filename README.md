@@ -24,6 +24,7 @@
 
 > * random_records包为随机题目刷题记录  。[题目地址](https://leetcode-cn.com/problemset/all/)
 > * contest包为竞赛记录。[专题地址](https://leetcode-cn.com/contest/)
+> * 部分题目用cpp实现,在C++目录下。
 
 
 
