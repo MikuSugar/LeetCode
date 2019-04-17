@@ -2,11 +2,6 @@ package JavaCode.random_records.N701_800;
 
 public class N780_reaching_points {
 
-    public static void main(String[] args) {
-        System.out.println("....");
-        System.out.println(new N780_reaching_points().reachingPoints(1,6,11,10));
-    }
-
     public boolean reachingPoints(int sx, int sy, int tx, int ty) {
         if(tx<sx||ty<sy)return false;
         if(tx>sx&&ty>sy)
