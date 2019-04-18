@@ -1,4 +1,4 @@
-package JavaCode.random_records.N601_700;
+package JavaCode.random_records.N701_800;
 
 import java.util.*;
 
