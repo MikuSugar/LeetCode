@@ -4,7 +4,7 @@ package JavaCode.random_records.N301_400;
 public class N395_longest_substring_with_at_least_k_repeating_characters {
 
     public int longestSubstring(String s, int k) {
-        if(s==null||s.length()==0)return 0;
+        if(s==null||s.length()<k)return 0;
         int[] book=new int[26];
         for (int i=0;i<s.length();i++)
         {
