@@ -7,6 +7,7 @@ public class N2 {
     }
 
     public String smallestEquivalentString(String A, String B, String S) {
+        return null;
     }
 }
 /**
