@@ -12,18 +12,6 @@ public class N92_reverse_linked_list_ii {
      * }
      */
 
-    public static void main(String[] args) {
-        int[] t={1,2,3,4,5};
-        ListNode head=new ListNode(t[0]);
-        ListNode cur=head;
-        for (int i=1;i<t.length;i++)
-        {
-            cur.next=new ListNode(t[i]);
-            cur=cur.next;
-        }
-        int a=1;
-        new N92_reverse_linked_list_ii().reverseBetween(head,1,5);
-    }
     public ListNode reverseBetween(ListNode head, int m, int n) {
         ListNode pre_head=new ListNode(0);
         pre_head.next=head;
