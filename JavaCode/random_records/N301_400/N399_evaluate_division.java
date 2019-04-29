@@ -1,11 +1,10 @@
 package JavaCode.random_records.N301_400;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class N399_evaluate_division {
-    
+
     public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
         double[] res=new double[queries.length];
         Map<String,String> root=new HashMap<>();
