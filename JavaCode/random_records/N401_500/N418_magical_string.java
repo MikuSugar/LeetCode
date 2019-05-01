@@ -19,7 +19,7 @@ public class N418_magical_string {
                 if (key == 1 && tail < n) res++;
                 tail++;
             }
-            key = key==1?3:1;
+            key = key==1?2:1;
             head++;
         }
         return res;
