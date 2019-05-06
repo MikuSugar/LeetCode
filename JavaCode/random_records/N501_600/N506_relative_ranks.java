@@ -20,23 +20,17 @@ public class N506_relative_ranks {
         {
             a[i][0]=i;
         }
-        Arrays.sort(a, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[1]-o2[1];
-            }
-        });
         String[] res=new String[nums.length];
-        for (int i=0;i<res.length;i++)
+        for (int i=0;i<a.length;i++)
         {
             int t=a[i][0];
             if(t<3)
             {
-                res[i]=help[t];
+                res[a[i][1]]=help[t];
             }
             else
             {
-                res[i]=Integer.toString(t+1);
+                res[a[i][1]]=Integer.toString(t+1);
             }
         }
         return res;
