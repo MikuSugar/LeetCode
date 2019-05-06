@@ -5,27 +5,34 @@ import java.util.Arrays;
 public class N4 {
     public int[] numMovesStonesII(int[] stones) {
         Arrays.sort(stones);
-        int min=getMin(stones[0],stones[1],stones[2]);
-        int max=getMax(stones[0],stones[1],stones[2]);
+        if(stones[stones.length-1]-stones[0]==stones.length-1)return new int[]{0,0};
+        int min=getMin(stones);
+        int max=getMax(stones);
         return new int[]{min,max};
     }
 
-    private int getMax(int left, int mid, int right) {
-        int d1=mid-left;
-        int d2=right-mid;
-        if(d1==d2&&d1==1)return 0;
-        return Math.max(d1,d2);
+    private int getMax(int[] stones)
+    {
+        return Math.max(stones[stones.length-1]-stones[1],stones[stones.length-2]-stones[0])-(stones.length-2);
     }
 
-    private int getMin(int left, int mid, int right) {
-        int d1=mid-left;
-        int d2=right-mid;
-        if(d1==d2&&d1==1)return 0;
-        else if(d1==2||d2==2)
+    private int getMin(int[] stones)
+    {
+        int res=0;
+        for (int i=0;i<stones.length;i++)
         {
-            return 1;
+            int cnt=0;
+            for (int j=i+1;j<stones.length&&stones[j]<stones[i]+stones.length;j++)
+            {
+                cnt++;
+            }
+            if(i<2&&stones[i+stones.length-2]==stones[i]+stones.length-2)
+            {
+                cnt--;
+            }
+            res=Math.max(res,cnt);
         }
-        else return 2;
+        return stones.length-res-1;
     }
 }
 /**
