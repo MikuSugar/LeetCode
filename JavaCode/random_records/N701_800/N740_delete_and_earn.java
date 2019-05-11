@@ -1,13 +1,10 @@
 package JavaCode.random_records.N701_800;
 
-import java.util.Map;
-
 public class N740_delete_and_earn
 {
     final static int LEN=10001;
     public int deleteAndEarn(int[] nums)
     {
-        int[] dp=new int[LEN];
         int[] sum=new int[LEN];
         int max=0;
         for (int i:nums)
@@ -15,6 +12,7 @@ public class N740_delete_and_earn
             max=Math.max(max,i);
             sum[i]+=i;
         }
+        int[] dp=new int[max+1];
         dp[0]=0;
         dp[1]=sum[1];
         for (int i=2;i<=max;i++)
