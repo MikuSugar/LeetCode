@@ -26,7 +26,6 @@ public class N16_three_sum_closes {
                     }
                     if(Math.abs(tempsum-target)<Math.abs(sum-target))
                     {
-                        System.out.println(sum);
                         sum=tempsum;
                     }
 
@@ -38,7 +37,6 @@ public class N16_three_sum_closes {
                     {
                         n--;
                     }
-
                 }
             }
             return sum;
