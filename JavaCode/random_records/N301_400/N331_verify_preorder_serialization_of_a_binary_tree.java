@@ -2,10 +2,6 @@ package JavaCode.random_records.N301_400;
 
 public class N331_verify_preorder_serialization_of_a_binary_tree {
 
-    public static void main(String[] args) {
-        System.out.println(new N331_verify_preorder_serialization_of_a_binary_tree().isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
-    }
-
     public boolean isValidSerialization(String preorder) {
         if(preorder.startsWith("#")&&!preorder.equals("#"))return false;
         if(!preorder.endsWith("#"))return false;
