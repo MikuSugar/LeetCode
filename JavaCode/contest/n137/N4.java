@@ -23,7 +23,7 @@ public class N4 {
         {
             if(dp[i])return sum-i;
         }
-        return 0;
+        return -1;
     }
 }
 /**
