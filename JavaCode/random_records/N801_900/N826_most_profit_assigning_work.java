@@ -18,7 +18,7 @@ public class N826_most_profit_assigning_work {
                 return o2[0]-o1[0];
             }
         });
-        
+
         int res=0;
         Arrays.sort(worker);
         int index=0;//工作指针
