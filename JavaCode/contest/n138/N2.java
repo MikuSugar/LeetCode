@@ -28,6 +28,7 @@ public class N2 {
                 }
             }
         }
+        res=Math.max(res,sum+d);
         return res;
     }
 }
