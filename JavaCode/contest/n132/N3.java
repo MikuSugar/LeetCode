@@ -1,22 +1,21 @@
 package JavaCode.contest.n132;
 
-import java.util.*;
-
 public class N3 {
 
-    //超时待解决
+    private final static int MAX=10000;
     public int longestArithSeqLength(int[] A) {
-        int res=0;
-        Map<Integer,Integer>[] dp =new Map[A.length];
-        for (int i=0;i<A.length;i++)
+        if(A.length<=2)return A.length;
+
+        int res=2;
+        int[][] dp=new int[A.length][MAX*2+5];
+        for (int i=1;i<A.length;i++)
         {
-            dp[i]=new HashMap<>();
             for (int j=0;j<i;j++)
             {
-                int dif=A[i]-A[j];
-                int len=dp[j].getOrDefault(dif,1)+1;
-                dp[i].put(dif,Math.max(len,dp[i].getOrDefault(dif,1)));
-                res=Math.max(res,len);
+                int dif=A[i]-A[j]+MAX;
+                int len=dp[j][dif]==0?2:dp[j][dif]+1;
+                dp[i][dif]=Math.max(dp[i][dif],len);
+                res=Math.max(res,dp[i][dif]);
             }
         }
         return res;
