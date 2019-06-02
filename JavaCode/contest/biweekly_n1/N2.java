@@ -4,9 +4,6 @@ import java.util.*;
 
 public class N2 {
 
-    public static void main(String[] args) {
-        System.out.println(new N2().indexPairs("thestoryofleetcodeandme",new String[]{"story","fleet","leetcode"}));
-    }
     public int[][] indexPairs(String text, String[] words) {
         List<int[]> res=new ArrayList<>();
         Set<String> set=new HashSet<>();

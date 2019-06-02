@@ -2,13 +2,37 @@ package JavaCode.contest.biweekly_n1;
 
 
 public class N3 {
+    private int[][] workers;
+    private int[][] bikes;
+    private int len;
+    private int min;
     public int assignBikes(int[][] workers, int[][] bikes) {
-       //待补题
-        return 0;
+        this.workers=workers;
+        this.bikes=bikes;
+        this.len=workers.length;
+        this.min=Integer.MAX_VALUE;
+        boolean[] book=new boolean[bikes.length];
+        dfs(book,0,0);
+        return min;
     }
 
+    private void dfs(boolean[] book, int idx, int sum) {
+        if(idx==len)
+        {
+            min=Math.min(min,sum);
+            return;
+        }
+        if(sum>=min)return;
+        for (int i=0;i<bikes.length;i++)
+        {
+            if(book[i])continue;
+            int manhattan = getManhattan(workers[idx], bikes[i]);
+            book[i]=true;
+            dfs(book,idx+1,sum+manhattan);
+            book[i]=false;
+        }
 
-
+    }
     private int getManhattan(int[] a,int b[])
     {
         return Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
