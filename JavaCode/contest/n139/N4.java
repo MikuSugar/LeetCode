@@ -1,7 +1,36 @@
 package JavaCode.contest.n139;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class N4 {
-    //待补题
+    public int numSubmatrixSumTarget(int[][] matrix, int target) {
+
+        int res = 0;
+        for (int i = 0; i < matrix.length; i++)
+        {
+            long[] sum = new long[matrix[0].length];
+            for (int j = i; j < matrix.length; j++)
+            {
+                for (int k = 0; k < matrix[0].length; k++)
+                {
+                    sum[k] += matrix[j][k];
+                }
+
+                long s = 0;
+                Map<Long, Long> map = new HashMap<>();
+                map.put(0l, 1l);
+                for (int k = 0; k < matrix[0].length; k++)
+                {
+                    s += sum[k];
+                    long dis = s - target;
+                    res += map.getOrDefault(dis, 0l);
+                    map.put(s, map.getOrDefault(s, 0l) + 1l);
+                }
+            }
+        }
+        return res;
+    }
 }
 /**
  *给出矩阵 matrix 和目标值 target，返回元素总和等于目标值的非空子矩阵的数量。
