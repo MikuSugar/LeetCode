@@ -2,11 +2,43 @@ package JavaCode.contest.n140;
 
 import JavaCode.data_structure_binary_tree.TreeNode;
 
-//待补题
+
 public class N3 {
     public TreeNode sufficientSubset(TreeNode root, int limit) {
-        return null;
+        return dfs(root,limit,0)<limit?null:root;
     }
+
+    private int dfs(TreeNode root, int limit, int sum) {
+        if(root==null)return sum;
+        sum+=root.val;
+        int left=dfs(root.left,limit,sum);
+        int right=dfs(root.right,limit,sum);
+        if(left<limit)root.left=null;
+        if (right<limit)root.right=null;
+        return Math.max(left,right);
+    }
+
+
+    /**
+     * class Solution {
+     *     public TreeNode sufficientSubset(TreeNode root, int limit) {
+     *         return getSum(root, limit, 0) < limit ? null : root;
+     *     }
+     *
+     *     private int getSum(TreeNode root, int limit, int pathSum){
+     *         if(root == null) return pathSum;
+     *
+     *         pathSum += root.val;
+     *         int left = getSum(root.left, limit, pathSum);
+     *         int right = getSum(root.right, limit, pathSum);
+     *
+     *         if(left<limit) root.left = null;
+     *         if(right < limit) root.right = null;
+     *
+     *         return Math.max(left, right);
+     *     }
+     * }
+     */
 }
 /**
  *给定二叉树的根 root，考虑所有从根到叶的路径：从根到任何叶的路径。 （叶节点是没有子节点的节点。）
