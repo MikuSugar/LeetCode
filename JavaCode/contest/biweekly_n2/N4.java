@@ -2,21 +2,31 @@ package JavaCode.contest.biweekly_n2;
 
 public class N4 {
 
+    private int res;
+    private static int[] x={0,1,6,8,9};
+    private static int[] y={0,1,9,8,6};
 
     public int confusingNumberII(int N) {
-        return 0;
+        res=0;
+        if(N==1_000_000_000)res++;
+        dfs(0,0,1,N);
+        return res;
     }
 
-    //-1 不能翻转  1 可以不同  0 可以相同
-    static int check(int i)
-    {
-        if(i==0||i==1||i==6||i==8||i==9)
+    private void dfs(int a, int b, int c, int n) {
+        if(a>n)return;
+        if(a!=0&&a!=b)
         {
-            if(i==6||i==9)return 1;
-            return 0;
+            res++;
         }
-        return -1;
+        if(c==1_000_000_000)return;
+        int st=a==0?1:0;
+        for (int i=st;i<5;i++)
+        {
+            dfs(a*10+x[i],b+y[i]*c,c*10,n);
+        }
     }
+
 }
 /**
  *本题我们会将数字旋转 180° 来生成一个新的数字。
