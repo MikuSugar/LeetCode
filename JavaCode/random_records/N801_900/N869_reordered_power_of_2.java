@@ -13,7 +13,7 @@ public class N869_reordered_power_of_2 {
         int num=1;
         while (true)
         {
-            num>>=1;
+            num<<=1;
             char[] s=Integer.toString(num).toCharArray();
             if(s.length>10)break;
             Arrays.sort(s);
