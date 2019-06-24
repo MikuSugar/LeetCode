@@ -1,14 +1,82 @@
 package JavaCode.contest.n142;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class N4 {
+
+    private int idx;
     public List<String> braceExpansionII(String expression) {
-        Set<String> set=new HashSet<>();
-        String[] express = expression.split(",");
-        return null;
+        this.idx =0;
+        Set<String> res=dfs(expression.toCharArray());
+        List<String> ans=new ArrayList<>(res.size());
+        ans.addAll(res);
+        Collections.sort(ans);
+        return ans;
+    }
+
+    private Set<String> dfs(char[] e) {
+        Set<String> res=new HashSet<>();
+        Set<String> cur=new HashSet<>();
+        cur.add("");
+        while (idx <e.length)
+        {
+            if(e[idx]==' ')
+            {
+                idx++;
+                continue;
+            }
+            if(e[idx]=='{')
+            {
+                idx++;
+                cur=mul(cur,dfs(e));
+            }
+            else if (e[idx]==',')
+            {
+                res=add(res,cur);
+                cur.clear();
+                cur.add("");
+                idx++;
+            }
+            else if(e[idx]=='}')
+            {
+                res=add(res,cur);
+                idx++;
+                return res;
+            }
+            else
+            {
+                cur=append(cur,e[idx]);
+                idx++;
+            }
+        }
+        res=add(res,cur);
+        return res;
+    }
+
+    private Set<String> append(Set<String> a, char c) {
+        Set<String> res=new HashSet<>();
+        for (String s:a)
+        {
+            res.add(s+c);
+        }
+        return res;
+    }
+
+    private Set<String> add(Set<String> a, Set<String> b) {
+        a.addAll(b);
+        return a;
+    }
+
+    private Set<String> mul(Set<String> a, Set<String> b) {
+        Set<String> res=new HashSet<>();
+        for (String s1:a)
+        {
+            for (String s2:b)
+            {
+                res.add(s1+s2);
+            }
+        }
+        return res;
     }
 }
 /**
