@@ -1,13 +1,35 @@
 package JavaCode.contest.n143;
 
+import java.util.Arrays;
 
 public class N3 {
 
-    public static void main(String[] args) {
-        System.out.println(new N3().minHeightShelves(new int[][]{{7,3},{8,7},{2,7},{2,5}},10));
-    }
     public int minHeightShelves(int[][] books, int shelf_width) {
-        //待补题
+        int[] height=new int[books.length+1];
+        int[] sum_width=new int[books.length+1];
+        for (int i=1;i<=books.length;i++)
+        {
+            height[i]=books[i-1][1];
+            sum_width[i]=sum_width[i-1]+books[i-1][0];
+        }
+        int[] dp=new int[books.length+1];
+        Arrays.fill(dp,Integer.MAX_VALUE);
+        dp[0]=0;
+        int max;
+        for (int i=1;i<=books.length;i++)
+        {
+            max=0;
+            for (int j=i;j>0;j--)
+            {
+                max=Math.max(height[j],max);
+                if(sum_width[i]-sum_width[j-1]<=shelf_width)
+                {
+                    dp[i]=Math.min(dp[i],dp[j-1]+max);
+                }
+                else break;
+            }
+        }
+        return dp[books.length];
     }
 
 
