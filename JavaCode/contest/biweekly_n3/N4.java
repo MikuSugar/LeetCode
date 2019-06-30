@@ -1,10 +1,33 @@
 package JavaCode.contest.biweekly_n3;
 
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class N4 {
 
     public int maximumMinimumPath(int[][] A) {
-        //待补题
+        Queue<int[]> queue=new LinkedList<>();
+        queue.add(new int[]{0,0,A[0][0]});
+        int[][] dp=new int[A.length][A[0].length];
+        dp[0][0]=A[0][0];
+        while (!queue.isEmpty())
+        {
+            int[] next = queue.poll();
+            for (int k=0;k<4;k++)
+            {
+                int i=next[0]+cul[k];
+                int j=next[1]+row[k];
+                if(i<0||j<0||i>=A.length||j>=A[0].length)continue;
+                int min = Math.min(next[2], A[i][j]);
+                if(min>dp[i][j])
+                {
+                    dp[i][j]=min;
+                    queue.add(new int[]{i,j,min});
+                }
+            }
+        }
+        return dp[A.length-1][A[0].length-1];
     }
 
     private static int[] cul={-1,0,0,1};
