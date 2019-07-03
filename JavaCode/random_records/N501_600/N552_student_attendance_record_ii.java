@@ -7,9 +7,9 @@ public class N552_student_attendance_record_ii
     public int checkRecord(int n) {
         if(n==1)return 3;
 
-        int[] lastA=new int[n];//以A结尾
-        int[] lastL=new int[n];//以L结尾
-        int[] lastP=new int[n];//以P结尾
+        int[] lastA=new int[n+5];//以A结尾
+        int[] lastL=new int[n+5];//以L结尾
+        int[] lastP=new int[n+5];//以P结尾
         lastA[0]=1;
         lastA[1]=2;
         lastA[2]=4;
