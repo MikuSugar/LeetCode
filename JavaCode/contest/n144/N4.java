@@ -2,7 +2,21 @@ package JavaCode.contest.n144;
 
 public class N4 {
     public int[] maxDepthAfterSplit(String seq) {
-        return null;
+        int[] res=new int[seq.length()];
+        int idx=0,cnt=0;
+        for (char c:seq.toCharArray())
+        {
+            if(c=='(')
+            {
+                cnt++;
+            }
+            res[idx++]=cnt%2==0?1:0;
+            if(c==')')
+            {
+                cnt--;
+            }
+        }
+        return res;
     }
 }
 /**
