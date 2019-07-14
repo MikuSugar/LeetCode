@@ -1,38 +1,19 @@
 package JavaCode.contest.biweekly_n4;
 
-
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.HashMap;
+import java.util.Map;
 
 public class N4 {
 
     public boolean canDivideIntoSubsequences(int[] nums, int K) {
-        PriorityQueue<int[]> queue=new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[0]-o2[0];
-            }
-        });
-
+        Map<Integer,Integer> map=new HashMap<>();
+        int max=0;
         for (int i:nums)
         {
-            if(queue.isEmpty()||queue.peek()[0]>=i)
-            {
-                queue.add(new int[]{i,1});
-            }
-            else
-            {
-                int[] poll = queue.poll();
-                poll[0]=i;
-                poll[1]++;
-                queue.add(poll);
-            }
+            map.put(i,map.getOrDefault(i,0)+1);
+            max=Math.max(max,map.get(i));
         }
-        while (!queue.isEmpty())
-        {
-            if(queue.poll()[1]<K)return false;
-        }
-        return true;
+        return ((long)max*K)<=nums.length;
     }
 }
 /**
