@@ -3,66 +3,60 @@ package JavaCode.contest.n145;
 import java.util.*;
 
 public class N4 {
-
-    //超时待解决！
-    private int[] res;
-    private List<List<String>> people;
     public int[] smallestSufficientTeam(String[] req_skills, List<List<String>> people) {
-        Set<String> set=new HashSet<>();
-        this.people=people;
-        for (String s:req_skills)
+        Map<String,Integer> map=new HashMap<>();
+        for (int i=0;i<req_skills.length;i++)
         {
-            set.add(s);
+            map.put(req_skills[i],i);
         }
-        dfs(set,0,new ArrayList<>());
-        return res;
-    }
-
-    private void dfs(Set<String> set, int start, List<Integer> list) {
-        if(res!=null&&list.size()>res.length)return;
-        if(set.size()==0)
+        int[] dp=new int[1<<req_skills.length];
+        Arrays.fill(dp,Integer.MAX_VALUE/2);
+        dp[0]=0;
+        List<Integer>[] lists=new List[1<<req_skills.length];
+        for (int i=(1<<req_skills.length)-1;i>=0;i--)
         {
-            if(res==null||res.length>list.size())
+            lists[i]=new ArrayList<>();
+        }
+        int id=0;
+        int g=Integer.MAX_VALUE;
+        int gst=-1;
+        for(List<String> c:people)
+        {
+            for (int status=(1<<req_skills.length)-1;status>=0;status--)
             {
-                res=new int[list.size()];
-                int idx=0;
-                for (int i:list)
+                int cur=0;
+                for (String str:c)
                 {
-                    res[idx++]=i;
+                    if(map.containsKey(str))
+                    {
+                        int idx=map.get(str);
+                        cur|=1<<idx;
+                    }
+                }
+                int next_status=status|cur;
+                if(dp[status]+1<dp[next_status])
+                {
+                    dp[next_status]=dp[status]+1;
+                    lists[next_status]=new ArrayList<>();
+                    for (int i:lists[status])
+                    {
+                        lists[next_status].add(i);
+                    }
+                    lists[next_status].add(id);
                 }
             }
-            return;
+            id++;
         }
-        for (int i=start;i<people.size();i++)
+        int k=(1<<req_skills.length)-1;
+        int len=lists[k].size();
+        int[] res=new int[len];
+        for (int i=0;i<len;i++)
         {
-            List<String> p = people.get(i);
-            if(getNum(set,p)==0)continue;
-            Set<String> set1=new HashSet<>(set);
-            help(set,p);
-            list.add(i);
-            dfs(set,start+1,list);
-            list.remove(list.size()-1);
-            set=set1;
-        }
-    }
-
-    private int getNum(Set<String> set, List<String> list) {
-        int res=0;
-        for (String s:list)
-        {
-            if (set.contains(s)) res++;
+            res[i]=lists[k].get(i);
         }
         return res;
     }
-    private void help(Set<String> set, List<String> p) {
-        List<String> res=new ArrayList<>();
-        for (String s:p)
-        {
-            set.remove(s);
-            res.add(s);
-        }
 
-    }
 }
 /**
  *作为项目的项目经理，你规划了一份需求技能清单 req_skills ，并打算从备选人员名单 people 中选出一些人构成必要团队。 编号为 i 的备选人员 people[i] 含有一份该备选人员掌握的技能列表。
