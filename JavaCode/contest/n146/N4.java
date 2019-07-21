@@ -2,7 +2,23 @@ package JavaCode.contest.n146;
 
 public class N4 {
     public int maxAbsValExpr(int[] arr1, int[] arr2) {
-        return 0;
+        int res=0;
+        int t1=arr1[0]+arr2[0];
+        int t2=-arr1[0]-arr2[0];
+        int t3=arr1[0]-arr2[0];
+        int t4=-arr1[0]+arr2[0];
+        for (int i=1;i<arr1.length;i++)
+        {
+            res=Math.max(res,t1+i-arr1[i]-arr2[i]);
+            res=Math.max(res,t2+i+arr1[i]+arr2[i]);
+            res=Math.max(res,t3+i-arr1[i]+arr2[i]);
+            res=Math.max(res,t4+i+arr1[i]-arr2[i]);
+            t1=Math.max(t1,arr1[i]+arr2[i]-i);
+            t2=Math.max(t2,-arr1[i]-arr2[i]-i);
+            t3=Math.max(t3,arr1[i]-arr2[i]-i);
+            t4=Math.max(t4,-arr1[i]+arr2[i]-i);
+        }
+        return res;
     }
 }
 /**
