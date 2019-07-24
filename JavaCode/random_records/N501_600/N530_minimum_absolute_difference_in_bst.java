@@ -1,4 +1,4 @@
-package JavaCode.random_records.N401_500;
+package JavaCode.random_records.N501_600;
 
 import JavaCode.data_structure_binary_tree.TreeNode;
 
