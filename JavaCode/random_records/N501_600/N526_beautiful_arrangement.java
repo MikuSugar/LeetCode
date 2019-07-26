@@ -1,8 +1,5 @@
 package JavaCode.random_records.N501_600;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class N526_beautiful_arrangement {
     private int res;
     public int countArrangement(int N) {
