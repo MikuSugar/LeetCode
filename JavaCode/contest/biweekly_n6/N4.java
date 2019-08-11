@@ -1,9 +1,41 @@
 package JavaCode.contest.biweekly_n6;
 
+import java.util.Arrays;
+
 public class N4 {
-
     public boolean canConvert(String str1, String str2) {
-
+        if(str1.equals(str2))return true;
+        char[] s1 = str1.toCharArray();
+        char[] s2 = str2.toCharArray();
+        int[] book=new int[26];
+        Arrays.fill(book,-1);
+        for(int i=0;i<s1.length;i++)
+        {
+            int x=s1[i]-'a';
+            int y=s2[i]-'a';
+            if(book[x]==-1)book[x]=y;
+            else if(book[x]!=y)return false;
+        }
+        int has=0;
+        for (int i:book)
+        {
+            has+=i!=-1?1:0;
+        }
+        boolean flag=false;
+        for (int i=0;i<26;i++)
+        {
+            for (int j=i+1;j<26;j++)
+            {
+                if(book[i]!=-1&&book[i]==book[j])
+                {
+                    flag=true;
+                    break;
+                }
+            }
+        }
+        if (has!=26)return true;
+        if(flag)return true;
+        return false;
     }
 }
 /**
