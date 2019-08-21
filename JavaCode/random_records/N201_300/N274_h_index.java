@@ -12,7 +12,7 @@ public class N274_h_index {
                 return citations.length-i;
             }
         }
-        return -1;
+        return 0;
     }
 }
 /**
