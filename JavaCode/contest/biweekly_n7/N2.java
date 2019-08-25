@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class N2 {
-    public static void main(String[] args) {
-        System.out.printf("/123".lastIndexOf("/")+"");
-    }
     class FileSystem {
 
         private Map<String,Integer> map;

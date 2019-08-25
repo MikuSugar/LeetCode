@@ -11,7 +11,7 @@ public class N3 {
             queue.add(i);
         }
         int res=0;
-        while (!queue.isEmpty()&&queue.size()>1)
+        while (queue.size()>1)
         {
             int temp=queue.poll()+queue.poll();
             res+=temp;
