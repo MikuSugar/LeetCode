@@ -1,15 +1,9 @@
 package JavaCode.contest.n151;
 
-import sun.plugin.javascript.navig4.Link;
-
 import java.util.*;
 
 public class N1 {
 
-    public static void main(String[] args) {
-        System.out.println(new N1().invalidTransactions(new String[]{"bob,689,1910,barcelona",
-                "alex,696,122,bangkok","bob,832,1726,barcelona","bob,820,596,bangkok","chalicefy,217,669,barcelona","bob,175,221,amsterdam"}));
-    }
     class Node
     {
         String name;

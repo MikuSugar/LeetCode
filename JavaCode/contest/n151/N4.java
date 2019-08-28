@@ -1,57 +1,57 @@
 package JavaCode.contest.n151;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class N4 {
 
-    //待补题
-    public static void main(String[] args) {
-        DinnerPlates dinner = new N4().new DinnerPlates(2);
-        for (int i=1;i<=5;i++)
-        {
-            dinner.push(i);
-        }
-        System.out.println(dinner.popAtStack(0));
-    }
+    //LeetCode.com AC
+    //LeetCode-cn.com 超时
     class DinnerPlates {
-
-        private List<Stack<Integer>> dinner;
+        final int MAX=100000+5;
+        private int[][] data;
+        private int[] cur;
         private int capacity;
+        private int idx;
+        private PriorityQueue<Integer> pushQ;
+        private PriorityQueue<Integer> popQ;
         public DinnerPlates(int capacity) {
-            dinner=new ArrayList<>();
             this.capacity=capacity;
+            data=new int[MAX][capacity];
+            cur=new int[MAX];
+            idx=0;
+            pushQ=new PriorityQueue<>();
+            popQ=new PriorityQueue<>((a,b)->Integer.compare(b,a));
         }
 
         public void push(int val) {
-            for (Stack<Integer> stack:dinner)
+            if(pushQ.isEmpty()||cur[pushQ.peek()]>=capacity)
             {
-                if(stack.size()<capacity)
-                {
-                    stack.push(val);
-                    return;
-                }
+                data[idx][cur[idx]++]=val;
+                if(cur[idx]<capacity)pushQ.add(idx);
+                popQ.add(idx++);
+                return;
             }
-            Stack<Integer> stack=new Stack<>();
-            stack.add(val);
-            dinner.add(stack);
+            int first= pushQ.poll();
+            data[first][cur[first]++]=val;
+            if(cur[first]==1)popQ.add(first);
+            if(cur[first]<capacity) pushQ.add(first);
         }
 
         public int pop() {
-            for (int i=dinner.size()-1;i>=0;i--)
-            {
-                Stack<Integer> stack = dinner.get(i);
-                if(!stack.isEmpty())return stack.pop();
-            }
-            return -1;
+            if(popQ.isEmpty())return -1;
+            int first=popQ.peek();
+            if(cur[first]==capacity) pushQ.add(first);
+            int res=data[first][--cur[first]];
+            if(cur[first]==0)popQ.remove(first);
+            return res;
         }
 
         public int popAtStack(int index) {
-            if(index<0||index>=dinner.size())return -1;
-            Stack<Integer> stack = dinner.get(index);
-            if(stack.isEmpty())return -1;
-            return stack.pop();
+            if(index<0||index>=idx||cur[index]==0)return -1;
+            if(cur[index]==capacity)pushQ.add(index);
+            int res=data[index][--cur[index]];
+            if (cur[index]==0)popQ.remove(index);
+            return res;
         }
     }
 
