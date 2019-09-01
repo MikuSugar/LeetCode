@@ -3,15 +3,8 @@ package JavaCode.contest.n152;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class N3 {
-    public static void main(String[] args) {
-        String s="abcda";
-        int[][] q={{3,3,0},{1,2,0},{0,3,1},{0,3,2},{0,4,1}};
-        System.out.println(new N3().canMakePaliQueries(s,q));
-    }
-    private Map<String,int[]> map=new HashMap<>();
     public List<Boolean> canMakePaliQueries(String s, int[][] queries) {
         int[][] book=new int[s.length()+1][26];
         char[] strs = s.toCharArray();
@@ -26,11 +19,11 @@ public class N3 {
         List<Boolean> res=new ArrayList<>(queries.length);
         for(int[] q:queries)
         {
-            int[] b=help(book,q);
             int cnt=0;
-            for (int i:b)
+            for (int i=0;i<26;i++)
             {
-                if(i%2!=0)cnt++;
+                int t=book[q[1]+1][i]-book[q[0]][i];
+                cnt+=t%2==1?1:0;
             }
             if(q[2]*2>=cnt-1)res.add(true);
             else res.add(false);
@@ -38,17 +31,6 @@ public class N3 {
         return res;
     }
 
-    private int[] help(int[][] book, int[] q) {
-        String key=q[0]+","+q[1];
-        if(map.containsKey(key))return map.get(key);
-        int[] res=new int[26];
-        for (int i=0;i<26;i++)
-        {
-            res[i]=book[q[1]+1][i]-book[q[0]][i];
-        }
-        map.put(key,res);
-        return res;
-    }
 }
 /**
  *给你一个字符串 s，请你对 s 的子串进行检测。
