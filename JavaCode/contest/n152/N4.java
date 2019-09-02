@@ -26,7 +26,6 @@ public class N4 {
         }
         return res;
     }
-    
     private int getKey(String word) {
         int key=0;
         for (char c:word.toCharArray())
