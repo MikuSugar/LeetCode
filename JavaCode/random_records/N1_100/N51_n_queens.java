@@ -16,12 +16,12 @@ public class N51_n_queens {
         {
             Arrays.fill(map[i],'.');
         }
-        dfs(0,n,map,book,res);
+        dfs(0,map,book,res);
         return res;
     }
 
-    private void dfs(int start,int idx, char[][] map,int[][] book,List<List<String>> res) {
-        if(idx==0)
+    private void dfs(final int idx,final char[][] map,final int[][] book,final List<List<String>> res) {
+        if(idx==map.length)
         {
             List<String> list=new ArrayList<>(map.length);
             for (char[] m:map)
@@ -32,28 +32,22 @@ public class N51_n_queens {
             return;
         }
         int n=map.length;
-        if(n-start<idx)return;
-        for (int i=start;i<n;i++)
+        for (int i=0;i<n;i++)
         {
-            for (int j=0;j<n;j++)
+            if(book[0][i]==0&&book[1][idx+i]==0&&book[2][idx-i+n]==0)
             {
-                if(map[i][j]=='.'&&book[0][j]==0&&book[1][i+j]==0&&book[2][i-j+n]==0)
-                {
-                    map[i][j]='Q';
-                    book[0][j]++;
-                    book[1][i+j]++;
-                    book[2][i-j+n]++;
-                    dfs(i+1, idx-1, map, book, res);
-                    map[i][j]='.';
-                    book[0][j]--;
-                    book[1][i+j]--;
-                    book[2][i-j+n]--;
-                }
+                map[idx][i]='Q';
+                book[0][i]++;
+                book[1][idx+i]++;
+                book[2][idx-i+n]++;
+                dfs(idx+1, map, book, res);
+                map[idx][i]='.';
+                book[0][i]--;
+                book[1][idx+i]--;
+                book[2][idx-i+n]--;
             }
         }
     }
-
-
 }
 /**
  * n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。
