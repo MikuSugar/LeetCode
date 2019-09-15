@@ -1,10 +1,47 @@
 package JavaCode.contest.n154;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class N4 {
+    private int total;
     public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
-        
+        List<List<Integer>> res=new ArrayList<>();
+        List<Integer>[] graph=getGraph(n,connections);
+        this.total=0;
+        dfs(0,-1,graph,res,new int[(int) (1e5+5)],new int[(int)(1e5+5)]);
+        return res;
+    }
+
+    private void dfs(int cur, int father, List<Integer>[] graph, List<List<Integer>> res, int[] dfn, int[] low) {
+        dfn[cur]=low[cur]=++total;
+        for (int next:graph[cur])
+        {
+            if(dfn[next]==0)
+            {
+                dfs(next,cur,graph,res,dfn,low);
+                low[cur]=Math.min(low[cur],low[next]);
+                if(dfn[cur]<low[next])
+                {
+                    res.add(new ArrayList<Integer>(){{add(cur);add(next);}});
+                }
+            }
+            else if(next!=father)low[cur]=Math.min(low[cur],dfn[next]);
+        }
+    }
+
+    private List<Integer>[] getGraph(int n, List<List<Integer>> connections) {
+        List<Integer>[] graph=new List[n+1];
+        for (List<Integer> conn:connections)
+        {
+            int a=conn.get(0);
+            int b=conn.get(1);
+            if(graph[a]==null)graph[a]=new ArrayList<>();
+            if(graph[b]==null)graph[b]=new ArrayList<>();
+            graph[a].add(b);
+            graph[b].add(a);
+        }
+        return graph;
     }
 }
 /**
