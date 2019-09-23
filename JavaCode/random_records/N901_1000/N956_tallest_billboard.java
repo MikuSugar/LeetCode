@@ -7,21 +7,18 @@ import java.util.Arrays;
  * time:2019/9/19
  */
 public class N956_tallest_billboard {
-    public static void main(String[] args) {
-        System.out.println(new N956_tallest_billboard().tallestBillboard(new int[]{1,2,3,4,5,6}));
-    }
     public int tallestBillboard(int[] rods) {
         int[][] book=new int[rods.length][5000*2+5];
         for (int i=0;i<rods.length;i++)
         {
             Arrays.fill(book[i],-1);
         }
-        int slove=slove(0, 5000, rods, book);
-        return slove;
+        return slove(0, 5000, rods, book)-5000;
+
     }
 
     private int slove(int idx, int sum, int[] rods, int[][] book) {
-        if (idx == rods.length) return sum == 5000 ? 0 : Integer.MIN_VALUE>>1;
+        if (idx == rods.length) return sum == 5000 ? sum : Integer.MIN_VALUE>>1;
         if (book[idx][sum]!=-1)return book[idx][sum];
         int res= slove(idx+1,sum, rods,book);
         res= Math.max(res, slove( idx+1, sum-rods[idx],rods,book));
