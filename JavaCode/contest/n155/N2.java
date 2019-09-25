@@ -6,7 +6,27 @@ package JavaCode.contest.n155;
  */
 public class N2 {
     public int nthUglyNumber(int n, int a, int b, int c) {
-        return 0;
+        long left=0,right=Integer.MAX_VALUE;
+        while (left+1<right)
+        {
+            long mid=(left+right)/2;
+            long cnt=mid/a;
+            cnt+=mid/b;
+            cnt+=mid/c;
+            long temp=(long)a*b/gcd(a,b);
+            cnt-=mid/temp;
+            cnt-=mid/((long)a*c/gcd(a,c));
+            cnt-=mid/((long)c*b/gcd(c,b));
+            cnt+=mid/(temp*c/gcd(temp,c));
+            if(cnt<n)left=mid;
+            else right=mid;
+        }
+        return (int)right;
+    }
+
+    private long gcd(long a,long b)
+    {
+        return b==0?a:gcd(b,a%b);
     }
 }
 /**
