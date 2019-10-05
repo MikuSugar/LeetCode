@@ -1,12 +1,80 @@
 package JavaCode.contest.n156;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * author:fangjie
  * time:2019/9/30
  */
 public class N4 {
     public int minimumMoves(int[][] grid) {
-        
+        final int n=grid.length;
+        boolean[][][] book=new boolean[n][n][2];
+        Queue<int[]> queue=new LinkedList<>();
+        queue.add(new int[]{0,1,0});
+        book[0][1][0]=true;
+        int cnt=1;
+        while (!queue.isEmpty())
+        {
+            int size=queue.size();
+            while (size-->0)
+            {
+                int[] cur=queue.poll();
+                if(cur[2]==0)
+                {
+                    if(cur[1]+1<n&&grid[cur[0]][cur[1]+1]==0&&!book[cur[0]][cur[1]+1][0])
+                    {
+                        if(check(cur[0],cur[1]+1,0,n))return cnt;
+                        queue.add(new int[]{cur[0],cur[1]+1,0});
+                        book[cur[0]][cur[1]+1][0]=true;
+                    }
+                    if(cur[0]+1<n&&grid[cur[0]+1][cur[1]]==0&&grid[cur[0]+1][cur[1]-1]==0)
+                    {
+                        if(!book[cur[0]+1][cur[1]][0])
+                        {
+                            if(check(cur[0]+1,cur[1],0,n)) return cnt;
+                            queue.add(new int[]{cur[0]+1,cur[1],0});
+                            book[cur[0]+1][cur[1]][0]=true;
+                        }
+                        if(!book[cur[0]+1][cur[1]-1][1])
+                        {
+                            queue.add(new int[]{cur[0]+1,cur[1]-1,1});
+                            book[cur[0]+1][cur[1]-1][1]=true;
+                        }
+                    }
+                }
+                else
+                {
+                    if(cur[0]+1<n&&grid[cur[0]+1][cur[1]]==0&&!book[cur[0]+1][cur[1]][1])
+                    {
+                        book[cur[0]+1][cur[1]][1]=true;
+                        queue.add(new int[]{cur[0]+1,cur[1],1});
+                    }
+                    if(cur[1]+1<n&&grid[cur[0]][cur[1]+1]==0&&grid[cur[0]-1][cur[1]+1]==0)
+                    {
+                        if(!book[cur[0]-1][cur[1]+1][0])
+                        {
+                            if(check(cur[0]-1,cur[1]+1,0,n))return cnt;
+                            book[cur[0]-1][cur[1]+1][0]=true;
+                            queue.add(new int[]{cur[0]-1,cur[1]+1,0});
+                        }
+                        if(!book[cur[0]][cur[1]+1][1])
+                        {
+                            book[cur[0]][cur[1]+1][1]=true;
+                            queue.add(new int[]{cur[0],cur[1]+1,1});
+                        }
+                    }
+                }
+            }
+            cnt++;
+        }
+        return -1;
+    }
+
+    private boolean check(int x, int y, int way, int n) {
+        if(x==n-1&&y==n-1&&way==0)return true;
+        return false;
     }
 }
 /**
