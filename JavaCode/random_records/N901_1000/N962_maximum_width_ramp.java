@@ -7,9 +7,6 @@ import java.util.*;
  * time:2019/10/11
  */
 public class N962_maximum_width_ramp {
-    public static void main(String[] args) {
-        System.out.println(new N962_maximum_width_ramp().maxWidthRamp(new int[]{9,8,1,0,1,9,4,0,4,1}));
-    }
     public int maxWidthRamp(int[] A) {
        int[] minL=new int[A.length];
        int[] maxR=new int[A.length];
