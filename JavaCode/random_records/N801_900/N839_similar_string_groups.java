@@ -1,15 +1,51 @@
 package JavaCode.random_records.N801_900;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * author:fangjie
  * time:2019/10/18
  */
 public class N839_similar_string_groups {
     public int numSimilarGroups(String[] A) {
-        for(String s:A)
+        if(A==null||A.length==0||A[0].isEmpty()) return 0;
+        int[] fa=new int[A.length];
+        boolean[] book=new boolean[A.length];
+        for (int i=0;i<fa.length;i++)fa[i]=i;
+
+        for (int i=0;i<A.length;i++)
         {
-            
+            if(book[i])continue;
+            dfs(i,book,fa,A);
         }
+
+        Set<Integer> res=new HashSet<>();
+        for (int i:fa)res.add(i);
+        return res.size();
+    }
+
+    private void dfs(int idx, boolean[] book, int[] fa, String[] a) {
+        for (int i=0;i<a.length;i++)
+        {
+            if(book[i])continue;
+            if(check(a[idx].toCharArray(),a[i].toCharArray()))
+            {
+                book[i]=true;
+                fa[i]=fa[idx];
+                dfs(i,book,fa,a);
+            }
+        }
+    }
+
+    private boolean check(char[] s1, char[] s2) {
+        int cnt=0;
+        for (int i=0;i<s1.length;i++)
+        {
+            if(s1[i]!=s2[i])cnt++;
+            if(cnt>2)return false;
+        }
+        return true;
     }
 }
 /**
