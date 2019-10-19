@@ -1,49 +1,35 @@
 package JavaCode.contest.biweekly_n11;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * author:fangjie
  * time:2019/10/19
  */
 public class N4 {
-
-    //超时
-    private final static int MIN=Integer.MIN_VALUE;
-    private int K;
     public int maximizeSweetness(int[] sweetness, int K) {
-        System.out.println(sweetness.length);
-        this.K=K;
-        int[] sum=new int[sweetness.length+1];
-        for (int i=0;i<sweetness.length;i++)sum[i+1]=sum[i]+sweetness[i];
-        Map<Integer,Map<Integer,int[]>> dp=new HashMap<>();
-        return slove(0,sweetness.length-1,sweetness,sum,K+1,dp);
-    }
-
-    private int slove(int left, int right, int[] sweetness, int[] sum, int k, Map<Integer,Map<Integer,int[]>> dp) {
-        if(right-left+1<k)return MIN;
-        if(k==1)return sum[right+1]-sum[left];
-
-        dp.putIfAbsent(left,new HashMap<>());
-        Map<Integer, int[]> map=dp.get(left);
-        map.putIfAbsent(right,new int[K+2]);
-        int[] d=map.get(right);
-        if(d[k]!=0)return d[k];
-
-        int res=0;
-        for (int lk=1;lk<k;lk++)
+        int left=1,right=Integer.MAX_VALUE>>1;
+        while (left<right-1)
         {
-            for (int i=left+lk-1;i<right-(k-lk)+1;i++)
-            {
-                res=Math.max(res,Math.min(slove(left,i,sweetness,sum,lk,dp),slove(i+1,right,sweetness,sum,k-lk,dp)));
-            }
+            int mid=(left+right)/2;
+            if(slove(sweetness,mid)>=K+1)left=mid;
+            else right=mid;
         }
-        return d[k]=res;
+        return slove(sweetness,right)>=K+1?right:left;
     }
 
-
+    private int slove(int[] sweetness, int mid) {
+        int cnt=0;
+        for (int i=0,j=0;i<sweetness.length;i=j)
+        {
+            j=i;
+            int sum=0;
+            while (j<sweetness.length&&sum<mid)
+            {
+                sum+=sweetness[j++];
+            }
+            cnt+=sum>=mid?1:0;
+        }
+        return cnt;
+    }
 }
 /**
  *你有一大块巧克力，它由一些甜度不完全相同的小块组成。我们用数组 sweetness 来表示每一块的甜度。
