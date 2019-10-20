@@ -10,9 +10,6 @@ import java.util.Set;
  * time:2019/10/19
  */
 public class N1 {
-    public static void main(String[] args) {
-        System.out.println(new N1().missingNumber(new int[]{5,7,11,13}));
-    }
     public int missingNumber(int[] arr) {
         Set<Integer> set=new HashSet<>();
         int n=-1;
