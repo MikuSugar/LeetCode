@@ -1,12 +1,51 @@
 package JavaCode.contest.n159;
 
+import java.util.*;
+
 /**
  * author:fangjie
  * time:2019/10/20
  */
 public class N4 {
     public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+        final int n=startTime.length;
+        Map<Integer,Set<Integer>> map=new HashMap<>();
+        List<Integer> list=new ArrayList<>(n<<1);
+        for (int i=0;i<n;i++)
+        {
+            list.add(startTime[i]);
+            list.add(endTime[i]);
+            map.putIfAbsent(endTime[i],new HashSet<>());
+            map.get(endTime[i]).add(i);
+        }
 
+        Collections.sort(list);
+        int[] time=new int[n<<1];
+        int idx=0;
+        Map<Integer,Integer> idx_map=new HashMap<>();
+        for (int t:list)
+        {
+            if(idx==0||time[idx-1]!=t)
+            {
+                idx_map.put(t,idx);
+                time[idx++]=t;
+            }
+        }
+
+        int[] dp=new int[idx];
+        Set<Integer> emptySet=new HashSet<>();
+        for (int i=0;i<idx;i++)
+        {
+            Set<Integer> set=map.getOrDefault(time[i], emptySet);
+            for (int k:set)
+            {
+                int s=startTime[k];
+                int p=profit[k];
+                dp[i]=Math.max(dp[i],p+dp[idx_map.get(s)]);
+            }
+            if(i>0)dp[i]=Math.max(dp[i],dp[i-1]);
+        }
+        return dp[idx-1];
     }
 }
 /**
