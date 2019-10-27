@@ -8,9 +8,6 @@ import java.util.List;
  * time:2019/10/27
  */
 public class N1 {
-    public static void main(String[] args) {
-        System.out.println(new N1().findSolution((x, y)->x+y,5));
-    }
     public List<List<Integer>> findSolution(CustomFunction customfunction, int z) {
         List<List<Integer>> res=new ArrayList<>();
         for (int i=1;i<=1000;i++)

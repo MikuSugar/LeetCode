@@ -14,8 +14,8 @@ public class N2 {
         dfs(start,n,res,book);
         return res;
     }
-    
-    boolean dfs(int cur,int n,List<Integer> res,boolean[] book)
+
+    private boolean dfs(int cur,int n,List<Integer> res,boolean[] book)
     {
         if(res.size()==(1<<n)) return true;
         res.add(cur);
