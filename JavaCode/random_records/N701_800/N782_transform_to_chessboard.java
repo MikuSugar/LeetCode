@@ -6,7 +6,36 @@ package JavaCode.random_records.N701_800;
  */
 public class N782_transform_to_chessboard {
     public int movesToChessboard(int[][] board) {
-        return -1;
+        final int N=board.length;
+        int rowSum=0,colSum=0,rowSwap=0,colSwap=0;
+        for (int i=0;i<N;i++)
+        {
+            for (int j=0;j<N;j++)
+            {
+                if((board[0][0]^board[i][0]^board[0][j]^board[i][j])==1)return -1;
+            }
+        }
+        for (int i=0;i<N;i++)
+        {
+            rowSum+=board[0][i];
+            colSum+=board[i][0];
+            rowSwap+=board[i][0]==i%2?1:0;
+            colSwap+=board[0][i]==i%2?1:0;
+        }
+        if (rowSum!=N/2&&rowSum!=(N+1)/2) return -1;
+        if (colSum!=N/2&&colSum!=(N+1)/2) return -1;
+        if(N%2==1)
+        {
+            if(colSwap%2==1)colSwap=N-colSwap;
+            if(rowSwap%2==1)rowSwap=N-rowSwap;
+        }
+        else
+        {
+            colSwap=Math.min(colSwap,N-colSwap);
+            rowSwap=Math.min(rowSwap,N-rowSwap);
+        }
+        return (colSwap+rowSwap)/2;
+
     }
 }
 /*
