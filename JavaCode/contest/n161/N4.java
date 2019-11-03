@@ -8,26 +8,17 @@ import java.util.*;
  */
 public class N4 {
     public boolean isGoodArray(int[] nums) {
-        Arrays.sort(nums);
-        Set<Integer> set=new HashSet<>();
-        set.add(nums[0]);
-        List<Integer> temp=new ArrayList<>(nums.length);
+        int res=nums[0];
         for (int i:nums)
         {
-            temp.clear();
-            for (int j:set)
-            {
-                int gcd=gcd(i, j);
-                if(gcd==1)return true;
-                temp.add(gcd);
-            }
-            set.addAll(temp);
+            res=gcd(i,res);
         }
-        return false;
+        return res==1;
     }
-    private  int  gcd(int n, int m) {
+    private int gcd(int n, int m) {
         int t=0;
-        while(m>0) {
+        while(m>0)
+        {
             t=n%m;
             n=m;
             m=t;
