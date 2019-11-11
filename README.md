@@ -24,8 +24,8 @@
 > * random_records包为随机题目刷题记录  。[题目地址](https://leetcode-cn.com/problemset/all/)
 > * contest包为竞赛记录。[专题地址](https://leetcode-cn.com/contest/)
 > * 部分题目用cpp实现,在C++目录下。
-> * 在JavaCode目录下部分题目用Scala实现（学习Scala中）
+> * 在JavaCode目录下部分题目用Scala实现（学习Scala中）。
+> * sql包为数据库题目。
 
 
-
-By MikuSugar. 2019/09/20
+By MikuSugar. 2019/11/11
