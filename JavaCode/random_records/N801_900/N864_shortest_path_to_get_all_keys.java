@@ -9,10 +9,68 @@ import java.util.*;
 public class N864_shortest_path_to_get_all_keys {
     public int shortestPathAllKeys(String[] grid) {
         char[][] graphs=getGraphs(grid);
-        
+        int[] start=new int[2];
+        final int end=init(graphs,start);
+
         Queue<int[]> queue=new LinkedList<>();
+        Set<String> set=new HashSet<>();
+        set.add(getKey(start[0],start[1],0));
+        queue.add(new int[]{start[0],start[1],0});
+        int res=0;
 
+        while (!queue.isEmpty())
+        {
+            int size=queue.size();
+            while (size-->0)
+            {
+                int[] cur=queue.poll();
+                for (int[] next:NEXTS)
+                {
+                    int i=cur[0]+next[0];
+                    int j=cur[1]+next[1];
+                    if(i<0||j<0||i>=graphs.length||j>=graphs[0].length||graphs[i][j]=='#')continue;
+                    int status=cur[2];
+                    if(Character.isLowerCase(graphs[i][j]))
+                    {
+                        status|=(1<<getKeyIdx(i,j,graphs));
+                        if(status==end)return res+1;
+                    }
+                    else if(Character.isUpperCase(graphs[i][j]))
+                    {
+                        int idx=getKeyIdx(i,j,graphs);
+                        int temp=status|(1<<idx);
+                        if(temp!=status)continue;
+                    }
+                    String key=getKey(i, j, status);
+                    if(set.contains(key))continue;
+                    set.add(key);
+                    queue.add(new int[]{i,j,status});
+                }
+            }
+            res++;
+        }
+        return -1;
 
+    }
+
+    private int init(char[][] graphs, int[] start) {
+        int end=0;
+        for (int i=0;i<graphs.length;i++)
+        {
+            for (int j=0;j<graphs[0].length;j++)
+            {
+                if(Character.isLowerCase(graphs[i][j]))
+                {
+                    end|=(1<<getKeyIdx(i,j,graphs));
+                }
+                else if(graphs[i][j]=='@')
+                {
+                    start[0]=i;
+                    start[1]=j;
+                }
+            }
+        }
+        return end;
     }
 
     private String getKey(int i,int j,int status) {
@@ -20,13 +78,9 @@ public class N864_shortest_path_to_get_all_keys {
     }
 
     private final static int[][] NEXTS={{-1,0},{0,-1},{0,1},{1,0}};
-    private int getKeyIdx(int i,int j,List<int[]> keys) {
-        for (int res=0;res<keys.size();res++)
-        {
-            int[] cur=keys.get(res);
-            if(cur[0]==i&&cur[1]==j)return res;
-        }
-        return -1;
+
+    private int getKeyIdx(int i,int j,char[][] graphs) {
+        return Character.toLowerCase(graphs[i][j])-'a';
     }
     private char[][] getGraphs(String[] grid) {
         char[][] res=new char[grid.length][];
