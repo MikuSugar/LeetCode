@@ -5,9 +5,6 @@ package JavaCode.random_records.N401_500;
  * time:2019/11/13
  */
 public class N467_unique_substrings_in_wraparound_string {
-    public static void main(String[] args) {
-        System.out.println(new N467_unique_substrings_in_wraparound_string().findSubstringInWraproundString("adcbdbcd"));
-    }
     public int findSubstringInWraproundString(String p) {
         int[] dp=new int[26];
         int maxLen=0;
