@@ -1,13 +1,89 @@
 package JavaCode.contest.n163;
 
+import java.util.*;
+
 /**
  * author:fangjie
  * time:2019/11/17
  */
 public class N4 {
     public int minPushBox(char[][] grid) {
+        Set<String> book=new HashSet<>();
+        Queue<int[]> queue=new LinkedList<>();
+        int[] start=new int[4];
+        int[] tar=new int[2];
+        init(start,tar,grid);
 
+        queue.add(start);
+        book.add(Arrays.toString(start));
+        int res=0;
+        while (!queue.isEmpty())
+        {
+            res++;
+            int size=queue.size();
+            while (size-->0)
+            {
+                int[] cur=queue.poll();
+                boolean[][] can=new boolean[grid.length][grid[0].length];
+                can[cur[0]][cur[1]]=can[cur[2]][cur[3]]=true;
+                dfs(grid,can,cur[2],cur[3]);
+                for (int[] next:NEXTS)
+                {
+                    int bi=cur[0]+next[0];
+                    int bj=cur[1]+next[1];
+                    int ti=cur[0]-next[0];
+                    int tj=cur[1]-next[1];
+                    if(bi<0||bj<0||ti<0||tj<0||
+                    bi>=grid.length||ti>=grid.length||bj>=grid[0].length||tj>=grid[0].length||
+                    !can[ti][tj]||grid[bi][bj]=='#')continue;
+                    if(bi==tar[0]&&bj==tar[1])return res;
+                    int[] nextP=new int[]{bi,bj,ti,tj};
+                    String key=Arrays.toString(nextP);
+                    if(book.contains(key))continue;
+                    book.add(key);
+                    queue.add(nextP);
+                }
+            }
+        }
+
+        return -1;
     }
+
+    private void dfs(char[][] grid, boolean[][] used, int si, int sj) {
+        for (int[] next:NEXTS)
+        {
+            int i=si+next[0];
+            int j=sj+next[1];
+            if(i<0||j<0||i>=grid.length||j>=grid[0].length||used[i][j]||grid[i][j]=='#')continue;
+            used[i][j]=true;
+            dfs(grid,used,i,j);
+        }
+    }
+
+    private void init(int[] start, int[] tar, char[][] grid) {
+        for (int i=0;i<grid.length;i++)
+        {
+            for (int j=0;j<grid[0].length;j++)
+            {
+                if(grid[i][j]=='B')
+                {
+                    start[0]=i;
+                    start[1]=j;
+                }
+                else if(grid[i][j]=='S')
+                {
+                    start[2]=i;
+                    start[3]=j;
+                }
+                else if(grid[i][j]=='T')
+                {
+                    tar[0]=i;
+                    tar[1]=j;
+                }
+            }
+        }
+    }
+
     private final static int[][] NEXTS={{-1,0},{0,-1},{0,1},{1,0}};
 }
 /*
@@ -24,8 +100,6 @@ public class N4 {
 玩家需要站在箱子旁边，然后沿着箱子的方向进行移动，此时箱子会被移动到相邻的地板单元格。记作一次「推动」。
 玩家无法越过箱子。
 返回将箱子推到目标位置的最小 推动 次数，如果无法做到，请返回 -1。
-
-
 
 示例 1：
 
