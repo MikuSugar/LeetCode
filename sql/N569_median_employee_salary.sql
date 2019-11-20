@@ -1,4 +1,18 @@
-
+select a.Id, a.company, a.Salary
+from (
+    select a1.Id, a1.Company, a1.Salary, count(a2.Id) as big_num
+    from Employee a1,Employee a2
+    where  a1.Company = a2.Company and a1.Salary <= a2.Salary
+    group by a1.Id, a1.Company, a1.Salary) a
+join(
+    select a1.Id, a1.Company, a1.Salary, count(a2.Id) as small_num
+    from Employee a1,Employee a2
+    where  a1.Company = a2.Company and a1.Salary >= a2.Salary
+    group by  a1.Id, a1.Company, a1.Salary) b
+on a.Id = b.Id
+and a.Company = b.Company
+where abs(big_num-small_num) <= 1
+group by a.Company, a.Salary
 --Employee 表包含所有员工。Employee 表有三列：员工Id，公司名和薪水。
 --
 --+-----+------------+--------+
