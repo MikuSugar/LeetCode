@@ -25,7 +25,7 @@
 > * contest包为竞赛记录。[专题地址](https://leetcode-cn.com/contest/)
 > * 部分题目用cpp实现,在C++目录下。
 > * 在JavaCode目录下部分题目用Scala实现（学习Scala中）。
-> * sql包为数据库题目。
+> * sql包为数据库题目(mysql实现)。
 
 
-By MikuSugar. 2019/11/11
+By MikuSugar. 2019/11/21
