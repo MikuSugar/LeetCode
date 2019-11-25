@@ -15,9 +15,7 @@ public class N1 {
     }
 
     private int help(int[] a, int[] b) {
-        int min=Math.min(Math.abs(a[0]-b[0]),Math.abs(a[1]-b[1]));
-        if(Math.abs(a[0]-b[0])!=min)return min+Math.abs(a[0]-b[0])-min;
-        return min+Math.abs(a[1]-b[1])-min;
+        return Math.max(Math.abs(a[0]-b[0]),Math.abs(a[1]-b[1]));
     }
 }
 /*

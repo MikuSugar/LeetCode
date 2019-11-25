@@ -1,5 +1,6 @@
 package JavaCode.contest.n164;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,30 +10,28 @@ import java.util.Map;
  */
 public class N4 {
     public int numWays(int steps, int arrLen) {
-        Map<String,Integer> map=new HashMap<>();
-        return slove(steps,0,arrLen,map);
+        int[][] dp=new int[steps+1][Math.min(arrLen+1,steps+1)];
+        for (int[] d:dp) Arrays.fill(d,-1);
+        return slove(steps,0,arrLen,dp);
     }
 
-    private int slove(int steps, int cur, int arrLen,Map<String,Integer> map) {
+    private int slove(int steps, int cur, int arrLen, int[][] dp) {
         if(steps==0)
         {
             if(cur==0)return 1;
             return 0;
         }
-        if(cur-0>steps)return 0;
-        String key=steps+","+cur;
-        if(map.containsKey(key))return map.get(key);
+        if(cur>steps)return 0;
+        if(dp[steps][cur]!=-1)return dp[steps][cur];
         long res=0L;
-        res+=slove(steps-1,cur,arrLen,map);
+        res+=slove(steps-1,cur,arrLen,dp);
         res%=MOD;
-        if(cur>0)res+=slove(steps-1,cur-1,arrLen,map);
+        if(cur>0)res+=slove(steps-1,cur-1,arrLen,dp);
         res%=MOD;
-        if(cur<arrLen-1)res+=slove(steps-1,cur+1,arrLen,map);
+        if(cur<arrLen-1)res+=slove(steps-1,cur+1,arrLen,dp);
         res%=MOD;
-        map.put(key,(int)res);
-        return (int) res;
+        return dp[steps][cur]=(int) res;
     }
-
     private final static int MOD=(int) (1e9+7);
 }
 /*
