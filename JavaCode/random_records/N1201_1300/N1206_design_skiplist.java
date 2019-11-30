@@ -12,7 +12,7 @@ public class N1206_design_skiplist {
         }
 
         public boolean search(int target) {
-
+            return false;
         }
 
         public void add(int num) {
@@ -20,7 +20,7 @@ public class N1206_design_skiplist {
         }
 
         public boolean erase(int num) {
-            
+            return false;
         }
     }
 }
