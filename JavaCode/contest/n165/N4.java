@@ -12,18 +12,18 @@ public class N4 {
         boolean[][] isP=getPhrase(strs);
         int[][] dp=new int[strs.length][k+1];
         for (int[] d:dp)Arrays.fill(d,-1);
-        return slove(0,k,strs,dp,isP);
+        return slove(0,k,strs,dp,isP,new int[strs.length][strs.length]);
     }
 
-    private int slove(int idx, int k, char[] strs, int[][] dp, boolean[][] isP) {
+    private int slove(int idx, int k, char[] strs, int[][] dp, boolean[][] isP,int[][] book) {
         if(idx==strs.length)return 0;
         if(k==0)return Integer.MAX_VALUE>>1;
         if(dp[idx][k]!=-1)return dp[idx][k];
         int res=Integer.MAX_VALUE>>1;
         for (int i=idx;i<strs.length;i++)
         {
-            if(isP[idx][i]) res=Math.min(res,slove(i+1,k-1,strs,dp,isP));
-            else res=Math.min(res,getMin(idx,i,strs)+slove(i+1,k-1,strs,dp,isP));
+            if(isP[idx][i]) res=Math.min(res,slove(i+1,k-1,strs,dp,isP,book));
+            else res=Math.min(res,getMin(idx,i,strs,book)+slove(i+1,k-1,strs,dp,isP,book));
         }
         return dp[idx][k]=res;
     }
@@ -39,13 +39,14 @@ public class N4 {
         }
         return dp;
     }
-    private int getMin(int left, int right, char[] strs) {
+    private int getMin(int left, int right, char[] strs, int[][] book) {
+        if(book[left][right]!=0)return book[left][right];
         int res=0;
         while (left<right)
         {
             if(strs[left++]!=strs[right--])res++;
         }
-        return res;
+        return book[left][right]=res;
     }
 }
 /*

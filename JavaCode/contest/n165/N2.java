@@ -8,23 +8,18 @@ import java.util.List;
  * time:2019/12/1
  */
 public class N2 {
+    //4x+2y=t;
+    //x+y=c;
+    //2x+y=t;
     public List<Integer> numOfBurgers(int tomatoSlices, int cheeseSlices) {
         List<Integer> res=new ArrayList<>();
+        if(tomatoSlices%2!=0)return res;
         int max=0,min=0;
-        while (tomatoSlices>0&&cheeseSlices>0&&tomatoSlices>cheeseSlices*2)
-        {
-            max++;
-            tomatoSlices-=4;
-            cheeseSlices--;
-        }
-        min=cheeseSlices;
-        tomatoSlices-=cheeseSlices*2;
-        cheeseSlices=0;
-        if(tomatoSlices==cheeseSlices&&tomatoSlices==0)
-        {
-            res.add(max);
-            res.add(min);
-        }
+        max=tomatoSlices/2-cheeseSlices;
+        min=cheeseSlices-max;
+        if(max<0||min<0)return res;
+        res.add(max);
+        res.add(min);
         return res;
     }
 }
