@@ -1,5 +1,7 @@
 package JavaCode.contest.biweekly_n14;
 
+import java.util.Arrays;
+
 /**
  * author:fangjie
  * time:2019/11/30
@@ -13,17 +15,32 @@ public class N3 {
             dfs(node,sum,parent,value[node]);
         }
         int res=0;
+        byte[] book=new byte[nodes];
         for (int node=0;node<value.length;node++)
         {
-            if(check(sum,node,parent))res++;
+            if(check(sum,node,parent,book))res++;
         }
+        System.out.println(Arrays.toString(book));
         return res;
     }
 
-    private boolean check(int[] sum, int node, int[] parent) {
-        if(sum[node]==0)return false;
-        if(parent[node]==-1)return true;
-        return check(sum,parent[node],parent);
+    private boolean check(int[] sum, int node, int[] parent, byte[] book) {
+        if(sum[node]==0)
+        {
+            book[node]=1;
+            return false;
+        }
+        if(parent[node]==-1)
+        {
+            book[node]=2;
+            return true;
+        }
+        if(book[node]==1)return false;
+        if(book[node]==2)return true;
+        boolean res=check(sum,parent[node],parent, book);
+        if(res) book[node]=2;
+        else book[node]=1;
+        return res;
     }
 
     private void dfs(int node, int[] sum, int[] parent, int value) {

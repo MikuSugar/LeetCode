@@ -12,53 +12,39 @@ public class N2 {
         List<List<Integer>> res=new ArrayList<>();
         for (int[] i:intervals)
         {
-            List<Integer> list=help(i,toBeRemoved);
-            if(list!=null)
-            {
-                if(list.size()==2)res.add(list);
-                else if(list.size()==4)
-                {
-                    List<Integer> list1=new ArrayList<>(2);
-                    List<Integer> list2=new ArrayList<>(2);
-                    list1.add(list.get(0));
-                    list1.add(list.get(1));
-                    list2.add(list.get(2));
-                    list2.add(list.get(3));
-                    res.add(list1);
-                    res.add(list2);
-                }
-            }
+           int flag=help(i,toBeRemoved);
+           if(flag==-1)continue;
+           switch (flag)
+           {
+               case 0:
+                   res.add(getList(i[0],i[1]));
+                   break;
+               case 1:
+                   res.add(getList(i[0],toBeRemoved[0]));
+                   break;
+               case 2:
+                   res.add(getList(toBeRemoved[1],i[1]));
+                   break;
+               case 3:
+                   res.add(getList(i[0],toBeRemoved[0]));
+                   res.add(getList(toBeRemoved[1],i[1]));
+                   break;
+           }
         }
         return res;
     }
 
-    private List<Integer> help(int[] a, int[] b) {
-        if(a[0]>=b[0]&&a[1]<=b[1])return null;
-        List<Integer> res=new ArrayList<>(2);
-        if(a[1]<=b[0]||a[0]>=b[1])
-        {
-            res.add(a[0]);
-            res.add(a[1]);
+    private List<Integer> getList(int a,int b)
+    {
+        return new ArrayList<Integer>(2){{add(a);add(b);}};
+    }
 
-        }
-        else if(a[0]<b[0]&&a[1]<=b[1])
-        {
-            res.add(a[0]);
-            res.add(b[0]);
-
-        }
-        else if(a[1]>b[1]&&a[0]>=b[0])
-        {
-            res.add(b[1]);
-            res.add(a[1]);
-        }
-        else {
-            res.add(a[0]);
-            res.add(b[0]);
-            res.add(b[1]);
-            res.add(a[1]);
-        }
-        return res;
+    private int  help(int[] a, int[] b) {
+        if(a[0]>=b[0]&&a[1]<=b[1])return -1;
+        if(a[1]<=b[0]||a[0]>=b[1]) return 0;
+        else if(a[0]<b[0]&&a[1]<=b[1]) return 1;
+        else if(a[0]>=b[0]) return 2;
+        return 3;
     }
 }
 /*

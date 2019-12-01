@@ -9,17 +9,18 @@ import java.util.Set;
  * time:2019/11/30
  */
 public class N4 {
-    // 0 0 1 1
-    // 0 0 2 2
     public int countShips(Sea sea, int[] topRight, int[] bottomLeft) {
-        if(!sea.hasShips(topRight,bottomLeft))return 0;
-        if(topRight[0]==bottomLeft[0]&&topRight[1]==bottomLeft[1]) return 1;
-        int res=0;
-
-        return res;
-
+        if (!sea.hasShips(topRight, bottomLeft)) return 0;
+        if (topRight[0]==bottomLeft[0]&&topRight[1]==bottomLeft[1])return 1;
+        int x=(bottomLeft[0]+topRight[0])/2;
+        int y=(bottomLeft[1]+topRight[1])/2;
+        return countShips(sea,topRight,new int[]{x+1,y+1})
+                +countShips(sea,new int[]{topRight[0], y},new int[]{x+1,bottomLeft[1]})
+                +countShips(sea,new int[]{x,topRight[1]},new int[]{bottomLeft[0],y+1})
+                +countShips(sea, new int[]{x, y}, bottomLeft);
     }
 }
+//方便代码编写
 interface Sea {
     boolean hasShips(int[] topRight, int[] bottomLeft);
 }
