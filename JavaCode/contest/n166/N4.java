@@ -6,7 +6,6 @@ package JavaCode.contest.n166;
  */
 public class N4 {
     public int minFlips(int[][] mat) {
-        
     }
 }
 /*

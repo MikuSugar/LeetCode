@@ -7,47 +7,53 @@ import java.util.*;
  * time:2019/12/4
  */
 public class N381_insert_delete_getrandom_o1_duplicates_allowed {
-    public static void main(String[] args) {
-        RandomizedCollection r=new N381_insert_delete_getrandom_o1_duplicates_allowed().new RandomizedCollection();
-        r.insert(0);
-        System.out.println(r.list);
-        r.insert(1);
-        System.out.println(r.list);
-        r.remove(0);
-        System.out.println(r.list);
-        r.insert(2);
-        System.out.println(r.list);
-        r.remove(1);
-        System.out.println(r.list);
-        System.out.println(r.getRandom());
-    }
     class RandomizedCollection {
 
         private List<Integer> list;
-        private Map<Integer,List<Integer>> map;
+        private Map<Integer,Set<Integer>> map;
         private Random random;
         /** Initialize your data structure here. */
         public RandomizedCollection() {
-
+            list=new ArrayList<>(10000);
+            random=new Random();
+            map=new HashMap<>();
         }
 
         /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
         public boolean insert(int val) {
-           return false;
+            Set<Integer> set=map.getOrDefault(val, new HashSet<>());
+            list.add(val);
+            set.add(list.size()-1);
+            map.put(val,set);
+            return set.size()==1;
         }
 
         /** Removes a value from the collection. Returns true if the collection contained the specified element. */
         public boolean remove(int val) {
-            return false;
+            if(!map.containsKey(val))return false;
+            Set<Integer> set=map.get(val);
+            Iterator<Integer> it=set.iterator();
+            int idx=it.next();
+            set.remove(idx);
+            if(set.size()==0)map.remove(val);
+            if(idx==list.size()-1)list.remove(list.size()-1);
+            else {
+                list.set(idx,list.get(list.size()-1));
+                Set<Integer> set1=map.get(list.get(list.size()-1));
+                set1.remove(list.size()-1);
+                set1.add(idx);
+                list.remove(list.size()-1);
+            }
+            return true;
         }
 
         /** Get a random element from the collection. */
         public int getRandom() {
-          return 0;
+            return list.get(random.nextInt(list.size()));
         }
     }
 
-/**
+/*
  * Your RandomizedCollection object will be instantiated and called as such:
  * RandomizedCollection obj = new RandomizedCollection();
  * boolean param_1 = obj.insert(val);
