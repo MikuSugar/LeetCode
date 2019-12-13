@@ -5,7 +5,48 @@ package JavaCode.contest.n166;
  * time:2019/12/10
  */
 public class N4 {
+    private int res;
     public int minFlips(int[][] mat) {
+        if(check(mat))return 0;
+        res=10;
+        dfs(0,0,0,mat);
+        return res==10?-1:res;
+    }
+    private void dfs(int i, int j, int cnt, int[][] mat) {
+        if(check(mat)) {
+            res=Math.min(res,cnt);
+            return;
+        }
+        if(i==mat.length)return;
+        next(mat,i,j,cnt);
+        reverse(i,j,mat);
+        next(mat,i,j,cnt+1);
+        reverse(i,j,mat);
+    }
+
+    private void reverse(int i, int j, int[][] mat) {
+        mat[i][j]^=1;
+        for (int[] n:NEXT) {
+            int ii=i+n[0];
+            int jj=j+n[1];
+            if(ii<0||jj<0||ii>=mat.length||jj>=mat[0].length)continue;
+            mat[ii][jj]^=1;
+        }
+    }
+
+    private void next(int[][] mat, int i, int j,int cnt) {
+        if(++j==mat[0].length){
+            i++;
+            j=0;
+        }
+        dfs(i,j,cnt,mat);
+    }
+
+    private final static int[][] NEXT={{-1,0},{0,-1},{0,1},{1,0}};
+
+    boolean check (int[][] mat) {
+        for (int[] m:mat) for (int i:m) if(i!=0)return false;
+        return true;
     }
 }
 /*
@@ -19,11 +60,7 @@ public class N4 {
 
 全零矩阵是所有格子都为 0 的矩阵。
 
- 
-
 示例 1：
-
-
 
 输入：mat = [[0,0],[0,1]]
 输出：3
