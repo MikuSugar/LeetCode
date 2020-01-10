@@ -6,21 +6,95 @@ package JavaCode.random_records.N1201_1300;
  */
 public class N1206_design_skiplist {
     class Skiplist {
-
+        private Node head;
         public Skiplist() {
-
+           head=new Node(-1);
         }
 
         public boolean search(int target) {
+            Node cur=head;
+            while (cur!=null)
+            {
+                while (cur.right!=null&&cur.right.val<=target)cur=cur.right;
+                if(cur.val==target)return true;
+                cur=cur.down;
+            }
             return false;
         }
 
-        public void add(int num) {
 
+        private Node searchPre(int target)
+        {
+            Node cur=head;
+            Node pre=null;
+            while (cur!=null)
+            {
+                while (cur.right!=null&&cur.right.val<=target)cur=cur.right;
+                pre=cur;
+                cur=cur.down;
+            }
+            return pre;
+        }
+        public void add(int num) {
+            Node cur=searchPre(num);
+            Node node=new Node(num);
+            insert(cur, node);
+            while (tossCoin())
+            {
+                cur=getUpCur(cur);
+                Node temp=new Node(num);
+                insert(cur,temp);
+                node.up=temp;
+                temp.down=node;
+                node=temp;
+            }
+        }
+
+        private void insert(Node cur, Node node) {
+            node.left=cur;
+            node.right=cur.right;
+            if(cur.right!=null)cur.right.left=node;
+            cur.right=node;
+        }
+
+        private Node getUpCur(Node cur) {
+            if(cur.up!=null)return cur.up;
+            if(cur.val==-1)
+            {
+                Node node=new Node(-1);
+                node.down=cur;
+                cur.up=node;
+                return head=node;
+            }
+            return getUpCur(cur.left);
+        }
+
+        private boolean tossCoin() {
+            return Math.random()<=0.5;
         }
 
         public boolean erase(int num) {
-            return false;
+            Node cur=searchPre(num);
+            while (cur.right!=null&&cur.right.val<=num)cur=cur.right;
+            if(cur.val!=num)return false;
+            delete(cur);
+            return true;
+        }
+
+        private void delete(Node cur) {
+            if(cur==null)return;
+            cur.left.right=cur.right;
+            if(cur.right!=null)cur.right.left=cur.left;
+            delete(cur.up);
+        }
+
+        class Node{
+            Node down,left,right,up;
+            int val;
+            public Node(int val)
+            {
+                this.val=val;
+            }
         }
     }
 }
