@@ -7,26 +7,31 @@ package JavaCode.contest.biweekly_n17;
 public class N2 {
     public int[][] matrixBlockSum(int[][] mat, int K) {
         int[][] res=new int[mat.length][mat[0].length];
+        int[][] sum=new int[mat.length+1][mat[0].length+1];
         for (int i=0;i<mat.length;i++)
         {
             for (int j=0;j<mat[0].length;j++)
             {
-                res[i][j]=getSum(i,j,mat,K);
+                sum[i+1][j+1]=sum[i+1][j]+sum[i][j+1]+mat[i][j]-sum[i][j];
+            }
+        }
+
+        for (int i=0;i<mat.length;i++)
+        {
+            for (int j=0;j<mat[0].length;j++)
+            {
+                res[i][j]=getSum(i,j,mat,K,sum);
             }
         }
         return res;
     }
 
-    private int getSum(int i, int j, int[][] mat, int k) {
-        int res=0;
-        for (int ii=Math.max(0,i-k);ii<=Math.min(i+k,mat.length-1);ii++)
-        {
-            for (int jj=Math.max(0,j-k);jj<=Math.min(j+k,mat[0].length-1);jj++)
-            {
-                res+=mat[ii][jj];
-            }
-        }
-        return res;
+    private int getSum(int i, int j, int[][] mat, int k, int[][] sum) {
+        int i1=Math.max(0,i-k);
+        int i2=Math.min(i+k,mat.length-1);
+        int j1=Math.max(0,j-k);
+        int j2=Math.min(j+k,mat[0].length-1);
+        return sum[i2+1][j2+1]+sum[i1][j1]-sum[i2+1][j1]-sum[i1][j2+1];
     }
 }
 /*
