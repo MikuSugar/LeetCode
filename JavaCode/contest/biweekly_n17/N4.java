@@ -10,29 +10,26 @@ public class N4 {
     public int distinctEchoSubstrings(String text) {
         if(text.length()<=1)return 0;
         char[] strs=text.toCharArray();
-        Set<String> set=new HashSet<>(100);
-        for (int j=1;j<strs.length;j++)
+        Set<String> set=new HashSet<>(text.length()/2+15);
+        int[][] dp=new int[text.length()][text.length()];
+        for (int i=0;i<strs.length;i++)
         {
-            for (int i=0;i<j;i++)
+            for (int j=i+1;j<strs.length;j++)
             {
-                int len=j-i+1;
-                if(len%2!=0)continue;
-                if(check(i,j,strs))set.add(new String(strs,i,len));
+                if(strs[i]==strs[j])
+                {
+                    if(i==0)dp[i][j]=1;
+                    else dp[i][j]=1+dp[i-1][j-1];
+                }
+                if(dp[i][j]>=j-i)
+                {
+                    int start=2*i-j+1;
+                    set.add(new String(strs,start,j-start+1));
+                }
             }
         }
         return set.size();
     }
-
-    private boolean check(int i, int j, char[] strs) {
-        int mid=(j-i+1)/2-1+i;
-        for (int ii=mid,jj=j;ii>=i;ii--,jj--)
-        {
-            if(strs[ii]!=strs[jj])return false;
-        }
-        return true;
-    }
-
-
 }
 /*
 给你一个字符串 text ，请你返回满足下述条件的 不同 非空子字符串的数目：这些子字符串可以写成某个字符串与其自身的串联。

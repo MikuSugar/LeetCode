@@ -8,8 +8,40 @@ import java.util.List;
  */
 public class N4 {
     public int[] pathsWithMaxScore(List<String> board) {
-        return null;
+        final int n=board.size(),m=board.get(0).length();
+        char[][] graph=new char[n][];
+        int idx=0;
+        for (String s:board)graph[idx++]=s.toCharArray();
+        graph[0][0]=graph[n-1][m-1]='0';
+
+        int[][] dpSum=new int[n+1][m+1];
+        int[][] dpPath=new int[n+1][m+1];
+
+        dpPath[n-1][m-1]=1;
+        for (int i=n-1;i>=0;i--)
+        {
+            for (int j=m-1;j>=0;j--)
+            {
+                if(check(i,j,graph,dpPath))
+                {
+                    int maxScore=Math.max(Math.max(dpSum[i+1][j],dpSum[i][j+1]),dpSum[i+1][j+1]);
+                    dpSum[i][j]=maxScore+graph[i][j]-'0';
+                    if(dpSum[i+1][j]==maxScore)dpPath[i][j]=(dpPath[i][j]+dpPath[i+1][j])%MOD;
+                    if(dpSum[i][j+1]==maxScore)dpPath[i][j]=(dpPath[i][j]+dpPath[i][j+1])%MOD;
+                    if(dpSum[i+1][j+1]==maxScore)dpPath[i][j]=(dpPath[i][j]+dpPath[i+1][j+1])%MOD;
+                }
+            }
+        }
+        return new int[]{dpSum[0][0],dpPath[0][0]};
     }
+
+    private boolean check(int i, int j, char[][] graph, int[][] dpPath) {
+        if(graph[i][j]=='X')return false;
+        if(dpPath[i+1][j]!=0)return true;
+        if(dpPath[i][j+1]!=0)return true;
+        return dpPath[i+1][j+1]!=0;
+    }
+
     private final static int MOD=(int) (1e9+7);
 }
 /*
