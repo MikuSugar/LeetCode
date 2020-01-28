@@ -8,65 +8,62 @@ import java.util.*;
  */
 public class N4 {
 
-    //超时待修改
-    public static void main(String[] args) {
-        //["SEIS","CATORCE","SETENTA"]
-        //"NOVENTA"
-        System.out.println(new N4().isSolvable(new String[]{"SEIS","CATORCE","SETENTA"},"NOVENTA"));
-    }
+    private Map<Character,Integer> cToI;
+    private Map<Integer,Character> iToC;
     public boolean isSolvable(String[] words, String result) {
-        int[] book=new int[26];
-        Arrays.fill(book,-1);
-        Set<Character> set=new HashSet<>();
-        Set<Character> setF=new HashSet<>();
+        cToI=new HashMap<>(26);
+        iToC=new HashMap<>();
+        char[][] ss=new char[words.length][];
+        int idx=0;
         for (String w:words)
         {
-            char[] s=w.toCharArray();
-            for (char c:s)set.add(c);
-            setF.add(s[0]);
+            ss[idx++]=new StringBuilder(w).reverse().toString().toCharArray();
+            if(ss[idx-1].length>result.length())return false;
         }
-        setF.add(result.charAt(0));
-        for (char c:result.toCharArray())set.add(c);
-        Character[] array=set.toArray(new Character[0]);
-        boolean[] used=new boolean[10];
-        return slove(0,array,used,book,setF,words,result);
+        return slove(ss,new StringBuilder(result).reverse().toString().toCharArray(),0,0,0);
     }
 
-    private boolean slove(int idx, Character[] array, boolean[] used, int[] book, Set<Character> setF, String[] words, String result) {
-        if(idx==array.length)return check(book,words,result);
-        if(!setF.contains(array[idx])&&!used[0]){
-            book[array[idx]-'A']=0;
-            used[0]=true;
-            if(slove(idx+1,array,used,book,setF,words,result))return true;
-            used[0]=false;
-        }
-        for (int i=1;i<10;i++)
+    private boolean slove(char[][] words, char[] res, int idx, int digit, int sum) {
+        if(digit==res.length) return sum==0;
+        if(idx==words.length)
         {
-            if(used[i])continue;
-            book[array[idx]-'A']=i;
-            used[i]=true;
-            if(slove(idx+1,array,used,book,setF,words,result))return true;
-            used[i]=false;
+            char cur=res[digit];
+            if(!cToI.containsKey(cur)&&!iToC.containsKey(sum%10))
+            {
+                if(sum%10==0&&digit==res.length-1)return false;
+                cToI.put(cur,sum%10);
+                iToC.put(sum%10,cur);
+                boolean temp=slove(words,res,0,digit+1,sum/10);
+                cToI.remove(cur);
+                iToC.remove(sum%10);
+                return temp;
+            }
+            else if(cToI.containsKey(cur)&&cToI.get(cur)==sum%10)
+            {
+                if(sum%10==0&&digit==res.length-1)return false;
+                return slove(words,res,0,digit+1,sum/10);
+            }
+
+            return false;
+        }
+        if(digit>=words[idx].length)return slove(words,res,idx+1,digit,sum);
+        if(cToI.containsKey(words[idx][digit]))
+        {
+            if(digit==words[idx].length-1&&cToI.get(words[idx][digit])==0)return false;
+            return slove(words,res,idx+1,digit,sum+cToI.get(words[idx][digit]));
+        }
+        for (int i=0;i<10;i++)
+        {
+            if(digit==words[idx].length-1&&i==0)continue;
+            if(iToC.containsKey(i))continue;
+            cToI.put(words[idx][digit],i);
+            iToC.put(i,words[idx][digit]);
+            boolean temp=slove(words,res,idx+1,digit,sum+i);
+            cToI.remove(words[idx][digit]);
+            iToC.remove(i);
+            if(temp)return true;
         }
         return false;
-
-    }
-
-    private boolean check(int[] book, String[] words, String result) {
-        int sum=0;
-        for (String s:words)sum+=decode(book,s);
-        return sum==decode(book,result);
-    }
-
-    private int decode(int[] book, String s) {
-        char[] strs=s.toCharArray();
-        for (int i=0;i<strs.length;i++)
-        {
-            strs[i]=(char) ('0'+book[strs[i]-'A']);
-        }
-//        System.out.println(s);
-//        System.out.println(new String(strs));
-        return Integer.parseInt(new String(strs));
     }
 }
 /*
