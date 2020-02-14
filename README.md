@@ -26,7 +26,7 @@
 > * 部分题目用cpp实现,在C++目录下。
 > * 在JavaCode目录下部分题目用Scala实现（学习Scala中）。
 > * sql包为数据库题目(mysql实现)。
-> * lcof包为剑指offer专题。[专题地址](https://leetcode-cn.com/problemset/lcof/)
+> * lcof包为《剑指offer》专题。[专题地址](https://leetcode-cn.com/problemset/lcof/)
+> * lcci包《程序员面试金典》专题。[专题地址](https://leetcode-cn.com/problemset/lcci/)
 
-
-By MikuSugar. 2020/02/12
+By MikuSugar. 2020/02/14
