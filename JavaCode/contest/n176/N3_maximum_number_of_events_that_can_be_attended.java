@@ -6,7 +6,7 @@ package JavaCode.contest.n176;
  */
 public class N3_maximum_number_of_events_that_can_be_attended {
     public int maxEvents(int[][] events) {
-
+        return -1;
     }
 }
 /*
