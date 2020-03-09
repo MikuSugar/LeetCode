@@ -1,12 +1,37 @@
 package JavaCode.contest.n176;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * author:fangjie
  * time:2020/2/17
  */
 public class N3_maximum_number_of_events_that_can_be_attended {
     public int maxEvents(int[][] events) {
-        return -1;
+        Arrays.sort(events, Comparator.comparingInt(o->o[0]));
+        PriorityQueue<Integer> pq=new PriorityQueue<>();
+        int time=0,idx=0,res=0;
+        while (idx<events.length||!pq.isEmpty())
+        {
+            if(pq.isEmpty())
+            {
+                pq.add(events[idx][1]);
+                time=events[idx++][0];
+            }
+            while (idx<events.length&&events[idx][0]<=time)
+            {
+                pq.add(events[idx++][1]);
+            }
+            if(pq.poll()>=time)
+            {
+                time++;
+                res++;
+            }
+        }
+        return res;
+
     }
 }
 /*
