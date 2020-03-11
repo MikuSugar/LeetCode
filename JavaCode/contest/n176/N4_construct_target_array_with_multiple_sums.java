@@ -7,16 +7,9 @@ import java.util.*;
  * time:2020/3/9
  */
 public class N4_construct_target_array_with_multiple_sums {
-    public static void main(String[] args) {
-        System.out.println(new N4_construct_target_array_with_multiple_sums().isPossible(new int[]{9,3,5}));
-    }
+
     public boolean isPossible(int[] target) {
-        PriorityQueue<Integer> pq=new PriorityQueue<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return Integer.compare(o2,o1);
-            }
-        });
+        PriorityQueue<Integer> pq=new PriorityQueue<>((o1, o2)->Integer.compare(o2,o1));
         long sum=0;
         for (int i:target)
         {
