@@ -16,7 +16,7 @@ public class N02_06_palindrome_linked_list_lcci {
      * }
      */
     public boolean isPalindrome(ListNode head) {
-
+        return false;
     }
 }
 /*
