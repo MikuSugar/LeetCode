@@ -2,6 +2,9 @@ package JavaCode.lcci;
 
 import JavaCode.linked_list.ListNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * author:fangjie
  * time:2020/3/19
@@ -16,7 +19,14 @@ public class N02_06_palindrome_linked_list_lcci {
      * }
      */
     public boolean isPalindrome(ListNode head) {
-        return false;
+        return slove(head,new LinkedList<>());
+    }
+
+    private boolean slove(ListNode head, Queue<Integer> queue) {
+        if(head==null)return true;
+        queue.add(head.val);
+        if(!slove(head.next,queue))return false;
+        return queue.poll()==head.val;
     }
 }
 /*
