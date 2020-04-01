@@ -18,7 +18,7 @@ public class N756_pyramid_transition_matrix {
             {
                 map.put(child,new ArrayList<>());
             }
-            map.get(root).add(root);
+            map.get(child).add(root);
         }
         return dfs(bottom,map);//dfs搜索
     }
