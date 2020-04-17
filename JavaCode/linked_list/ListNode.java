@@ -8,4 +8,17 @@ public class ListNode {
         this.val=val;
         next=null;
     }
+
+    @Override
+    public String toString() {
+       StringBuilder sb=new StringBuilder();
+       ListNode p=this;
+       while (p!=null)
+       {
+           sb.append(p.val).append("->");
+           p=p.next;
+       }
+       sb.append("null");
+       return sb.toString();
+    }
 }
