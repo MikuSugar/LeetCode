@@ -1,12 +1,27 @@
 package JavaCode.random_records.N301_400;
 
+import java.util.Arrays;
+
 /**
  * author:fangjie
  * time:2020/4/13
  */
 public class N375_guess_number_higher_or_lower_ii {
     public int getMoneyAmount(int n) {
-        
+        int[][] dp=new int[n+5][n+5];
+        for (int[] a:dp)Arrays.fill(dp,-1);
+        return slove(1,n,dp);
+    }
+
+    private int slove(int left, int right, int[][] dp) {
+        if(left>=right)return 0;
+        if(dp[left][right]!=-1)return dp[left][right];
+        int res=Integer.MAX_VALUE;
+        for (int i=left;i<=right;i++)
+        {
+            res=Math.min(res,i+Math.max(slove(left,i-1,dp),slove(i+1,right,dp)));
+        }
+        return dp[left][right]=res;
     }
 }
 /*
