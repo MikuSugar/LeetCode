@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class N1443_minimum_time_to_collect_all_apples_in_a_tree {
     public int minTime(int n, int[][] edges, List<Boolean> hasApple) {
-        
+
         int[] fa=new int[n];
         for (int[] edge:edges)fa[edge[1]]=edge[0];
 
