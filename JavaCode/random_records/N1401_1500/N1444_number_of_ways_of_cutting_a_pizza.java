@@ -1,13 +1,75 @@
 package JavaCode.random_records.N1401_1500;
 
+
+import java.util.Arrays;
+
 /**
  * @Author:fangjie
  * @Date:2020/5/14 9:43 下午
  */
 public class N1444_number_of_ways_of_cutting_a_pizza {
+
     public int ways(String[] pizza, int k) {
 
+        int[][][] dp=new int[pizza.length+5][pizza[0].length()+5][k+5];
+        for (int[][] arr : dp)
+        {
+            for (int[] arr1 : arr)
+            {
+                Arrays.fill(arr1, -1);
+            }
+        }
+
+        char[][] graph=new char[pizza.length][];
+        for (int i=0;i<pizza.length;i++)
+        {
+            graph[i]=pizza[i].toCharArray();
+        }
+
+        return slove(0,0,k-1,graph,dp);
     }
+
+    private int slove(int i, int j, int k, char[][] graph, int[][][] dp) {
+
+        if(dp[i][j][k]!=-1)return dp[i][j][k];
+
+        if(k==0)
+        {
+            if(check(i,j,graph.length-1,graph[0].length-1,graph))return dp[i][j][k]=1;
+            return dp[i][j][k]=0;
+        }
+
+        int res=0;
+        for (int p=i;p<graph.length;p++)
+        {
+            if(check(i,j,p,graph[0].length-1,graph))
+            {
+                res+=slove(p+1,j,k-1,graph,dp)%MOD;
+                res%=MOD;
+            }
+        }
+        for (int p=j;p<graph[0].length;p++)
+        {
+            if(check(i,j,graph.length-1,p,graph))
+            {
+                res+=slove(i,p+1,k-1,graph,dp)%MOD;
+                res%=MOD;
+            }
+        }
+        return dp[i][j][k]=res;
+    }
+
+    private boolean check(int i, int j, int i1, int j1, char[][] graph) {
+        for (int k1=i;k1<=i1;k1++)
+        {
+            for (int k2=j;k2<=j1;k2++)
+            {
+                if(graph[k1][k2]=='A')return true;
+            }
+        }
+        return false;
+    }
+
     private final static int MOD=(int) (1e9+7);
 }
 /*
