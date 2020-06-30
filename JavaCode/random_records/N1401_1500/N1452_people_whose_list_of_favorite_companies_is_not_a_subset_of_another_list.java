@@ -1,6 +1,9 @@
 package JavaCode.random_records.N1401_1500;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author: fangjie
@@ -8,7 +11,39 @@ import java.util.List;
  */
 public class N1452_people_whose_list_of_favorite_companies_is_not_a_subset_of_another_list {
     public List<Integer> peopleIndexes(List<List<String>> favoriteCompanies) {
+        List<Set<String>> fSet=new ArrayList<>(favoriteCompanies.size());
+        for(List<String> list:favoriteCompanies)fSet.add(new HashSet<>(list));
 
+        int[] fa=new int[favoriteCompanies.size()];
+        for (int i=0;i<fa.length;i++)fa[i]=i;
+
+        for (int i=0;i<fSet.size();i++)
+        {
+            for (int j=i+1;j<fSet.size();j++)
+            {
+                int a=find(i,fa);
+                int b=find(j,fa);
+                if(a==b)continue;
+                if(check(fSet.get(a),fSet.get(b)))fa[a]=b;
+                else if(check(fSet.get(b),fSet.get(a)))fa[b]=a;
+            }
+        }
+        List<Integer> res=new ArrayList<>(favoriteCompanies.size()/2+5);
+        for (int i=0;i<fa.length;i++)
+        {
+            if(fa[i]==i)res.add(i);
+        }
+        return res;
+    }
+
+    private <T> boolean check(Set<T> son,Set<T> father)
+    {
+        if (son.size()>father.size())return false;
+        return father.containsAll(son);
+    }
+    private int find(int idx,int[] fa)
+    {
+        return fa[idx]=fa[idx]==idx?idx:find(fa[idx],fa);
     }
 }
 /*
