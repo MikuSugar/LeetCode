@@ -9,9 +9,10 @@ public class N1497_check_if_array_pairs_are_divisible_by_k {
         int[] book=new int[k];
         for (int i:arr)book[(i%k+k)%k]++;
         if(book[0]%2!=0)return false;
-        for (int i=1;i<book.length;i++)
+        for (int i=1;i<=book.length/2;i++)
         {
-            if(book[i]!=book[k-i])return false;
+            if(book[i]!=book[k-i])
+                return false;
         }
         return true;
     }

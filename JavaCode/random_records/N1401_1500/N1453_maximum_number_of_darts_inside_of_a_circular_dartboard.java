@@ -8,6 +8,9 @@ public class N1453_maximum_number_of_darts_inside_of_a_circular_dartboard {
     public int numPoints(int[][] points, int r) {
         return -1;
     }
+    private static double getDist(int[] p1,int[] p2) {
+        return Math.sqrt(Math.pow(p1[0]-p2[0],2)+Math.pow(p1[1]-p2[1],2));
+    }
 }
 /*
 墙壁上挂着一个圆形的飞镖靶。现在请你蒙着眼睛向靶上投掷飞镖。
