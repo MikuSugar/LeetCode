@@ -6,7 +6,7 @@ package JavaCode.contest.n197;
  */
 public class N3_path_with_maximum_probability {
     public double maxProbability(int n, int[][] edges, double[] succProb, int start, int end) {
-
+        return -1;
     }
 }
 /*
