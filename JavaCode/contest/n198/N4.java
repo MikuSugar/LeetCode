@@ -6,19 +6,7 @@ package JavaCode.contest.n198;
  */
 public class N4 {
     public int closestToTarget(int[] arr, int target) {
-        int[] book=new int[arr.length];
-        for (int i=arr.length-1;i>=0;i--)
-        {
-            int ans=arr[i];
-            if(i==arr.length-1)book[i]=ans;
-            else book[i]=ans&book[i+1];
-        }
-        return -1;
-    }
-    private int fun(int[] arr,int[] book,int l,int r)
-    {
-        if(r<l)return -1000000000;
-        return 000;
+
     }
 }
 /*

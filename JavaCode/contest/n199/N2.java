@@ -14,8 +14,7 @@ public class N2 {
         char pre=strs[idx];
         for (int i=idx;i<strs.length;i++)
         {
-            if(pre==strs[i])continue;
-            else {
+            if(pre!=strs[i]) {
                 pre=strs[i];
                 res++;
             }

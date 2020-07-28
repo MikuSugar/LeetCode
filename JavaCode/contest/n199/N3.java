@@ -1,7 +1,6 @@
 package JavaCode.contest.n199;
 
 import JavaCode.data_structure_binary_tree.TreeNode;
-import utils.Parse;
 
 import java.util.*;
 
@@ -10,9 +9,6 @@ import java.util.*;
  * @Date: 2020/7/26 10:13 上午
  */
 public class N3 {
-    public static void main(String[] args) {
-
-    }
     /**
      * Definition for a binary tree node.
      * public class TreeNode {

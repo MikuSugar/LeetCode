@@ -7,113 +7,43 @@ package JavaCode.contest.n199;
  * @Date: 2020/7/26 10:13 上午
  */
 public class N4 {
-    public static void main(String[] args) {
-        System.out.println(new N4().getLengthOfOptimalCompression("abc",2));
-    }
+
     public int getLengthOfOptimalCompression(String s, int k) {
-        ListNode<int[]> root=init(s);
-        slove(root,k);
-        int res=0;
-        root=root.next;
-        while (root!=null)
-        {
-            res++;
-            if(root.value[1]!=1) res+=String.valueOf(root.value[1]).length();
-            root=root.next;
-        }
-        return res;
+        return slove(new int[s.length()][s.length()-k+1], 0, s.length()-k, s.toCharArray());
     }
 
-    private void slove(ListNode<int[]> root, int k) {
-        ListNode<int[]> p=root.next;
-        int[] max=new int[]{-1,0};
-        ListNode<int[]> de=null;
-        while (p!=null)
-        {
-            int[] l=getLen(p,k);
-            if(max[0]<l[0]){
-                max=l;
-                de=p;
-            }
-            if(max[0]==l[0]&&max[1]>l[1]){
-                de=p;
-                max=l;
-            }
-            p=p.next;
-        }
-        if(max[0]==0)return;
-        if(!delete(de,k))return;
-        slove(root,k-max[1]);
-    }
+    private final static int MAX=Integer.MAX_VALUE>>1;
+    private int slove(int[][] dp, int idx, int count, char[] strs) {
+        if(count==0)return 0;
+        if(idx==strs.length)return MAX;
+        if(dp[idx][count]!=0)return dp[idx][count];
 
-    private boolean delete(ListNode<int[]> p,int k) {
-        if(p==null)return false;
-        System.out.println(p);
-        if(k<p.value[1])
+        int res=MAX;
+        boolean[] book=new boolean[26];
+        for (int i=idx;i<strs.length;i++)
         {
-            p.value[1]-=k;
-        }
-        else if(p.pre!=null&&p.next!=null&&p.pre.value[0]==p.next.value[0])
-        {
-           p.pre.value[1]+=p.next.value[1];
-           p.pre.next=p.next.next;
-           if(p.next.next!=null)p.next.next.pre=p.pre;
-        }
-        else {
-            p.pre.next=p.next;
-            if(p.next!=null)p.next.pre=p.pre;
-        }
-        return true;
-    }
-
-    private int[] getLen(ListNode<int[]> p, int k) {
-        if(k<p.value[1])
-        {
-            return new int[]{String.valueOf(p.value[1]).length()-String.valueOf(p.value[1]-k).length(),k};
-        }
-        else if(p.pre!=null&&p.next!=null&&p.pre.value[0]==p.next.value[0])
-        {
-            return new int[]{String.valueOf(p.pre.value[1]).length()+String.valueOf(p.next.value[1]).length()
-                    -String.valueOf(p.pre.value[1]+p.next.value[1]).length()+1+String.valueOf(p.value[1]).length()+1
-                    ,String.valueOf(p.value[1]).length()};
-        }
-        return new int[]{String.valueOf(p.value[1]).length()+1
-                ,String.valueOf(p.value[1]).length()};
-    }
-
-    private ListNode<int[]> init(String s) {
-        char[] strs=s.toCharArray();
-        ListNode<int[]> node=new ListNode<>(new int[]{0,0});
-        ListNode<int[]> p=node;
-        int cnt=1;
-        char pre=strs[0];
-        for (int i=1;i<strs.length;i++)
-        {
-            if(strs[i]==pre)cnt++;
-            else {
-                ListNode<int[]> cur=new ListNode<>(new int[]{pre,cnt});
-                cur.pre=p;
-                p.next=cur;
-                p=cur;
-                cnt=1;
-                pre=strs[i];
+            if(book[strs[i]-'a'])continue;
+            if(idx>0&&strs[idx-1]==strs[i])continue;
+            int lCount=0;
+            book[strs[i]-'a']=true;
+            for (int j=i;j<strs.length;j++)
+            {
+                if(strs[j]!=strs[i])continue;
+                lCount++;
+                if(lCount>count)break;
+                int right=slove(dp,j+1,count-lCount,strs);
+                if(right==MAX)continue;
+                res=Math.min(res,getLen(lCount)+right);
             }
         }
-        ListNode<int[]> cur=new ListNode<>(new int[]{pre,cnt});
-        cur.pre=p;
-        p.next=cur;
-        return node;
+        return dp[idx][count]=res;
     }
 
-    static class  ListNode<T> {
-        T value;
-        ListNode<T> pre;
-        ListNode<T> next;
-
-        public ListNode(T value) {
-            this.value=value;
-        }
+    private int getLen(int num) {
+        if(num==1)return num;
+        return 1+String.valueOf(num).length();
     }
+
 }
 /*
 行程长度编码 是一种常用的字符串压缩方法，它将连续的相同字符（重复 2 次或更多次）替换为字符和表示字符计数的数字（行程长度）。例如，用此方法压缩字符串 "aabccc" ，将 "aa" 替换为 "a2" ，"ccc" 替换为` "c3" 。因此压缩后的字符串变为 "a2bc3" 。
