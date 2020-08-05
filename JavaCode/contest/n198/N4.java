@@ -6,7 +6,7 @@ package JavaCode.contest.n198;
  */
 public class N4 {
     public int closestToTarget(int[] arr, int target) {
-
+        return -1;
     }
 }
 /*
