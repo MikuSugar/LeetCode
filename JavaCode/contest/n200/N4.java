@@ -1,7 +1,5 @@
 package JavaCode.contest.n200;
 
-import utils.Parse;
-
 import java.util.*;
 
 /**
@@ -11,9 +9,6 @@ import java.util.*;
  */
 public class N4 {
 
-    public static void main(String[] args) {
-        System.out.println(new N4().maxSum(Parse.parseToIntArray("[2,4,5,8,10]"),Parse.parseToIntArray("[4,6,8,9]")));
-    }
     private final static int MOD=(int) (1e9+7);
     public int maxSum(int[] nums1, int[] nums2) {
         Node root=new Node(0);
@@ -34,10 +29,7 @@ public class N4 {
             p=node;
         }
         Map<Integer,Long> dp=new HashMap<>();
-
-        long res=dfs(root,dp);
-        System.out.println(dp);
-        return (int) (res%MOD);
+        return (int) (dfs(root,dp)%MOD);
     }
 
     private long dfs(Node root, Map<Integer, Long> dp) {
@@ -67,19 +59,6 @@ public class N4 {
         public Node(int s){
             score=s;
             next=new HashSet<>();
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this==o) return true;
-            if (o==null||getClass()!=o.getClass()) return false;
-            Node node=(Node) o;
-            return score==node.score;
-        }
-
-        @Override
-        public int hashCode() {
-            return score;
         }
     }
 }
