@@ -4,19 +4,15 @@ import java.util.*;
 
 public class N332_reconstruct_itinerary
 {
-
     private List<String> res;
     private Map<String,PriorityQueue<String>> map;
-    public List<String> findItinerary(String[][] tickets) {
+    public List<String> findItinerary(List<List<String>> tickets) {
         res=new ArrayList<>();
         map=new HashMap<>();
-        for (String[] strs:tickets)
+        for (List<String> strs:tickets)
         {
-            if(!map.containsKey(strs[0]))
-            {
-                map.put(strs[0],new PriorityQueue<>());
-            }
-            map.get(strs[0]).add(strs[1]);
+            map.putIfAbsent(strs.get(0),new PriorityQueue<>());
+            map.get(strs.get(0)).add(strs.get(1));
         }
         dfs("JFK");
         Collections.reverse(res);
