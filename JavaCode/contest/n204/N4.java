@@ -7,7 +7,7 @@ package JavaCode.contest.n204;
  */
 public class N4 {
     public int numOfWays(int[] nums) {
-
+        return -1;
     }
 
     private final static int MOD=(int) (1e9+7);
