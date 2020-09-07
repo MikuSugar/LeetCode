@@ -1,13 +1,62 @@
 package JavaCode.contest.n205;
 
+import utils.Parse;
+
 /**
  * author: fangjie
  * email: syfangjie@live.cn
  * date: 2020/9/6 10:25 上午
  */
 public class N4 {
-    public int maxNumEdgesToRemove(int n, int[][] edges) {
 
+    public static void main(String[] args) {
+        //4
+        //[[3,1,2],[3,2,3],[1,1,3],[1,2,4],[1,1,2],[2,3,4]]
+        System.out.println(new N4().maxNumEdgesToRemove(4, Parse.parseToIntTwoArray("[[3,1,2],[3,2,3],[1,1,3],[1,2,4],[1,1,2],[2,3,4]]")));
+    }
+
+    public int maxNumEdgesToRemove(int n, int[][] edges) {
+        int[] fa1=new int[n+1];
+        int[] fa2=new int[n+1];
+        for (int i=0; i<fa1.length; i++) {
+            fa1[i]=fa2[i]=i;
+        }
+
+        int res=0;
+        for (int[] e : edges) {
+            if (e[0]!=3) continue;
+            if (find(e[1], fa1)==find(e[2], fa1)||find(e[1], fa2)==find(e[2], fa2)) continue;
+            fa1[find(e[1], fa1)]=find(e[2], fa1);
+            fa2[find(e[1], fa2)]=find(e[2], fa2);
+            res++;
+        }
+
+        for (int[] e : edges) {
+            if (e[0]==3) continue;
+            if (e[0]==1) {
+                if (find(e[1], fa1)==find(e[2], fa1)) continue;
+                fa1[find(e[1], fa1)]=find(e[2], fa1);
+            } else {
+                if (find(e[1], fa2)==find(e[2], fa2)) continue;
+                fa2[find(e[1], fa2)]=find(e[2], fa2);
+            }
+            res++;
+        }
+        if (getNum(fa1)>1||getNum(fa2)>1) return -1;
+        return edges.length-res;
+    }
+
+    private int getNum(int[] fa) {
+        int res=0;
+        for (int i=1; i<fa.length; i++) {
+            if (fa[i]==i) res++;
+        }
+        return res;
+    }
+
+    private int find(int x, int[] fa) {
+        if (x==fa[x]) return x;
+        return fa[x]=find(fa[x], fa);
     }
 }
 /*
