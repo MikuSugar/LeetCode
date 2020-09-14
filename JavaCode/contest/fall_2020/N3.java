@@ -6,9 +6,27 @@ package JavaCode.contest.fall_2020;
  * date: 2020/9/12 2:43 下午
  */
 public class N3 {
-    //TODO 待补题
+    public static void main(String[] args) {
+        System.out.println(new N3().minimumOperations("rrryyyrryyyrr"));
+    }
+
     public int minimumOperations(String leaves) {
-        return -1;
+        int[][] dp=new int[3][leaves.length()];
+
+        char[] strs=leaves.toCharArray();
+        dp[0][0]=help(strs[0], 'r');
+        dp[1][0]=dp[2][0]=leaves.length();
+
+        for (int i=1; i<strs.length; i++) {
+            dp[0][i]=dp[0][i-1]+help(strs[i],'r');
+            dp[1][i]=Math.min(dp[0][i-1],dp[1][i-1])+help(strs[i],'y');
+            dp[2][i]=Math.min(dp[1][i-1],dp[2][i-1])+help(strs[i],'r');
+        }
+        return dp[2][leaves.length()-1];
+    }
+
+    private int help(char c1, char c2) {
+        return c1==c2 ? 0 : 1;
     }
 
 }

@@ -9,23 +9,19 @@ public class N1 {
     public int numSpecial(int[][] mat) {
         int[] ii=new int[mat.length];
         int[] jj=new int[mat[0].length];
-        for (int i=0;i<mat.length;i++){
-            for (int a:mat[i])ii[i]+=a;
+        for (int i=0; i<mat.length; i++) {
+            for (int a : mat[i]) ii[i]+=a;
         }
-        for (int j=0;j<mat[0].length;j++)
-        {
-            for (int i=0;i<mat.length;i++)
-            {
-                jj[j]+=mat[i][j];
+        for (int j=0; j<mat[0].length; j++) {
+            for (int[] ints : mat) {
+                jj[j]+=ints[j];
             }
         }
 
         int res=0;
-        for (int i=0;i<mat.length;i++)
-        {
-            for (int j=0;j<mat[0].length;j++)
-            {
-                if(mat[i][j]==1&&ii[i]==1&&jj[j]==1)res++;
+        for (int i=0; i<mat.length; i++) {
+            for (int j=0; j<mat[0].length; j++) {
+                if (mat[i][j]==1&&ii[i]==1&&jj[j]==1) res++;
             }
         }
         return res;

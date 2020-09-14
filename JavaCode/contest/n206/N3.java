@@ -15,31 +15,33 @@ public class N3 {
     public static void main(String[] args) {
         System.out.println(new N3().minCostConnectPoints(Parse.parseToIntTwoArray("[[-1000000,-1000000],[1000000,1000000]]")));
     }
+
     public int minCostConnectPoints(int[][] points) {
         List<int[]> edges=new ArrayList<>();
-        for (int i=0;i<points.length;i++){
+        for (int i=0; i<points.length; i++) {
             int[] p1=points[i];
-            for (int j=i+1;j<points.length;j++){
+            for (int j=i+1; j<points.length; j++) {
                 int[] p2=points[j];
-                edges.add(new int[]{i,j,getDis(p1,p2)});
+                edges.add(new int[]{i, j, getDis(p1, p2)});
             }
         }
 
         edges.sort(Comparator.comparingInt(o->o[2]));
         int[] fa=new int[points.length];
-        for (int i=0;i<fa.length;i++)fa[i]=i;
+        for (int i=0; i<fa.length; i++) fa[i]=i;
 
         int res=0;
-        for (int[] edge:edges){
-            int m=find(edge[0],fa);
-            int n=find(edge[1],fa);
-            if(m!=n){
+        for (int[] edge : edges) {
+            int m=find(edge[0], fa);
+            int n=find(edge[1], fa);
+            if (m!=n) {
                 fa[n]=fa[m];
                 res+=edge[2];
             }
         }
         return res;
     }
+
     private int find(int x, int[] fa) {
         if (x==fa[x]) return x;
         return fa[x]=find(fa[x], fa);

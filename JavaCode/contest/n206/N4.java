@@ -1,19 +1,34 @@
 package JavaCode.contest.n206;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 /**
  * author: fangjie
  * email: syfangjie@live.cn
  * date: 2020/9/13 10:14 上午
  */
-//TODO: 待补题
+
 public class N4 {
     public static void main(String[] args) {
-        System.out.println(new N4().isTransformable("84532","34852"));
+        System.out.println(new N4().isTransformable("84532", "34852"));
     }
+
     public boolean isTransformable(String s, String t) {
+
+        Queue<Integer>[] pos=new Queue[10];
+        for (int i=0; i<10; i++) pos[i]=new ArrayDeque<>();
+
+        for (int i=0; i<s.length(); i++) pos[s.charAt(i)-'0'].offer(i);
+
+        for (int i=0; i<s.length(); i++) {
+            int cur=t.charAt(i)-'0';
+            if (pos[cur].isEmpty()) return false;
+            for (int j=0; j<cur; j++) {
+                if (!pos[j].isEmpty()&&pos[j].peek()<pos[cur].peek()) return false;
+            }
+            pos[cur].poll();
+        }
 
         return true;
     }
@@ -28,8 +43,6 @@ public class N4 {
 如果可以将字符串 s 变成 t ，返回 true 。否则，返回 false 。
 
 一个 子字符串 定义为一个字符串中连续的若干字符。
-
-
 
 示例 1：
 

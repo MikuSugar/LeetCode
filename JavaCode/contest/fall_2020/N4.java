@@ -10,19 +10,37 @@ import java.util.*;
 public class N4 {
     //TODO 待补题
     public static void main(String[] args) {
-        System.out.println(new N4().busRapidTransit(31,5,3,new int[]{6},new int[]{10}));
+        System.out.println(new N4().busRapidTransit(31, 5, 3, new int[]{6}, new int[]{10}));
     }
+
     private final static int MOD=(int) (1e9+7);
-    private int inc,dec,target;
-    private int[] jump;
-    private int[] cost;
+    private int inc, dec,tar;
+    private int[] jump,cost;
+
     public int busRapidTransit(int target, int inc, int dec, int[] jump, int[] cost) {
-        this.target=target;
         this.dec=dec;
         this.inc=inc;
         this.jump=jump;
         this.cost=cost;
-        return 0;
+        this.tar=target;
+        return (int) (slove(0, new HashMap<>())%MOD);
+    }
+
+    private long slove(int cur, Map<Integer, Long> map) {
+        if(cur==tar)return 0;
+        if(cur==tar-1)return inc;
+        if(map.containsKey(cur))return map.get(cur);
+        long res=(tar-cur)*inc;
+        for (int i=0;i<cost.length;i++){
+            int end=jump[i]*cur;
+            if(end==tar)res=Math.min(res,cost[i]+slove(end,map));
+            else {
+                res=Math.min(res,cost[i]+slove(end,map)+(tar-end)*inc);
+                res=Math.min(res,cost[i]+slove(end-1,map)+dec);
+            }
+        }
+        map.put(tar,res);
+        return res;
     }
 
 }

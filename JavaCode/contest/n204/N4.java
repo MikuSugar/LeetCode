@@ -6,6 +6,8 @@ package JavaCode.contest.n204;
  * date: 2020/8/30 10:23 上午
  */
 public class N4 {
+
+    //TODO:待补题
     public int numOfWays(int[] nums) {
         return -1;
     }
