@@ -1,48 +1,60 @@
-package JavaCode.contest.fall_2020;
+package JavaCode.contest.fall_2020
 
-import java.util.*;
+import scala.collection.mutable
+
 
 /**
- * author: fangjie
+ * author: fangjie 
  * email: syfangjie@live.cn
- * date: 2020/9/12 2:43 下午
+ * date: 2020/9/16 10:12 上午
  */
-public class N4 {
-    //TODO 待补题
-    public static void main(String[] args) {
-        System.out.println(new N4().busRapidTransit(31, 5, 3, new int[]{6}, new int[]{10}));
+object N4 {
+    def main(args: Array[String]): Unit = {
+        //980632
+        //2933
+        //5626
+        //[6061,5876,6528,6680,5580,2772,6619,7365,9474,2136]
+        //[1792,6103,9708,6519,2305,8327,7393,9533,269,7938]
+        println(busRapidTransit(980632,2933,5626
+            ,Array(6061,5876,6528,6680,5580,2772,6619,7365,9474,2136)
+            ,Array(1792,6103,9708,6519,2305,8327,7393,9533,269,7938)))
+    }
+    import scala.collection.mutable.HashMap
+    private val MOD:BigInt=(1e9+7).asInstanceOf[Int]
+
+    def busRapidTransit(target: Int, inc: Int, dec: Int, jump: Array[Int], cost: Array[Int]): Int = {
+        val map = new mutable.HashMap[Int, BigInt]()
+        (slove(target, inc, dec, jump, cost, map)%MOD).intValue
     }
 
-    private final static int MOD=(int) (1e9+7);
-    private int inc, dec,tar;
-    private int[] jump,cost;
-
-    public int busRapidTransit(int target, int inc, int dec, int[] jump, int[] cost) {
-        this.dec=dec;
-        this.inc=inc;
-        this.jump=jump;
-        this.cost=cost;
-        this.tar=target;
-        return (int) (slove(0, new HashMap<>())%MOD);
-    }
-
-    private long slove(int cur, Map<Integer, Long> map) {
-        if(cur==tar)return 0;
-        if(cur==tar-1)return inc;
-        if(map.containsKey(cur))return map.get(cur);
-        long res=(tar-cur)*inc;
-        for (int i=0;i<cost.length;i++){
-            int end=jump[i]*cur;
-            if(end==tar)res=Math.min(res,cost[i]+slove(end,map));
-            else {
-                res=Math.min(res,cost[i]+slove(end,map)+(tar-end)*inc);
-                res=Math.min(res,cost[i]+slove(end-1,map)+dec);
+    def slove(tar: Int, inc: Int, dec: Int, jump: Array[Int], cost: Array[Int], map: HashMap[Int, BigInt]) :BigInt= {
+        if(tar==0) 0
+        else if(tar==1) inc
+        else if(map.contains(tar))map(tar)
+        else {
+            var res:BigInt=BigInt(tar)*BigInt(inc)
+            for (i<-jump.indices){
+                val next: Int =tar/jump(i)
+                val m:Int =tar%jump(i)
+                val costNum = BigInt(cost(i))
+                if(m==0){
+                    res=min(res,slove(next,inc, dec, jump, cost, map)+costNum)
+                }
+                else {
+                    res=min(res,slove(next,inc, dec, jump, cost, map)+costNum+BigInt(inc)*m)
+                    res=min(res,slove(next+1,inc, dec, jump, cost, map)+costNum+BigInt(jump(i)-m)*BigInt(dec))
+                }
             }
+
+            map.put(tar,res)
+            res
         }
-        map.put(tar,res);
-        return res;
     }
 
+    def min(a:BigInt,b:BigInt):BigInt={
+        if(a>b)b
+        else a
+    }
 }
 /*
 小扣打算去秋日市集，由于游客较多，小扣的移动速度受到了人流影响：
@@ -90,4 +102,9 @@ public class N4 {
 1 <= jump.length, cost.length <= 10
 2 <= jump[i] <= 10^6
 1 <= inc, dec, cost[i] <= 10^6
+
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/meChtZ
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
