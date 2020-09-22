@@ -1,8 +1,6 @@
 package JavaCode.contest.n207;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * author: fangjie
@@ -10,40 +8,55 @@ import java.util.List;
  * date: 2020/9/20 10:15 上午
  */
 public class N4 {
-    public static void main(String[] args) {
-
-    }
-    //TODO
     public int connectTwoGroups(List<List<Integer>> cost) {
-        List<int[]> edges=new ArrayList<>(cost.size()*cost.get(0).size()+5);
-        for (int i=0;i<cost.size();i++){
-            for (int j=0;j<cost.get(i).size();j++){
-                edges.add(new int[]{i,j,cost.get(i).get(j)});
-            }
+
+        int max = 1 << cost.get(0).size();
+        int[] min = new int[cost.get(0).size()];
+        int[] dp = new int[max];
+        int[] dp2 = new int[max];
+
+        Arrays.fill(dp, Integer.MAX_VALUE>>1);
+        dp[0] = 0;
+        Arrays.fill(min, Integer.MAX_VALUE>>1);
+        for (List<Integer> res : cost)
+        {
+            for (int j=0; j<cost.get(0).size(); j++) min[j]=Math.min(min[j], res.get(j));
         }
-        int tar1=(1<<cost.size())-1;
-        int tar2=(1<<cost.get(0).size())-1;
-        return slove(0,0,tar1,tar2,edges,new int[tar1+1][tar2+1],new boolean[edges.size()]);
+
+        for (List<Integer> integers : cost)
+        {
+            Arrays.fill(dp2, Integer.MAX_VALUE>>1);
+            for (int j=0; j<max; j++)
+            {
+                if (dp[j]!=Integer.MAX_VALUE)
+                {
+                    for (int k=0; k<cost.get(0).size(); k++)
+                    {
+                        int next=j|1<<k;
+                        dp2[next]=Math.min(dp2[next], dp[j]+integers.get(k));
+                    }
+                }
+            }
+            int[] temp=dp;
+            dp=dp2;
+            dp2=temp;
+        }
+
+        int res = Integer.MAX_VALUE>>1;
+        for (int i=1; i<max; i++)
+        {
+            int cur = dp[i];
+            for (int j=0; j<cost.get(0).size(); j++)
+            {
+                if ((i & 1 << j) == 0) cur += min[j];
+
+            }
+            res = Math.min(res, cur);
+        }
+        return res;
+
     }
 
-    private int slove(int cur1, int cur2, int tar1, int tar2, List<int[]> edges, int[][] dp, boolean[] book) {
-        if(cur1==tar1&&cur2==tar2)return 0;
-        String key=cur1+","+cur2;
-        if(dp[cur1][cur2]!=0)return dp[cur1][cur2];
-        int res=Integer.MAX_VALUE>>1;
-        for (int i=0;i<edges.size();i++){
-            if(book[i])continue;
-            book[i]=true;
-            int[] e=edges.get(i);
-            int n1=cur1|(1<<e[0]);
-            int n2=cur2|(1<<e[1]);
-            if (n1!=cur1||n2!=cur2) {
-                res=Math.min(res,e[2]+slove(n1,n2,tar1,tar2,edges,dp, new boolean[edges.size()]));
-            }
-            book[i]=false;
-        }
-        return dp[cur1][cur2]=res;
-    }
 }
 /*
 给你两组点，其中第一组中有 size1 个点，第二组中有 size2 个点，且 size1 >= size2 。

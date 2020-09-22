@@ -16,8 +16,10 @@ public class N3 {
     }
 
     public int maxProductPath(int[][] grid) {
+
         long[][] maxDp=new long[grid.length][grid[0].length];
         long[][] minDp=new long[grid.length][grid[0].length];
+
         maxDp[0][0]=minDp[0][0]=grid[0][0];
         for (int i=1;i<grid.length;i++){
             maxDp[i][0]=minDp[i][0]=maxDp[i-1][0]*grid[i][0];
@@ -41,16 +43,7 @@ public class N3 {
             }
         }
 
-        for (int i=0;i<grid.length;i++){
-            System.out.println(Arrays.toString(maxDp[i]));
-        }
-        System.out.println("==============");
-        for (int i=0;i<grid.length;i++){
-            System.out.println(Arrays.toString(minDp[i]));
-        }
-
         if(maxDp[grid.length-1][grid[0].length-1]<0)return -1;
-
         return (int) (maxDp[grid.length-1][grid[0].length-1]%MOD);
     }
 
