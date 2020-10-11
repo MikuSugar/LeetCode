@@ -7,7 +7,61 @@ package JavaCode.contest.n210;
  */
 public class N4 {
     public int[] countSubgraphsForEachDiameter(int n, int[][] edges) {
-        return null;
+        final int MAX=Integer.MAX_VALUE >> 1;
+        //init
+        int[][] dist=new int[n][n];
+        int[][] graph=new int[n][n];
+        for (int i=0;i<n;i++)
+        {
+            for (int j=0;j<n;j++)
+            {
+                if(i==j)dist[i][j]=0;
+                else dist[i][j]=MAX;
+            }
+        }
+        for (int[] e:edges)
+        {
+            dist[e[0]-1][e[1]-1]=dist[e[1]-1][e[0]-1]=1;
+            graph[e[0]-1][e[1]-1]=graph[e[1]-1][e[0]-1]=1;
+        }
+
+        for (int k=0;k<n;k++)
+        {
+            for (int i=0;i<n;i++)
+            {
+                for (int j=0;j<n;j++)
+                {
+                    if(k!=i&&k!=j&&dist[i][k]!=MAX&&dist[k][j]!=MAX)
+                    {
+                        dist[i][j]=Math.min(dist[i][j],dist[i][k]+dist[k][j]);
+                    }
+                }
+            }
+        }
+        int[] res=new int[n-1];
+        //枚举所有子集
+        for (int s=1;s<(1<<n);s++)
+        {
+            int[] p=new int[20];
+            int l=0;
+            for (int i=0;i<n;i++)
+            {
+                if((s&(1<<i))!=0)p[l++]=i;
+            }
+            if(l<=1)continue;
+
+            int d=0,cnt=0;
+            for (int i=0;i<l;i++)
+            {
+                for (int j=i+1;j<l;j++)
+                {
+                    cnt+=graph[p[i]][p[j]];
+                    d=Math.max(d,dist[p[i]][p[j]]);
+                }
+            }
+            if(cnt==l-1)res[d-1]++;
+        }
+        return res;
     }
 }
 /*
