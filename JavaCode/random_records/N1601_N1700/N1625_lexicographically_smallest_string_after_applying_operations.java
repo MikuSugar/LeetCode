@@ -1,13 +1,51 @@
 package JavaCode.random_records.N1601_N1700;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * author: fangjie
  * email: syfangjie@live.cn
  * date: 2020/10/19 8:40 下午
  */
 public class N1625_lexicographically_smallest_string_after_applying_operations {
+
+    public static void main(String[] args) {
+        System.out.println(new N1625_lexicographically_smallest_string_after_applying_operations()
+                .findLexSmallestString("74",5,1));
+    }
+
     public String findLexSmallestString(String s, int a, int b) {
-        //TODO
+        return dfs(s,a,b,new HashSet<>());
+    }
+
+    private String dfs(String s, int a, int b, Set<String> set) {
+        if(set.contains(s))return null;
+        set.add(s);
+        return min(min(s,dfs(add(s,a),a,b,set)),dfs(route(s,b),a,b,set));
+    }
+
+    private String route(String s, int b) {
+        return s.substring(s.length()-b)+s.substring(0,s.length()-b);
+    }
+
+    private String add(String s, int a) {
+        char[] strs=s.toCharArray();
+        int num;
+        for (int i=1;i<s.length();i+=2)
+        {
+            num=strs[i]-'0';
+            strs[i]=(char)((num+a)%10+'0');
+        }
+        return new String(strs);
+    }
+
+    private String min(String a,String b)
+    {
+        if(a==null)return b;
+        if(b==null)return a;
+        if(a.compareTo(b)<0)return a;
+        return b;
     }
 }
 /*
