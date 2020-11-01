@@ -1,14 +1,75 @@
 package JavaCode.contest.n212;
 
+import utils.Parse;
+import utils.Show;
+
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * author: fangjie
  * email: syfangjie@live.cn
  * date: 2020/10/25 10:00 上午
  */
 public class N4 {
-    //TODO
+    public static void main(String[] args) {
+        //in [[-2,-35,-32,-5,-30,33,-12],[7,2,-43,4,-49,14,17],[4,23,-6,-15,-24,-17,6],[-47,20,39,-26,9,-44,39],[-50,-47,44,43,-22,33,-36],[-13,34,49,24,23,-2,-35],[-40,43,-22,-19,-4,23,-18]]
+        //out [[10,3,4,9,5,15,8],[12,4,2,10,1,13,14],[11,13,9,8,6,7,12],[2,10,15,4,9,3,15],[1,2,17,16,7,15,3],[5,14,18,11,10,8,4],[3,15,5,6,8,14,7]]
+        Show.show(new N4().matrixRankTransform(Parse.parseToIntTwoArray("[[-2,-35,-32,-5,-30,33,-12],[7,2,-43,4,-49,14,17],[4,23,-6,-15,-24,-17,6],[-47,20,39,-26,9,-44,39],[-50,-47,44,43,-22,33,-36],[-13,34,49,24,23,-2,-35],[-40,43,-22,-19,-4,23,-18]]")));
+    }
     public int[][] matrixRankTransform(int[][] matrix) {
-        return null;
+        int[][] res=new int[matrix.length][matrix[0].length];
+
+        int[][] iMin=new int[matrix.length][2];
+        int[][] jMin=new int[matrix[0].length][2];
+        for (int i=0;i<matrix.length;i++)
+        {
+            iMin[i][0]=Integer.MIN_VALUE;
+            iMin[i][1]=0;
+        }
+        for (int i=0;i<matrix[0].length;i++)
+        {
+            jMin[i][0]=Integer.MIN_VALUE;
+            jMin[i][1]=0;
+        }
+
+        PriorityQueue<int[]> queue=new PriorityQueue<>(new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return Integer.compare(o1[2],o2[2]);
+            }
+        });
+
+        for (int i=0;i<matrix.length;i++)
+        {
+            for (int j=0;j<matrix[0].length;j++)
+            {
+                queue.add(new int[]{i,j,matrix[i][j]});
+            }
+        }
+
+        while (!queue.isEmpty())
+        {
+            int[] cur=queue.poll();
+            int value=-1;
+            if(cur[2]==iMin[cur[0]][0])value=Math.max(value,iMin[cur[0]][1]);
+            else
+            {
+                iMin[cur[0]][0]=cur[2];
+                value=Math.max(value,iMin[cur[0]][1]+1);
+            }
+
+            if(cur[2]==jMin[cur[1]][0])value=Math.max(value,jMin[cur[1]][1]);
+            else
+            {
+                jMin[cur[1]][0]=cur[2];
+                value=Math.max(value,jMin[cur[1]][1]+1);
+            }
+            iMin[cur[0]][1]=value;
+            jMin[cur[1]][1]=value;
+            res[cur[0]][cur[1]]=value;
+        }
+        return res;
     }
 }
 /*
