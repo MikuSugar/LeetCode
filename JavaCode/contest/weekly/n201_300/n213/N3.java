@@ -10,6 +10,7 @@ import java.util.*;
  * date: 2020/11/1 10:50 上午
  */
 public class N3 {
+    //TODO: rejudge error
     public static void main(String[] args) {
         System.out.println(new N3().furthestBuilding(Parse.parseToIntArray("[4,2,7,6,9,14,12]"),5,1));
     }
