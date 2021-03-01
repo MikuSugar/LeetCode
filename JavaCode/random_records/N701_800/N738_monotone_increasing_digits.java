@@ -1,6 +1,5 @@
 package JavaCode.random_records.N701_800;
 
-import scala.Int;
 
 import java.util.Arrays;
 

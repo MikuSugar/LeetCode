@@ -1,5 +1,8 @@
 package JavaCode.contest.weekly.n201_300.n230;
 
+import java.util.ArrayDeque;
+import java.util.Arrays;
+
 /**
  * author: fangjie
  * email: syfangjie@live.cn
@@ -7,7 +10,10 @@ package JavaCode.contest.weekly.n201_300.n230;
  */
 public class N4 {
     public double[] getCollisionTimes(int[][] cars) {
-        //TODO
+        double[] res=new double[cars.length];
+        Arrays.fill(res,-1d);
+        ArrayDeque<Integer> stack=new ArrayDeque<>();
+        for (int i=cars.length-1;i)
         return null;
     }
 }

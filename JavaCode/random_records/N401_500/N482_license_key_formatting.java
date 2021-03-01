@@ -1,6 +1,5 @@
 package JavaCode.random_records.N401_500;
 
-import scala.collection.mutable.StringBuilder;
 
 import java.util.LinkedList;
 import java.util.Queue;

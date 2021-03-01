@@ -1,5 +1,6 @@
 #啦啦啦啦啦啦啦
 *.DS_Store
 *.idea
-*MyTomcat.iml
+*.iml
 *target
+out
