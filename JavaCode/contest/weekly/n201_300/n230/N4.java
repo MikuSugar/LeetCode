@@ -1,5 +1,7 @@
 package JavaCode.contest.weekly.n201_300.n230;
 
+import utils.Parse;
+
 import java.util.ArrayDeque;
 import java.util.Arrays;
 
@@ -9,12 +11,30 @@ import java.util.Arrays;
  * date: 2021/2/28 2:12 下午
  */
 public class N4 {
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(new N4().getCollisionTimes(Parse.parseToIntTwoArray("[[3,1],[9,4],[19,4]]"))));
+    }
     public double[] getCollisionTimes(int[][] cars) {
         double[] res=new double[cars.length];
-        Arrays.fill(res,-1d);
         ArrayDeque<Integer> stack=new ArrayDeque<>();
-        for (int i=cars.length-1;i)
-        return null;
+        for (int i=cars.length-1;i>=0;i--){
+            while (!stack.isEmpty()){
+                if(cars[stack.peek()][1]>cars[i][1])stack.pop();
+                else {
+                    if(res[stack.peek()]<0)break;
+                    double v = res[stack.peek()] * (double) (cars[i][1] - cars[stack.peek()][1]);
+                    if(v>cars[stack.peek()][0]-cars[i][0])break;
+                    else stack.pop();
+                }
+            }
+            if(!stack.isEmpty()){
+                if(cars[i][1]-cars[stack.peek()][1]==0)res[i]=-1d;
+                else res[i]=(cars[stack.peek()][0]-cars[i][0])*1.0/(cars[i][1]-cars[stack.peek()][1])*1.0;
+            }
+            else res[i]=-1d;
+            stack.push(i);
+        }
+        return res;
     }
 }
 /*
