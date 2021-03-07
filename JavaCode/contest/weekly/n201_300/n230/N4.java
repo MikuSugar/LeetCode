@@ -29,7 +29,7 @@ public class N4 {
             }
             if(!stack.isEmpty()){
                 if(cars[i][1]-cars[stack.peek()][1]==0)res[i]=-1d;
-                else res[i]=(cars[stack.peek()][0]-cars[i][0])*1.0/(cars[i][1]-cars[stack.peek()][1])*1.0;
+                else res[i]=(cars[stack.peek()][0]-cars[i][0])*1.0/(cars[i][1]-cars[stack.peek()][1]);
             }
             else res[i]=-1d;
             stack.push(i);

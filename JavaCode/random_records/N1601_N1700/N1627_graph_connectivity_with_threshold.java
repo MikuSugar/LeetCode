@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class N1627_graph_connectivity_with_threshold {
 
-    //TODO TimeOut
     public static void main(String[] args) {
         //6
         //2

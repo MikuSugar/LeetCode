@@ -12,16 +12,17 @@ import java.util.*;
 public class N1494_parallel_courses_ii {
 
     public static void main(String[] args) {
-        //12
-        //[[11,10],[6,3],[2,5],[9,2],[4,12],[8,7],[9,5],[6,2],[7,2],[7,4],[9,3],[11,1],[4,3]]
-        //3
-        System.out.println(new N1494_parallel_courses_ii().minNumberOfSemesters(12,
-                Parse.parseToIntTwoArray("[[11,10],[6,3],[2,5],[9,2],[4,12],[8,7],[9,5],[6,2],[7,2],[7,4],[9,3],[11,1],[4,3]]"),
-                3));
+        //输入：n = 4, dependencies = [[2,1],[3,1],[1,4]], k = 2
+        //输出：3
+        System.out.println(new N1494_parallel_courses_ii().minNumberOfSemesters(
+                4,
+                Parse.parseToIntTwoArray("[[2,1],[3,1],[1,4]]"),
+                2));
     }
 
+    //TODO
     public int minNumberOfSemesters(int n, int[][] dependencies, int k) {
-
+        if(dependencies.length==0)return n/k+(n%k==0?0:1);
         int[] book=new int[n];
         Set<Integer>[] nexts=new Set[n];
         for (int i=0;i<n;i++)nexts[i]=new HashSet<>();
@@ -30,28 +31,46 @@ public class N1494_parallel_courses_ii {
             book[d[1]-1]++;
             nexts[d[0]-1].add(d[1]-1);
         }
-
-        int status=(1<<(n+1))-1;
-        Map<String,Integer> map=new HashMap<>();
-
-        return slove(status,k,k,book,nexts,map);
+        int tar=(1<<n)-1;
+        Map<String,Integer> dpMap=new HashMap<>();
+        int res=slove(0, 0, tar, dpMap, book, nexts, k, new int[n], 0);
+        System.out.println(dpMap);
+        return res;
     }
 
-    private int slove(int status, int cur, final int k, final int[] book,final Set<Integer>[] nexts,final Map<String, Integer> map) {
-        String key=status+"#"+cur;
-        if(map.containsKey(key))return map.get(key);
-        if(cur==0)return 1+slove(status,k,k,book,nexts,map);
-        if(status==0)return 0;
-
-        int res=Integer.MAX_VALUE;
-        for (int i=0;i<book.length;i++){
-            if(book[i]==0&&1==((status >> i)&1)){
-
+    private int slove(int cur, int curK ,final int tar, Map<String, Integer> dpMap, int[] book, Set<Integer>[] nexts, final int k,int[] book2,int step)
+    {
+        final String key=curK+"$"+cur;
+//        System.out.println(step);
+        if(step>=book.length)return step;
+        if(curK==k){
+            for (int i=0;i<book.length;i++){
+                book[i]-=book2[i];
             }
+            int res=slove(cur, 0, tar, dpMap, book, nexts, k,new int[book.length],step+1);
+            for (int i=0;i<book.length;i++){
+                book[i]+=book2[i];
+            }
+            dpMap.put(key,res);
+            return res;
         }
-        //TODO
-        return 0;
+        if(cur==tar)return step+(curK>0?1:0);
+        int res=dpMap.getOrDefault(key,Integer.MAX_VALUE);
+        if(res!=Integer.MAX_VALUE)return res;
+        res=Math.min(res,slove(cur,k,tar,dpMap,book,nexts,k,book2,step+1));
+        for (int i=0;i<book.length;i++){
+           if(book[i]==0&&((cur>>i)&1)==0){
+               int nextCur=cur|(1<<i);
+               for (int idx:nexts[i])book2[idx]++;
+               res=Math.min(res,slove(nextCur,curK+1,tar,dpMap,book,nexts,k,book2,step));
+               for (int idx:nexts[i])book2[idx]--;
+           }
+        }
+        dpMap.put(key,res);
+        //System.out.println(key+" "+ res+" "+" "+Integer.toBinaryString(cur)+" "+step);
+        return res;
     }
+
 
 }
 /*
