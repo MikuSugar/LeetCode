@@ -17,7 +17,7 @@ public class N3 {
         ));
     }
     private final static int MOD=(int) (1e9+7);
-    private final static int MAX=Integer.MAX_VALUE>>1;
+    private final static int MAX=Integer.MAX_VALUE;
     public int countRestrictedPaths(int n, int[][] edges) {
         List<int[]>[] g=new List[n+1];
         for (int i=0;i<g.length;i++)g[i]=new ArrayList<>();
