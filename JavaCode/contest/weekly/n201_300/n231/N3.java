@@ -29,12 +29,7 @@ public class N3 {
         int[] dis=new int[n+1];
         Arrays.fill(dis,MAX);
 
-        PriorityQueue<int[]> queue=new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return Integer.compare(o1[1],o2[1]);
-            }
-        });
+        PriorityQueue<int[]> queue=new PriorityQueue<>(Comparator.comparingInt(o->o[1]));
 
         queue.add(new int[]{n,0});
         while (!queue.isEmpty()){
