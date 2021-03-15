@@ -19,23 +19,29 @@ public class N3 {
         ));
     }
     public double maxAverageRatio(int[][] classes, int extraStudents) {
-        Arrays.sort(classes, new Comparator<int[]>() {
+        PriorityQueue<int[]> pq=new PriorityQueue<>(new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
-                if(o1[0]==o1[1])return 1;
-                if(o2[0]==o2[1])return -1;
-                if(o1[1]==o2[1])return Integer.compare(o1[0],o2[0]);
-                return Integer.compare(o1[1],o2[1]);
+                return Double.compare((o2[0]+1d)/(o2[1]+1d)-o2[0]*1d/o2[1],(o1[0]+1d)/(o1[1]+1d)-o1[0]*1d/o1[1]);
             }
         });
-//        for (int[] c:classes) System.out.println(Arrays.toString(c));
 
-        for (int i=0;i<classes.length;i++)
-        {
-            int[] curC=classes[i];
-//            int max=curC;
+        pq.addAll(Arrays.asList(classes));
+        while (extraStudents>0){
+            int[] c=pq.poll();
+            c[0]++;
+            c[1]++;
+            pq.add(c);
+            extraStudents--;
         }
-        return 0L;
+
+        double res=0d;
+        while (!pq.isEmpty()){
+            int[] c=pq.poll();
+            res+=c[0]*1d/c[1];
+        }
+
+        return res/classes.length;
     }
 }
 /*
