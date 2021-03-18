@@ -1,6 +1,9 @@
 package JavaCode.contest.weekly.n201_300.n231;
 
 
+import utils.Parse;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,14 +13,39 @@ import java.util.Map;
  * date: 2021/3/7 10:27 上午
  */
 public class N4 {
+    //[26,19,19,28,13,14,6,25,28,19,0,15,25,11]
+    //3
+    //11
+    public static void main(String[] args) {
+        System.out.println(new N4().minChanges(
+                Parse.parseToIntArray("[26,19,19,28,13,14,6,25,28,19,0,15,25,11]"),
+                3));
+    }
+    private final int MAX=Integer.MAX_VALUE>>1;
     public int minChanges(int[] nums, int k) {
-        Map<Integer,Integer>[] maps=new Map[k];
-        for (int i=0;i<k;i++)maps[i]=new HashMap<>();
-        for (int i=0;i<nums.length;i++){
-            maps[i%k].put(nums[i],maps[i%k].getOrDefault(nums[i],0)+1);
+        int[][] dp=new int[k+1][1<<10];
+        for (int[] arr:dp) Arrays.fill(arr,MAX);
+        dp[0][0]=0;
+        int sum=0,min=MAX;
+        for (int i=1;i<=k;i++) {
+            int l=(nums.length+k-1)/k;
+            if(nums.length%k!=0&&nums.length%k<i)l--;
+            int[] s=new int[1<<10];
+            for (int j=0;j<l;j++)s[nums[j*k+i-1]]++;
+            int max=0;
+            for (int j=0;j<1<<10;j++) max=Math.max(max,s[j]);
+            min=Math.min(min,max);
+            sum+=l-max;
+            for (int j=0;j<l;j++)
+            {
+                int x=nums[j*k+i-1],cost=l-s[x];
+                for (int u=0;u<1<<10;u++)
+                {
+                    dp[i][u]=Math.min(dp[i][u],dp[i-1][x^u]+cost);
+                }
+            }
         }
-        //TODO;
-        return -1;
+        return Math.min(sum+min,dp[k][0]);
     }
 }
 /*
