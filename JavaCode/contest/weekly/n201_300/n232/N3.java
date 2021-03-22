@@ -19,12 +19,9 @@ public class N3 {
         ));
     }
     public double maxAverageRatio(int[][] classes, int extraStudents) {
-        PriorityQueue<int[]> pq=new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return Double.compare((o2[0]+1d)/(o2[1]+1d)-o2[0]*1d/o2[1],(o1[0]+1d)/(o1[1]+1d)-o1[0]*1d/o1[1]);
-            }
-        });
+        PriorityQueue<int[]> pq=new PriorityQueue<>(
+                (o1, o2)->Double.compare((o2[0]+1d)/(o2[1]+1d)-o2[0]*1d/o2[1],(o1[0]+1d)/(o1[1]+1d)-o1[0]*1d/o1[1])
+        );
 
         pq.addAll(Arrays.asList(classes));
         while (extraStudents>0){
