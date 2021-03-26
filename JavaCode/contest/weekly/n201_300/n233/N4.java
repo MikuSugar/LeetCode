@@ -7,18 +7,50 @@ package JavaCode.contest.weekly.n201_300.n233;
  */
 public class N4 {
     public int countPairs(int[] nums, int low, int high) {
-        //TODO：超时
-        int res=0;
-        for (int i=0;i<nums.length;i++)
-        {
-            for (int j=i+1;j<nums.length;j++)
+        //TODO
+        return 0;
+    }
+
+    static class Trie{
+
+        Node root;
+
+        Trie(){
+            this.root=new Node();
+        }
+
+        void insert(int num){
+            Node cur=this.root;
+            boolean flag=false;
+            for (int i=30;i>=0;i--)
             {
-                int c=nums[i]^nums[j];
-                if(c>=low&&c<=high)res++;
+                int pos=num>>i&1;
+                if(cur.next[pos]!=null){
+                    cur.next[pos]=new Node();
+                }
+                if(!flag&&pos==1){
+                    flag=true;
+                    cur.next[pos].count++;
+                }
+                cur=cur.next[pos];
             }
         }
-        return res;
+
+        void query(int num,int high){
+
+        }
+
     }
+
+    static class Node{
+        Node[] next;
+        int count;
+        Node(){
+            this.next=new Node[2];
+            this.count=0;
+        }
+    }
+
 }
 /*
 给你一个整数数组 nums （下标 从 0 开始 计数）以及两个整数：low 和 high ，请返回 漂亮数对 的数目。
