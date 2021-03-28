@@ -24,10 +24,11 @@
 > * random_records包为随机题目刷题记录  。[题目地址](https://leetcode-cn.com/problemset/all/)
 > * contest包为竞赛记录。[专题地址](https://leetcode-cn.com/contest/)
 > * 部分题目用cpp实现,在C++目录下。
-> * 在JavaCode目录下部分题目用Scala实现（学习Scala中）。
+> * 在JavaCode目录下部分题目用Scala。
 > * sql包为数据库题目(mysql实现)。
 > * lcof包为《剑指offer》专题。[专题地址](https://leetcode-cn.com/problemset/lcof/)
 > * lcci包《程序员面试金典》专题。[专题地址](https://leetcode-cn.com/problemset/lcci/)
 > * utils包为工具类。
->
-By MikuSugar. 2020/07/31
+> * 我的周赛题解笔记。[地址](https://mikusugar.me/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/)
+> 
+By MikuSugar. 2021/07/31
