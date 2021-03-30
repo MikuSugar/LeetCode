@@ -1,9 +1,5 @@
 package JavaCode.contest.weekly.n201_300.n234;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * author: fangjie
@@ -12,27 +8,22 @@ import java.util.Set;
  */
 public class N4 {
 
-    public static void main(String[] args) {
-        System.out.println(new N4().maxNiceDivisors(8));
-    }
     private final static int MOD=(int) (1e9+7);
+
     public int maxNiceDivisors(int primeFactors) {
-        //TODO:
+        if (primeFactors<=3) return primeFactors;
+        if (primeFactors%3==1) return (int) (powMod(3, (primeFactors-4)/3, MOD)*4%MOD);
+        if (primeFactors%3==2) return (int) (powMod(3, primeFactors/3, MOD)*2%MOD);
+        return (int) (powMod(3, primeFactors/3, MOD));
     }
 
-    private void setList(int num, int primeFactors,List<Integer> list) {
-        int i=2;
-        while (i<=num)
-        {
-            if(num%i==0){
-                list.add(i);
-                if(list.size()>primeFactors) return;
-                num/=i;
-                i=2;
-            }
-            else i++;
-        }
+    long powMod(long a, long b, final long mod) {
+        if (b==0) return 1L;
+        long res=powMod(a, b/2, mod)%mod;
+        if (b%2==0) return res*res%mod;
+        return res*res*a%mod;
     }
+
 }
 /*
 给你一个正整数 primeFactors 。你需要构造一个正整数 n ，它满足以下条件：
