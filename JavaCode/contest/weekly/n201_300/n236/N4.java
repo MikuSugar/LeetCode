@@ -1,5 +1,7 @@
 package JavaCode.contest.weekly.n201_300.n236;
 
+import apple.laf.JRSUIUtils;
+
 import java.util.*;
 
 /**
@@ -47,41 +49,27 @@ class MKAverage {
         this.k=k;
         this.sum=this.maxSum=this.minSum=this.size=0;
         this.queue=new ArrayDeque<>();
-        min=new TreeSet<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
-                return Integer.compare(o1[0],o2[0]);
-            }
+        min=new TreeSet<>((o1, o2) -> {
+            if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
+            return Integer.compare(o1[0],o2[0]);
         });
-        minT=new TreeSet<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
-                return Integer.compare(o1[0],o2[0]);
-            }
+        minT=new TreeSet<>((o1, o2) -> {
+            if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
+            return Integer.compare(o1[0],o2[0]);
         });
-        max=new TreeSet<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
-                return Integer.compare(o2[0],o1[0]);
-            }
+        max=new TreeSet<>((o1, o2) -> {
+            if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
+            return Integer.compare(o2[0],o1[0]);
         });
-        maxT=new TreeSet<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
-                return Integer.compare(o2[0],o1[0]);
-            }
+        maxT=new TreeSet<>((o1, o2) -> {
+            if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
+            return Integer.compare(o2[0],o1[0]);
         });
     }
 
     public void addElement(int num) {
         size++;
         int[] cur = {num, size};
-
-
         sum+=num;
         queue.add(cur);
         if(queue.size()>m){
@@ -93,37 +81,29 @@ class MKAverage {
             if(max.remove(c))maxSum-=c[0];
 
         }
-
-        while (min.size()<k&&!minT.isEmpty()){
-            int[] c = minT.pollFirst();
-            minSum+=c[0];
-            min.add(c);
+        minSum+=help(min,minT,cur);
+        maxSum+=help(max,maxT,cur);
+    }
+    private int help(TreeSet<int[]> set,TreeSet<int[]>tSet,int[] cur){
+        int res=0;
+        while (set.size()<k&&!tSet.isEmpty()){
+            int[] c=tSet.pollFirst();
+            res+=c[0];
+            set.add(c);
         }
-        min.add(cur);
-        minSum+=num;
-        while (min.size()>k){
-            int[] c = min.pollLast();
-            minSum-=c[0];
-            minT.add(c);
+        set.add(cur);
+        res+=cur[0];
+        while (set.size()>k){
+            int[] c=set.pollLast();
+            res-=c[0];
+            tSet.add(c);
         }
-        while (max.size()<k&&!maxT.isEmpty()){
-            int[] c=maxT.pollFirst();
-            maxSum+=c[0];
-            max.add(c);
-        }
-        max.add(cur);
-        maxSum+=num;
-        while (max.size()>k){
-            int[] c=max.pollLast();
-            maxSum-=c[0];
-            maxT.add(c);
-        }
-
+        return res;
     }
 
     public int calculateMKAverage() {
         if(queue.size()<m)return -1;
-        System.out.println(Arrays.toString(new int[]{sum,minSum,maxSum}));
+        //System.out.println(Arrays.toString(new int[]{sum,minSum,maxSum}));
         return (sum-minSum-maxSum)/(m-2*k);
     }
 }
