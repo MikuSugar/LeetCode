@@ -15,29 +15,22 @@ public class N4 {
         int[] book1=new int[32];
         int[] book2=new int[32];
         int[] res=new int[32];
-        for (int num:arr1)
-        {
-            char[] strs = Integer.toBinaryString(num).toCharArray();
-            for (int i=0;i<strs.length;i++){
-                book1[strs.length-i-1]+=strs[i]-'0';
-            }
-        }
-        for (int num:arr2){
-            char[] strs = Integer.toBinaryString(num).toCharArray();
-            for (int i=0;i<strs.length;i++){
-                book2[strs.length-i-1]+=strs[i]-'0';
-            }
-        }
-        for (int i=0;i<32;i++)
-        {
-            if(book1[i]%2!=0&&book2[i]%2!=0)res[i]=1;
-        }
+        setBook(arr1, book1);
+        setBook(arr2,book2);
+        for (int i=0;i<32;i++) if(book1[i]%2!=0&&book2[i]%2!=0)res[i]=1;
         int ans=0;
-        for (int i=0;i<res.length;i++)
-        {
-            if(res[i]==1)ans+=Math.pow(2,i);
-        }
+        for (int i=0;i<res.length;i++) if(res[i]==1)ans+=Math.pow(2,i);
         return ans;
+    }
+
+    private void setBook(int[] arr, int[] book) {
+        for (int num:arr)
+        {
+            char[] strs = Integer.toBinaryString(num).toCharArray();
+            for (int i=0;i<strs.length;i++){
+                book[strs.length-i-1]+=strs[i]-'0';
+            }
+        }
     }
 }
 /*

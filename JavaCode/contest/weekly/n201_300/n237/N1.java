@@ -3,13 +3,8 @@ package JavaCode.contest.weekly.n201_300.n237;
 public class N1 {
     public boolean checkIfPangram(String sentence) {
         int[] book=new int[26];
-        for (char c:sentence.toCharArray()){
-            book[c-'a']++;
-        }
-        for (int i:book)
-        {
-            if(i==0)return false;
-        }
+        for (char c:sentence.toCharArray())book[c-'a']++;
+        for (int i:book) if(i==0)return false;
         return true;
     }
 }

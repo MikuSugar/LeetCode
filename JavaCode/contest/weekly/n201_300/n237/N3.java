@@ -4,20 +4,12 @@ import java.util.*;
 
 public class N3 {
     public int[] getOrder(int[][] tasks) {
-        PriorityQueue<int[]> pq=new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
-                return Integer.compare(o1[0],o2[0]);
-            }
+        PriorityQueue<int[]> pq=new PriorityQueue<>((o1, o2) -> {
+            if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
+            return Integer.compare(o1[0],o2[0]);
         });
 
-        PriorityQueue<int[]> task=new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-               return Integer.compare(o1[0],o2[0]);
-            }
-        });
+        PriorityQueue<int[]> task=new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
 
         for (int i=0;i< tasks.length;i++){
             task.add(new int[]{tasks[i][0],tasks[i][1],i});
