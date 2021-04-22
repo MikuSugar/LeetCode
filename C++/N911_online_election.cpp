@@ -9,17 +9,17 @@ public:
     map<int,int> m;
     TopVotedCandidate(vector<int>& persons, vector<int>& times) {
         int n=persons.size();
-		vector<int> book(n+1,0);
-		int cur=-1;
-		for(int i=0;i<n;i++)
-		{
-			book[i]++;
-			if(i==0||book[persons[i]]>=book[persons[cur]])
-			{
-				cur=i;
-			}
-			m[times[i]]=persons[cur];
-		}
+	vector<int> book(n+1,0);
+	int cur=-1;
+	for(int i=0;i<n;i++)
+	{
+	    book[i]++;
+	    if(i==0||book[persons[i]]>=book[persons[cur]])
+	    {
+		cur=i;
+	    }
+	    m[times[i]]=persons[cur];
+	}
     }
     
     int q(int t) {
