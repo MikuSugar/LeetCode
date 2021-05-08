@@ -29,6 +29,6 @@
 > * lcof包为《剑指offer》专题。[专题地址](https://leetcode-cn.com/problemset/lcof/)
 > * lcci包《程序员面试金典》专题。[专题地址](https://leetcode-cn.com/problemset/lcci/)
 > * utils包为工具类。
-> * 我的周赛题解笔记。[地址](https://mikusugar.me/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/)
+> * 我的周赛题解笔记。[地址](https://mikusugar.me/sugar-note/algorithm/leetcode/index.html)
 > 
-By MikuSugar. 2021/04/04
+By MikuSugar. 2021/05/05
