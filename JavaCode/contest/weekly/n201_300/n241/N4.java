@@ -3,7 +3,6 @@ package JavaCode.contest.weekly.n201_300.n241;
 
 public class N4 {
     public static void main(String[] args) {
-        //TODO  TimeOut
         System.out.println(new N4().rearrangeSticks(500,28));
     }
     private final static int MOD= (int) (Math.pow(10,9)+7);
