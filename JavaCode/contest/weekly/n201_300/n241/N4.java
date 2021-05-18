@@ -1,54 +1,21 @@
 package JavaCode.contest.weekly.n201_300.n241;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class N4 {
     public static void main(String[] args) {
         //TODO  TimeOut
-        System.out.println(new N4().rearrangeSticks(105,28));
+        System.out.println(new N4().rearrangeSticks(500,28));
     }
     private final static int MOD= (int) (Math.pow(10,9)+7);
-    private final static byte yes=1;
-    private final static byte no=0;
     public int rearrangeSticks(int n, int k) {
-        byte[] book=new byte[n+1];
-        Arrays.fill(book,no);
-        Map<String,Integer> map=new HashMap<>();
-        int[][][] dp=new int[n+1][k+2][n+1];
-        for (int[][] ints : dp) {
-            for (int j = 0; j < dp[0].length; j++) {
-                Arrays.fill(ints[j], -1);
+        long[][] dp=new long[n+1][k+1];
+        dp[0][0]=1;
+        for (int i=1;i<=n;i++){
+            for (int j=1;j<=k;j++){
+                dp[i][j]=(dp[i-1][j-1]+(i-1)*dp[i-1][j])%MOD;
             }
         }
-        book[0]=yes;
-        return slove(0,1,n,k,book,dp);
-    }
-
-    private int slove(int preMax, int idx, final int n, int k, byte[] book, int[][][] dp) {
-        if(idx==n+1){
-            if(k==0)return 1;
-            else return 0;
-        }
-        if(k>n-idx+1)return 0;
-
-        String key=preMax+"::"+k+"::"+idx;
-        if(dp[preMax][k+1][idx]!=-1)return dp[preMax][k+1][idx];
-        long res=0L;
-        for (int i=1;i<=Math.min(n-k+1,n);i++){
-            if(book[i]==yes)continue;
-            book[i]=yes;
-            if(i>preMax){
-                res+=slove(i,idx+1,n,Math.max(k-1,-1),book,dp);
-            }
-            else {
-                res+=slove(preMax,idx+1,n,k,book,dp);
-            }
-            res%=MOD;
-            book[i]=no;
-        }
-        return dp[preMax][k+1][idx]=(int) res;
+        return (int) dp[n][k];
     }
 }
 /*
