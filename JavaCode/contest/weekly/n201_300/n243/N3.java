@@ -13,67 +13,53 @@ public class N3 {
     }
 
     public int[] assignTasks(int[] servers, int[] tasks) {
-        PriorityQueue<int[]> readyServe = new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[0]==o2[0])return Integer.compare(o1[1],o2[1]);
-                return Integer.compare(o1[0],o2[0]);
-            }
+        PriorityQueue<int[]> readyServe = new PriorityQueue<>((o1, o2) -> {
+            if (o1[0] == o2[0]) return Integer.compare(o1[1], o2[1]);
+            return Integer.compare(o1[0], o2[0]);
         });
 
-        PriorityQueue<int[]> runServer = new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return Integer.compare(o1[0],o2[0]);
-            }
-        });
+        PriorityQueue<int[]> runServer = new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
 
-        PriorityQueue<int[]> task=new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return Integer.compare(o1[0],o2[0]);
-            }
-        });
+        PriorityQueue<int[]> task = new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
 
-        for (int i=0;i<servers.length;i++){
-            readyServe.add(new int[]{servers[i],i});
+        for (int i = 0; i < servers.length; i++) {
+            readyServe.add(new int[]{servers[i], i});
         }
 
-        int[] res=new int[tasks.length];
-        for (int i=0;i< tasks.length;i++){
+        int[] res = new int[tasks.length];
+        for (int i = 0; i < tasks.length; i++) {
 
-            while (!runServer.isEmpty()&&runServer.peek()[0]<=i){
+            while (!runServer.isEmpty() && runServer.peek()[0] <= i) {
                 final int[] poll = runServer.poll();
-                readyServe.add(new int[]{poll[1],poll[2]});
+                readyServe.add(new int[]{poll[1], poll[2]});
             }
-            task.add(new int[]{i,tasks[i]});
-            while (!readyServe.isEmpty()&&!task.isEmpty()){
-                final int[] s = readyServe.poll();
-                final int[] t = task.poll();
-                res[t[0]]=s[1];
-                runServer.add(new int[]{i+t[1],s[0],s[1]});
-            }
+            task.add(new int[]{i, tasks[i]});
+            help(readyServe, runServer, task, res, i);
         }
-        int time=0;
-        while (!task.isEmpty()){
-          if(!runServer.isEmpty()){
-              final int[] poll = runServer.poll();
-              readyServe.add(new int[]{poll[1],poll[2]});
-              time=poll[0];
-          }
-          while (!runServer.isEmpty()&&runServer.peek()[0]<=time){
-              final int[] poll = runServer.poll();
-              readyServe.add(new int[]{poll[1],poll[2]});
-          }
-          while (!readyServe.isEmpty()&&!task.isEmpty()){
-                final int[] s = readyServe.poll();
-                final int[] t = task.poll();
-                res[t[0]]=s[1];
-                runServer.add(new int[]{time+t[1],s[0],s[1]});
-          }
+        int time = 0;
+        while (!task.isEmpty()) {
+            if (!runServer.isEmpty()) {
+                final int[] poll = runServer.poll();
+                readyServe.add(new int[]{poll[1], poll[2]});
+                time = poll[0];
+            }
+            while (!runServer.isEmpty() && runServer.peek()[0] <= time) {
+                final int[] poll = runServer.poll();
+                readyServe.add(new int[]{poll[1], poll[2]});
+            }
+            help(readyServe, runServer, task, res, time);
         }
 
         return res;
+    }
+
+    private void help(PriorityQueue<int[]> readyServe, PriorityQueue<int[]> runServer, PriorityQueue<int[]> task, int[] res, int time) {
+        while (!readyServe.isEmpty() && !task.isEmpty()) {
+            final int[] s = readyServe.poll();
+            final int[] t = task.poll();
+            res[t[0]] = s[1];
+            runServer.add(new int[]{time + t[1], s[0], s[1]});
+        }
     }
 }
 /*

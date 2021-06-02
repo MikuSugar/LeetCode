@@ -7,10 +7,11 @@ public class N2 {
         int idx;
         if(n.contains("-")){
             idx=strs.length;
-            for (int i=strs.length-1;i>=1;i--){
+            for (int i=1;i<strs.length;i++){
                 int num=strs[i]-'0';
                 if(num>x){
                     idx=i;
+                    break;
                 }
             }
             for (int i=0;i<strs.length;i++){
