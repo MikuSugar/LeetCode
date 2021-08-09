@@ -1,0 +1,25 @@
+site_name: LeetCode Note
+copyright: Copyright &copy; 2021-2022 MikuSugar
+theme:
+  language: zh
+  name: material
+  features:
+    - navigation.tabs
+repo_url: https://github.com/MikuSugar/LeetCode.git
+repo_name: MikuSugar/LeetCode
+site_description:  LeetCode Note
+nav:
+  - 主页: index.md
+  - 周赛:
+      - 233场: weekly/力扣第233场周赛.md
+      - 234场: weekly/力扣第234场周赛.md
+      - 235场: weekly/力扣第235场周赛.md
+      - 236场: weekly/力扣第236场周赛.md
+      - 237场: weekly/力扣第237场周赛.md
+      - 240场: weekly/力扣第240场周赛.md
+      - 241场: weekly/力扣第241场周赛.md
+      - 242场: weekly/力扣第242场周赛.md
+      - 243场: weekly/力扣第243场周赛.md
+      - 244场: weekly/力扣第244场周赛.md
+      - 252场: weekly/力扣第252场周赛.md
+      - 253场: weekly/力扣第253场周赛.md
