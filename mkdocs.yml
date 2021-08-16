@@ -5,7 +5,7 @@ theme:
   name: material
   features:
     - navigation.tabs
-  custom_dir: docs/templates
+  custom_dir: templates
 repo_url: https://github.com/MikuSugar/LeetCode.git
 repo_name: MikuSugar/LeetCode
 site_description:  LeetCode Note
