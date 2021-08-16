@@ -1,55 +1,64 @@
 package JavaCode.contest.weekly.n201_300.n254;
 
-import utils.Parse;
+import utils.Show;
 
-import java.util.Arrays;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 /**
  * @author mikusugar
  */
 public class N4 {
-    public static void main(String[] args) {
-        System.out.println(new N4().latestDayToCross(
-                2,2,
-                Parse.parseToIntTwoArray("[[1,1],[1,2],[2,1],[2,2]]")
-        ));
-    }
+
     public int latestDayToCross(int row, int col, int[][] cells) {
-        int[][] book = new int[row+2][col+2];
-
-        for (int i=0;i<cells.length;i++){
-            book[cells[i][0]][cells[i][1]]=i+1;
+        int[][] book = new int[row + 2][col + 2];
+        for (int i = 0; i < cells.length; i++) {
+            book[cells[i][0]][cells[i][1]] = i + 1;
         }
-        showArray(book);
 
-        int[][] dp = new int[row+2][col+2];
-        for(int[] arr:dp) Arrays.fill(arr,-1);
+        Show.show(book);
+
+        int left = 0, right = cells.length - 1;
         int res = 0;
-        for (int i=1;i<dp.length;i++){
-            for (int j=1;j<=col;j++){
-                help(dp[i][j-1]+1,i,j-1,dp,book);
-                help(dp[i-1][j]+1,i-1,j,dp,book);
-            }
-            for (int j=col;j>=1;j--){
-                help(dp[i][j+1]+1,i,j+1,dp,book);
-            }
+
+        while (left <= right) {
+            int day = (left + right) / 2;
+            if (check(day, book, row, col)) {
+                left = day + 1;
+                res = day;
+            } else right = day - 1;
         }
-        showArray(dp);
-        for (int i=1;i<=col;i++)res=Math.max(res,dp[row][i]);
         return res;
     }
 
-    private void help(int d, int i, int j, int[][] dp, int[][] book) {
-        if(book[i][j]>d)dp[i][j]=Math.max(d,dp[i][j]);
-        else dp[i][j] = book[i][j] - 1;
-    }
-    private void showArray(int[][] array){
-        System.out.println();
-        for (int[] ints : array) {
-            System.out.println(Arrays.toString(ints));
+    private boolean check(int day, int[][] book, int row, int col) {
+        Queue<int[]> queue = new ArrayDeque<>();
+
+        boolean[][] been = new boolean[book.length][book[0].length];
+        for (int i = 1; i <= col; i++) {
+            if (book[1][i] <= day) continue;
+            queue.add(new int[]{1, i});
+            been[1][i]=true;
         }
-        System.out.println();
+
+        while (!queue.isEmpty()) {
+            final int[] cur = queue.poll();
+            if (cur[0] == row) return true;
+            for (int[] next : NEXTS) {
+                int i = cur[0] + next[0];
+                int j = cur[1] + next[1];
+                if (i < 1 || i > row || j < 1 || j > col || day >= book[i][j] || been[i][j])
+                    continue;
+                been[i][j]=true;
+                queue.add(new int[]{i, j});
+            }
+        }
+
+        return false;
     }
+
+    private final static int[][] NEXTS = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
+
 }
 /*
 给你一个下标从 1 开始的二进制矩阵，其中 0 表示陆地，1 表示水域。同时给你 row 和 col 分别表示矩阵中行和列的数目。
