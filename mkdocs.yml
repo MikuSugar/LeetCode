@@ -5,9 +5,11 @@ theme:
   name: material
   features:
     - navigation.tabs
+  custom_dir: docs/templates
 repo_url: https://github.com/MikuSugar/LeetCode.git
 repo_name: MikuSugar/LeetCode
 site_description:  LeetCode Note
+
 nav:
   - 主页: index.md
   - 周赛:
@@ -27,9 +29,4 @@ nav:
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
-utterances:
-  enable: true
-  user: mikusugar
-  repo: talks
-  theme: github-light
 

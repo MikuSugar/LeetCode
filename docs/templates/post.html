@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+
+{% block content %}
+<h1>{{ page.title }}</h1>
+<p class="post-meta">
+    发布于 {{ page.meta.date.strftime("%b %d, %Y") }}
+    {% if page.meta.authors %}by {{ page.meta.authors|join(",") }}{% endif %}
+</p>
+{{ page.content }}
+{% endblock %}
+
+{% block disqus %}
+<hr>
+<script src="https://utteranc.es/client.js"
+        repo="mikusugar/talks"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+{% endblock %}
