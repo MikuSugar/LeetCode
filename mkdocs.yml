@@ -27,3 +27,9 @@ nav:
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
+utterances:
+  enable: true
+  user: mikusugar
+  repo: talks
+  theme: github-light
+
