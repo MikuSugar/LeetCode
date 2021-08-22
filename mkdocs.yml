@@ -6,6 +6,8 @@ theme:
   features:
     - navigation.tabs
   custom_dir: docs/templates
+  favicon: imags/logo.png
+  logo: imags/logo.png
 repo_url: https://github.com/MikuSugar/LeetCode.git
 repo_name: MikuSugar/LeetCode
 site_description:  LeetCode Note
@@ -29,4 +31,6 @@ nav:
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
+  - meta
+
 
