@@ -27,7 +27,7 @@ nav:
       - 第252场周赛: weekly/力扣第252场周赛.md
       - 第253场周赛: weekly/力扣第253场周赛.md
       - 第254场周赛: weekly/力扣第254场周赛.md
-      - 第255场周赛: weekly/力扣第255场周赛.md
+      - 第257场周赛: weekly/力扣第257场周赛.md
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
