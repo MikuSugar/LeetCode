@@ -1,52 +1,24 @@
 package JavaCode.contest.weekly.n201_300.n257;
 
-import utils.Parse;
 
 /**
  * @author mikusugar
  */
 public class N3 {
-    public static void main(String[] args) {
-        int[] input = Parse.parseToIntArray("[0,0,0,0,0,0,0,0,0]");
-        System.out.println(new N3().firstDayBeenInAllRooms(input));
-        System.out.println(new N3().firstDayBeenInAllRooms1(input));
-    }
+
+    private final static int MOD = (int) (1e9+7);
     public int firstDayBeenInAllRooms(int[] nextVisit) {
-      int res = 0;
-      int[] book  = new int[nextVisit.length];
-      int cnt = 0;
-      for (int i=0;i<nextVisit.length-2;i++){
-          book[nextVisit[i]]++;
-          if(book[nextVisit[i]]==1){
-              cnt++;
-          }
-      }
-      for (int i=0;i<book.length-1;i++){
-          if(book[i]==0)res+=2;
-          else res+=Math.pow(2,book[i]);
-      }
-
-      return res;
+        //dp[i][0] 表示奇数次到达i需要的天数
+        //dp[i][1] 表示偶数次到达i需要的天数
+        long[][] dp = new long[nextVisit.length][2];
+        dp[0][1] = 1L;
+        for (int i=1;i< nextVisit.length;i++){
+            dp[i][0]=(dp[i-1][1]+1)%MOD;
+            dp[i][1]=(dp[i][0]+1+(MOD+dp[i-1][1]-dp[nextVisit[i]][0]+1))%MOD;
+        }
+        return (int) dp[dp.length-1][0];
     }
-    public int firstDayBeenInAllRooms1(int[] nextVisit) {
-       int cur = 0;
-       int day = 0;
-       int tar = 0;
-       int[] book = new int[nextVisit.length];
-       while (tar<nextVisit.length){
-           book[cur]++;
-           if(book[cur]==1)tar++;
 
-           if(book[cur]%2==0){
-               cur=(cur+1)%nextVisit.length;
-           }
-           else {
-               cur=nextVisit[cur];
-           }
-           day++;
-       }
-       return day-1;
-    }
 }
 /*
 你需要访问 n 个房间，房间从 0 到 n - 1 编号。同时，每一天都有一个日期编号，从 0 开始，依天数递增。你每天都会访问一个房间。
