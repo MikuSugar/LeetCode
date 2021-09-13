@@ -1,46 +1,41 @@
 package JavaCode.contest.other.fa_2021;
 
-
-
 import java.util.*;
 
 /**
  * @author mikusugar
  */
 public class N2 {
-    public static void main(String[] args) {
-
-    }
-
 
     public int maxmiumScore(int[] cards, int cnt) {
+
         List<Integer> l1 = new ArrayList<>();
         List<Integer> l2 = new ArrayList<>();
         for (int i : cards) {
             if (i % 2 == 0) l1.add(i);
             else l2.add(i);
         }
+        l1.sort((o1, o2) -> Integer.compare(o2, o1));
         l2.sort((o1, o2) -> Integer.compare(o2, o1));
 
-        PriorityQueue<int[]> pq =
-                new PriorityQueue<>((o1, o2) -> Integer.compare(o2[0] / o2[1], o1[0] / o1[1]));
+        int[] s1 = getSum(l1);
+        int[] s2 = getSum(l2);
 
-        for (int i = 1; i < l2.size(); i += 2) {
-            pq.add(new int[]{l2.get(i) + l2.get(i - 1), 2});
+        int res = 0;
+        for (int i = 0; i <= Math.min(cnt, s2.length-1); i += 2) {
+            int j = cnt - i;
+            if (j >= s1.length) continue;
+            res = Math.max(res, s1[j] + s2[i]);
         }
-        for (int i : l1) pq.add(new int[]{i, 1});
+        return res;
+    }
 
-        int sum = 0;
-        while (cnt > 0 && !pq.isEmpty()) {
-            final int[] cur = pq.poll();
-            if (cnt >= cur[1]) {
-                cnt -= cur[1];
-                sum += cur[0];
-            }
+    private int[] getSum(List<Integer> list) {
+        int[] res = new int[list.size() + 1];
+        for (int i = 0; i < list.size(); i++) {
+            res[i + 1] = res[i] + list.get(i);
         }
-        if (cnt > 0) return 0;
-        return sum;
-
+        return res;
     }
 }
 /*

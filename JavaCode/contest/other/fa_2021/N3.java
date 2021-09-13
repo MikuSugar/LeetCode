@@ -20,7 +20,7 @@ public class N3 {
                     for (int k = 1; k <= 8; k++) {
                         int ii = i + NEXTS[k - 1][0];
                         int jj = j + NEXTS[k - 1][1];
-                        if (ii < 0 || jj < 0 || ii >= g.length || jj >= g[0].length || g[ii][jj] != 0) continue;
+                        if (isOk(g, ii, jj)) continue;
                         dfs1(ii, jj, k, tag, g);
                     }
                 }
@@ -40,13 +40,20 @@ public class N3 {
 
     }
 
+    private boolean isOk(int[][] g, int ii, int jj) {
+        return ii < 0 || jj < 0 || ii >= g.length || jj >= g[0].length || g[ii][jj] != 0;
+    }
+
     private int slove(int i, int j, int[][] g, int[][] tag) {
-        int res = 0;
         final boolean[][] visit = new boolean[g.length][g[0].length];
+        return next(i, j, g, tag, 0, visit);
+    }
+
+    private int next(int i, int j, int[][] g, int[][] tag, int res, boolean[][] visit) {
         for (int k = 1; k <= 8; k++) {
             int ii = i + NEXTS[k - 1][0];
             int jj = j + NEXTS[k - 1][1];
-            if (ii < 0 || jj < 0 || ii >= g.length || jj >= g[0].length || g[ii][jj] != 0) continue;
+            if (isOk(g, ii, jj)) continue;
             res += dfs2(ii, jj, k, tag, g, visit);
         }
         return res;
@@ -55,21 +62,14 @@ public class N3 {
     private int dfs2(int i, int j, int kk, int[][] tag, int[][] g, boolean[][] visit) {
         if ((tag[i][j] & (1 << kk)) == 0 || visit[i][j]) return 0;
         visit[i][j] = true;
-        int res = 1;
-        for (int k = 1; k <= 8; k++) {
-            int ii = i + NEXTS[k - 1][0];
-            int jj = j + NEXTS[k - 1][1];
-            if (ii < 0 || jj < 0 || ii >= g.length || jj >= g[0].length || g[ii][jj] != 0) continue;
-            res += dfs2(ii, jj, k, tag, g, visit);
-        }
-        return res;
+        return next(i, j, g, tag, 1, visit);
     }
 
     private void dfs1(int i, int j, int k, int[][] tag, int[][] g) {
         tag[i][j] |= 1 << BOOK[k - 1];
         int ii = i + NEXTS[k - 1][0];
         int jj = j + NEXTS[k - 1][1];
-        if (ii < 0 || jj < 0 || ii >= g.length || jj >= g[0].length || g[ii][jj] != 0) return;
+        if (isOk(g, ii, jj)) return;
         dfs1(ii, jj, k, tag, g);
     }
 
