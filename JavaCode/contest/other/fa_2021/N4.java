@@ -1,11 +1,55 @@
 package JavaCode.contest.other.fa_2021;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeSet;
+
 /**
  * @author mikusugar
  */
 public class N4 {
     public int circleGame(int[][] toys, int[][] circles, int r) {
 
+        Map<Integer, TreeSet<Integer>> map = new HashMap<>();
+        for (int[] c : circles) {
+            if (!map.containsKey(c[0])) map.put(c[0], new TreeSet<>());
+            map.get(c[0]).add(c[1]);
+        }
+
+        int res = 0;
+        for (int[] toy : toys) {
+            if (r < toy[2]) continue;
+            for (int x = toy[0] - r; x <= toy[0] + r; x++) {
+                if (!map.containsKey(x)) continue;
+                final TreeSet<Integer> treeY = map.get(x);
+                final Integer floorY = treeY.floor(toy[1]);
+                if (floorY != null) {
+                    final long dist = getDist(toy, x, floorY);
+                    if (check(dist, r, toy[2])) {
+                        res++;
+                        break;
+                    }
+                }
+                final Integer ceilingY = treeY.ceiling(toy[1]);
+                if (ceilingY != null) {
+                    final long dist = getDist(toy, x, ceilingY);
+                    if (check(dist, r, toy[2])) {
+                        res++;
+                        break;
+                    }
+                }
+            }
+
+        }
+        return res;
+    }
+
+    private boolean check(long d, int r1, int r2) {
+        return d <= (long) (r1 - r2) * (r1 - r2);
+    }
+
+    private long getDist(int[] toy, int x, int y) {
+        return (long) (toy[0] - x) * (toy[0] - x) + (long) (toy[1] - y) * (toy[1] - y);
     }
 }
 /*

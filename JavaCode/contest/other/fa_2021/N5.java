@@ -5,7 +5,7 @@ package JavaCode.contest.other.fa_2021;
  */
 public class N5 {
     public int trafficCommand(String[] directions) {
-
+        return 0;
     }
 }
 /*
