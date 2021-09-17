@@ -1,6 +1,5 @@
-package JavaCode.contest.other.fa_2021;
+package JavaCode.contest.other.fall_2021;
 
-import utils.Parse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,28 +8,21 @@ import java.util.Map;
  * @author mikusugar
  */
 public class N1 {
-    public static void main(String[] args) {
-        System.out.println(new N1().minimumSwitchingTimes(
-                Parse.parseToIntTwoArray("[[1,3],[4,5]]"),
-                Parse.parseToIntTwoArray("[[1,3],[6,5]]")
-        ));
-    }
-
 
     public int minimumSwitchingTimes(int[][] source, int[][] target) {
         Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < source.length; i++) {
-            for (int k : source[i]) {
+        for (int[] s : source) {
+            for (int k : s) {
                 map.put(k, map.getOrDefault(k, 0) + 1);
             }
         }
         int res = 0;
-        for (int i = 0; i < target.length; i++) {
-            for (int k : target[i]) {
+        for (int[] t : target) {
+            for (int k : t) {
                 if (map.containsKey(k)) {
                     final Integer cnt = map.get(k);
                     if (cnt == 1) map.remove(k);
-                    else map.put(k,cnt-1);
+                    else map.put(k, cnt - 1);
                 } else res++;
             }
         }

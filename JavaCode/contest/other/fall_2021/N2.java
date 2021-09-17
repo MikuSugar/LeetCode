@@ -1,4 +1,4 @@
-package JavaCode.contest.other.fa_2021;
+package JavaCode.contest.other.fall_2021;
 
 import java.util.*;
 
