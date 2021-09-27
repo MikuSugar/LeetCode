@@ -1,9 +1,6 @@
 package JavaCode.contest.other.fall_2021_2;
 
 import utils.Parse;
-import utils.Show;
-
-import java.util.Arrays;
 
 /**
  * @author mikusugar
@@ -18,7 +15,14 @@ public class N4 {
     private final static int MOD = 1000000007;
 
     public int securityCheck(int[] capacities, int k) {
-        //TODO
+        int[] dp = new int[k + 1];
+        dp[0] = 1;
+        for (int capacity : capacities) {
+            for (int j = k; j >= capacity - 1; j--) {
+                dp[j] = (dp[j] + dp[j - capacity + 1]) % MOD;
+            }
+        }
+        return dp[k];
     }
 }
 /*
