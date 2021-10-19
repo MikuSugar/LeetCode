@@ -9,6 +9,7 @@ import java.util.Arrays;
  * @author mikusugar
  */
 public class N4 {
+    //TODO
 
     public static void main(String[] args) {
         System.out.println(new N4().minimumDifference(
