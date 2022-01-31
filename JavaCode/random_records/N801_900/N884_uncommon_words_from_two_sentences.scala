@@ -1,7 +1,5 @@
 package JavaCode.random_records.N801_900
 
-import scala.collection.mutable.Map
-import scala.collection.mutable.Set
 
 /**
  * author:fangjie
