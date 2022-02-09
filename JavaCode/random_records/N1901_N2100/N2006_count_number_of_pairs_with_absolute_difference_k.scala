@@ -6,7 +6,7 @@ package JavaCode.random_records.N1901_N2100
 object N2006_count_number_of_pairs_with_absolute_difference_k {
   def countKDifference(nums: Array[Int], k: Int): Int = {
     val map: Map[Int, Int] = nums.groupMapReduce(a => a)(_ => 1)(_ + _)
-    nums.map(num => map.getOrElse(num + k, 0) + map.getOrElse(num + k, 0)).sum / 2
+    nums.map(num => map.getOrElse(num + k, 0) + map.getOrElse(num - k, 0)).sum / 2
   }
 }
 
