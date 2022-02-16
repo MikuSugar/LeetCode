@@ -1,6 +1,5 @@
 package JavaCode.random_records.N701_800;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 
 public class N790_domino_and_tromino_tiling {
 

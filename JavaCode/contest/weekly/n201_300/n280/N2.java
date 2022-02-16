@@ -39,18 +39,18 @@ public class N2 {
                 if (a1 != -1) a = a1;
                 if (b1 != -1) b = b1;
             } else {
-                return Math.min(slove(nums, a, b1), slove(nums, a1, b));
+                return Math.min(solve(nums, a, b1), solve(nums, a1, b));
             }
         }
         if (a == b) {
             if (aCnt > bCnt) b++;
             else a++;
         }
-        return slove(nums, a, b);
+        return solve(nums, a, b);
 
     }
 
-    private int slove(int[] nums, int a, int b) {
+    private int solve(int[] nums, int a, int b) {
         int res = 0;
         for (int i = 0; i < nums.length; i++) {
             if (i % 2 == 0) {

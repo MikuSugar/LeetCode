@@ -1,14 +1,32 @@
 package JavaCode.contest.weekly.n201_300.n280;
 
-import java.util.Arrays;
+
+import utils.Parse;
 
 /**
  * @author mikusugar
  */
 public class N4 {
+    public static void main(String[] args) {
+        System.out.println(new N4().maximumANDSum(
+                Parse.parseToIntArray("[1,3,10,4,7,1]"),9
+
+        ));
+    }
     public int maximumANDSum(int[] nums, int numSlots) {
-        //TODO
-        return -1;
+        int res = 0;
+        int[] dp = new int[1 << (2 * numSlots)];
+        for (int i = 0; i < dp.length; i++) {
+            if (Integer.bitCount(i) >= nums.length) continue;
+            for (int k = 0; k < numSlots * 2; k++) {
+                if ((i & (1 << k)) == 0) {
+                    int next = i | 1 << k;
+                    dp[next] = Math.max(dp[next], dp[i] + ((k / 2 + 1) & nums[Integer.bitCount(i)]));
+                    res = Math.max(dp[next], res);
+                }
+            }
+        }
+        return res;
     }
 }
 /*
