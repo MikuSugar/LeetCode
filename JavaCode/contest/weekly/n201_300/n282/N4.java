@@ -1,11 +1,8 @@
 package JavaCode.contest.weekly.n201_300.n282;
 
-import scala.Int;
 import utils.Parse;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author mikusugar
@@ -19,36 +16,27 @@ public class N4 {
         ));
     }
 
-    private int changeTime;
-    private int[][] tires;
-
     public int minimumFinishTime(int[][] tires, int changeTime, int numLaps) {
-        this.changeTime = changeTime;
-        this.tires = tires;
-        int[][][] dp = new int[numLaps + 1][numLaps + 1][tires.length];
-        for (int[][] d : dp) {
-            for (int[] p : d) Arrays.fill(p, -1);
+        long[] dp = new long[numLaps + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        for (int[] tire : tires) {
+            dp[1] = Math.min(dp[1], tire[0]);
+            long now = tire[0];
+            for (int k = 2; k <= numLaps; k++) {
+                long pow = (long) Math.pow(tire[1], k - 1);
+                if (pow >= Integer.MAX_VALUE) break;
+                now += tire[0] * pow;
+                if (now >= Integer.MAX_VALUE) break;
+                dp[k] = Math.min(dp[k], now);
+            }
         }
-        int res = Integer.MAX_VALUE;
-        for (int i = 0; i < tires.length; i++) {
-            res = Math.min(solve(numLaps, 1, i, dp), res);
+        for (int i = 2; i <= numLaps; i++) {
+            for (int j = 1; j < i; j++) {
+                dp[i] = Math.min(dp[i], dp[i - j] + dp[j] + changeTime);
+            }
         }
-        return res;
+        return (int) dp[numLaps];
     }
 
-    //k 第几圈 n 几号轮胎
-    private int solve(int numLAps, int k, int n, int[][][] dp) {
-        if (dp[numLAps][k][n] != -1L) return dp[numLAps][k][n];
-        long cur = (long) (tires[n][0] * Math.pow(tires[n][1], k - 1));
-        if (cur >= Integer.MAX_VALUE) return -1;
-        if (numLAps - 1 == 0) return (int) cur;
-        long res = cur + solve(numLAps - 1, k + 1, n, dp);
-        for (int i = 0; i < tires.length; i++) {
-            final long next = solve(numLAps - 1, 1, i, dp);
-            if (next == -1) continue;
-            res = Math.min(res, cur + changeTime + next);
-        }
-        return dp[numLAps][k][n] = (int) res;
-    }
 
 }
