@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
  */
 public class N4 {
     public long minimumWeight(int n, int[][] edges, int src1, int src2, int dest) {
-
+        return -1;
     }
 
     private static List<int[]>[] getGraphs(int n, int[][] edges) {
