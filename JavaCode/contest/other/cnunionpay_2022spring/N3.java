@@ -53,6 +53,7 @@ public class N3 {
                     cnt = Math.min(limit, f[1]);
                     limit -= cnt;
                     res += (long) cnt % MOD * f[0] % MOD;
+                    //TODO 这里好像有问题
                     if (f[0] - 2 != s[0]) {
                         pq.add(new int[]{f[0] - 2, f[1]});
                     } else {
