@@ -10,8 +10,7 @@ public class N3 {
     public int[] maximumBobPoints(int numArrows, int[] aliceArrows) {
         int[] res = new int[aliceArrows.length];
         List<int[]> list = new ArrayList<>();
-
-
+        //TODO
         return res;
     }
 }
