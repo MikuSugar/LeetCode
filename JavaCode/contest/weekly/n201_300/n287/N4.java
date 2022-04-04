@@ -10,8 +10,6 @@ import java.util.*;
  */
 public class N4 {
 }
-
-//TODO TimeOut 用字典树✂️枝 或许可以
 class Encrypter {
 
     private final Set<String> dict;
@@ -19,10 +17,15 @@ class Encrypter {
     private final String[] values;
     private final Map<String, List<Integer>> mapValues;
     private final char[] keys;
+    private final TreeNode root;
+    private final Map<String,Integer> resMap;
 
     public Encrypter(char[] keys, String[] values, String[] dictionary) {
         dict = new HashSet<>();
         dict.addAll(Arrays.asList(dictionary));
+        root = new TreeNode();
+        for (String s : dictionary) buildTree(root, s);
+        resMap=new HashMap<>();
 
         bookKey = new int[26];
         Arrays.fill(bookKey, -1);
@@ -51,11 +54,14 @@ class Encrypter {
 
 
     public int decrypt(String word2) {
+        if(resMap.containsKey(word2))return resMap.get(word2);
         final LinkedList<Character> list = new LinkedList<>();
-        return dfs(word2.toCharArray(), 0, list, new HashMap<>());
+        final int res = dfs(word2.toCharArray(), 0, list);
+        resMap.put(word2,res);
+        return res;
     }
 
-    private int dfs(char[] strs, int idx, LinkedList<Character> list, Map<String, Integer> dp) {
+    private int dfs(char[] strs, int idx, LinkedList<Character> list) {
         if (idx >= strs.length) {
             StringBuilder sb = new StringBuilder();
             for (char c : list) sb.append(c);
@@ -64,13 +70,11 @@ class Encrypter {
             }
             return 0;
         }
-
-        String key = idx + list.toString();
-        if (dp.containsKey(key)) return dp.get(key);
+        if (!check(root, list)) return 0;
         int res = 0;
         if (strs.length - idx < 2) {
             list.add(strs[idx]);
-            dfs(strs, idx + 1, list, dp);
+            dfs(strs, idx + 1, list);
             list.removeLast();
         } else {
             String s = strs[idx] + "" + strs[idx + 1];
@@ -78,19 +82,45 @@ class Encrypter {
                 final List<Integer> list1 = mapValues.get(s);
                 for (int k : list1) {
                     list.add(keys[k]);
-                    res += dfs(strs, idx + 2, list, dp);
+                    res += dfs(strs, idx + 2, list);
                     list.removeLast();
                 }
             } else {
                 list.add(strs[idx]);
                 list.add(strs[idx + 1]);
-                res += dfs(strs, idx + 2, list, dp);
+                res += dfs(strs, idx + 2, list);
                 list.removeLast();
                 list.removeLast();
             }
         }
-        dp.put(key, res);
         return res;
+    }
+
+
+    static class TreeNode {
+        TreeNode[] nexts;
+
+        TreeNode() {
+            nexts = new TreeNode[26];
+        }
+    }
+
+    private static void buildTree(TreeNode root, String s) {
+        final char[] strs = s.toCharArray();
+        TreeNode p = root;
+        for (char c : strs) {
+            if (p.nexts[c - 'a'] == null) p.nexts[c - 'a'] = new TreeNode();
+            p = p.nexts[c - 'a'];
+        }
+    }
+
+    private static boolean check(TreeNode root, List<Character> list) {
+        TreeNode p = root;
+        for (char c : list) {
+            if (p.nexts[c - 'a'] == null) return false;
+            p = p.nexts[c - 'a'];
+        }
+        return true;
     }
 }
 
