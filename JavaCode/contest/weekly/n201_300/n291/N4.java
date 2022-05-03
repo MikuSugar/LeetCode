@@ -1,55 +1,28 @@
 package JavaCode.contest.weekly.n201_300.n291;
 
+import java.util.Arrays;
+
 /**
  * @author mikusugar
  */
-//TODO TimeOut
 public class N4 {
     public static void main(String[] args) {
         System.out.println(new N4().appealSum("abbca"));
     }
 
     public long appealSum(String s) {
-        long res = 0;
-        final char[] strs = s.toCharArray();
-        int[][] preSum = new int[26][s.length() + 1];
-
-        //预处理
-        for (int i = 0; i < strs.length; i++) {
-            for (int k = 0; k < 26; k++) {
-                preSum[k][i + 1] = preSum[k][i];
-            }
-            preSum[strs[i] - 'a'][i + 1]++;
-        }
-
-        for (int i = 0; i < strs.length; i++) {
-            int k = strs.length - i - 1;
-            long last = -1;
-            while (true) {
-                long t = 0L;
-                if (last==-1) {
-                    for (int j = 0; j < 26; j++) {
-                        t += (preSum[j][i + 1 + k] - preSum[j][i]) > 0 ? 1 : 0;
-                    }
-                } else {
-                    if (preSum[strs[i + k + 1] - 'a'][i + 2 + k] - preSum[strs[i + k + 1] - 'a'][i + k+1] == 1 &&
-                            preSum[strs[i + k + 1] - 'a'][i + k+1] - preSum[strs[i + k + 1] - 'a'][i] == 0) {
-                        last--;
-                    }
-                    t = last;
-                }
-                last=t;
-                if (t == k + 1) {
-                    res += (t + 1) * t / 2;
-                    break;
-                } else {
-                    res += t;
-                    k--;
-                }
-            }
-
+        long res = 0L;
+        long preSum = 0L;
+        int[] book = new int[26];
+        Arrays.fill(book, -1);
+        for (int i = 0; i < s.length(); i++) {
+            char cur = s.charAt(i);
+            preSum += i - book[cur - 'a'];
+            res += preSum;
+            book[cur - 'a'] = i;
         }
         return res;
+
     }
 }
 /*
