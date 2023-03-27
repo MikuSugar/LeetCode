@@ -14,6 +14,7 @@ import java.util.List;
 public class Parse {
 
     public static int[] parseToIntArray(String str) {
+        str=str.replaceAll("\n","");
         String[] strs=str.substring(1, str.length()-1).split(",");
         int[] res=new int[strs.length];
         for (int i=0;i<strs.length;i++)res[i]=Integer.parseInt(strs[i]);
