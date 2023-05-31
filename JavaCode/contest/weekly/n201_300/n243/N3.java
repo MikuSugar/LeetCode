@@ -8,8 +8,8 @@ import java.util.PriorityQueue;
 
 public class N3 {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(new N3().assignTasks(Parse.parseToIntArray("[3,3,2]")
-                , Parse.parseToIntArray("[1,2,3,2,1,2]"))));
+        System.out.println(Arrays.toString(new N3().assignTasks(Parse.toIntArr("[3,3,2]")
+                , Parse.toIntArr("[1,2,3,2,1,2]"))));
     }
 
     public int[] assignTasks(int[] servers, int[] tasks) {

@@ -9,7 +9,7 @@ import utils.Parse;
  */
 public class N3 {
     public static void main(String[] args) {
-        System.out.println(new N3().minDays(Parse.parseToIntTwoArray("[[1,0],[1,1]]")));
+        System.out.println(new N3().minDays(Parse.toIntTwoArr("[[1,0],[1,1]]")));
     }
     public int minDays(int[][] grid) {
         if(check(grid))return 0;

@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 public class N4 {
     public static void main(String[] args) {
-        System.out.println(new N4().minCost(9, Parse.parseToIntArray("[5,6,1,4,2]")));
+        System.out.println(new N4().minCost(9, Parse.toIntArr("[5,6,1,4,2]")));
     }
     public int minCost(int n, int[] cuts) {
         Arrays.sort(cuts);

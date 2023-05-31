@@ -8,7 +8,7 @@ import utils.Parse;
 public class N1020_number_of_enclaves {
     public static void main(String[] args) {
         System.out.println(new N1020_number_of_enclaves().numEnclaves(
-                Parse.parseToIntTwoArray("[" +
+                Parse.toIntTwoArr("[" +
                         "[0,0,1,1,1,0,1,1,1,0,1]," +
                         "[1,1,1,1,0,1,0,1,1,0,0]," +
                         "[0,1,0,1,1,0,0,0,0,1,0]," +

@@ -10,7 +10,7 @@ public class N2348_number_of_zero_filled_subarrays {
 
     public static void main(String[] args) {
         System.out.println(new N2348_number_of_zero_filled_subarrays().zeroFilledSubarray(
-                Parse.parseToIntArray("[0,0,0,2,0,0]")
+                Parse.toIntArr("[0,0,0,2,0,0]")
         ));
     }
     public long zeroFilledSubarray(int[] nums) {

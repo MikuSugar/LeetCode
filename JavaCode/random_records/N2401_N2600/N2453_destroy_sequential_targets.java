@@ -16,15 +16,15 @@ public class N2453_destroy_sequential_targets {
 
     public static void main(String[] args) throws IOException {
         System.out.println(new N2453_destroy_sequential_targets().destroyTargets(
-                Parse.parseToIntArray("[3,7,8,1,1,5]"), 2));
+                Parse.toIntArr("[3,7,8,1,1,5]"), 2));
         System.out.println(new N2453_destroy_sequential_targets().destroyTargets(
-                Parse.parseToIntArray("[1,3,5,2,4,6]"), 2));
+                Parse.toIntArr("[1,3,5,2,4,6]"), 2));
         System.out.println(new N2453_destroy_sequential_targets().destroyTargets(
-                Parse.parseToIntArray("[6,2,5]"), 100));
+                Parse.toIntArr("[6,2,5]"), 100));
 
         final String arrStr = Files.readString(new File("src/JavaCode/random_records/N2401_N2600/2453.txt").toPath());
         System.out.println(new N2453_destroy_sequential_targets().destroyTargets(
-                Parse.parseToIntArray(arrStr), 1));
+                Parse.toIntArr(arrStr), 1));
     }
 
     //(a-b)%p=(a%p-b%p)%p

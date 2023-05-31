@@ -16,7 +16,7 @@ public class N1494_parallel_courses_ii {
         //输出：3
         System.out.println(new N1494_parallel_courses_ii().minNumberOfSemesters(
                 4,
-                Parse.parseToIntTwoArray("[[2,1],[3,1],[1,4]]"),
+                Parse.toIntTwoArr("[[2,1],[3,1],[1,4]]"),
                 2));
     }
 

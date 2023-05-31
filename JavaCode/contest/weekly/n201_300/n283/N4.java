@@ -12,7 +12,7 @@ public class N4 {
 
     public static void main(String[] args) {
         System.out.println(new N4().replaceNonCoprimes(
-                Parse.parseToIntArray("[6,4,3,2,7,6,2]")
+                Parse.toIntArr("[6,4,3,2,7,6,2]")
         ));
     }
 

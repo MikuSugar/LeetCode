@@ -19,8 +19,8 @@ public class N2 {
         //[[0,1],[2,3]]
         System.out.println(new N2()
                 .unhappyFriends(4,
-                        Parse.parseToIntTwoArray("[[1,2,3],[3,2,0],[3,1,0],[1,2,0]]"),
-                        Parse.parseToIntTwoArray("[[0,1],[2,3]]")));
+                        Parse.toIntTwoArr("[[1,2,3],[3,2,0],[3,1,0],[1,2,0]]"),
+                        Parse.toIntTwoArr("[[0,1],[2,3]]")));
     }
 
     public int unhappyFriends(int n, int[][] preferences, int[][] pairs) {

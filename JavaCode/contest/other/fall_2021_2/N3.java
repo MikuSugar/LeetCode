@@ -14,10 +14,10 @@ public class N3 {
     public static void main(String[] args) {
         //finalCnt = [1,16], totalNum = 21, edges = [[0,1],[1,2]], plans = [[2,1],[1,0],[3,0]]
         System.out.println(Arrays.toString(new N3().volunteerDeployment(
-                Parse.parseToIntArray("[1,16]"),
+                Parse.toIntArr("[1,16]"),
                 21,
-                Parse.parseToIntTwoArray("[[0,1],[1,2]]"),
-                Parse.parseToIntTwoArray("[[2,1],[1,0],[3,0]]")
+                Parse.toIntTwoArr("[[0,1],[1,2]]"),
+                Parse.toIntTwoArr("[[2,1],[1,0],[3,0]]")
         )));
     }
 

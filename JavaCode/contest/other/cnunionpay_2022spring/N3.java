@@ -12,7 +12,7 @@ public class N3 {
 
     public static void main(String[] args) {
         System.out.println(new N3().maxInvestment(
-                Parse.parseToIntArray("[43877,10848,10442,48132,83395,71523,60275,39527]")
+                Parse.toIntArr("[43877,10848,10442,48132,83395,71523,60275,39527]")
                 , 345056
         ));
     }

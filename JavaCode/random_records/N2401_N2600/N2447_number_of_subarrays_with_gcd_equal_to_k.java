@@ -11,11 +11,11 @@ public class N2447_number_of_subarrays_with_gcd_equal_to_k {
 
     public static void main(String[] args) {
         System.out.println(new N2447_number_of_subarrays_with_gcd_equal_to_k().subarrayGCD(
-                Parse.parseToIntArray("[9,3,1,2,6,3]"), 3));
+                Parse.toIntArr("[9,3,1,2,6,3]"), 3));
         System.out.println(new N2447_number_of_subarrays_with_gcd_equal_to_k().subarrayGCD(
-                Parse.parseToIntArray("[4]"), 7));
+                Parse.toIntArr("[4]"), 7));
         System.out.println(new N2447_number_of_subarrays_with_gcd_equal_to_k().subarrayGCD(
-                Parse.parseToIntArray("[3,3,4,1,2]"), 1));
+                Parse.toIntArr("[3,3,4,1,2]"), 1));
     }
 
     public int subarrayGCD(int[] nums, int k) {

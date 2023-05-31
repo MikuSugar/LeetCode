@@ -2,9 +2,6 @@ package JavaCode.contest.weekly.n201_300.n262;
 
 import utils.Parse;
 
-import java.sql.Array;
-import java.util.Arrays;
-
 /**
  * @author mikusugar
  */
@@ -13,7 +10,7 @@ public class N4 {
 
     public static void main(String[] args) {
         System.out.println(new N4().minimumDifference(
-                Parse.parseToIntArray("[-48132,-98242,-75860,36593,92379,-2438,44463,51332,-23848,42999,27281,46094,-36780,36131]"))
+                Parse.toIntArr("[-48132,-98242,-75860,36593,92379,-2438,44463,51332,-23848,42999,27281,46094,-36780,36131]"))
         );
     }
 

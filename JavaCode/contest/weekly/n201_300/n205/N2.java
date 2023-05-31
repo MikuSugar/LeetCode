@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class N2 {
     public static void main(String[] args) {
-        System.out.println(new N2().numTriplets(Parse.parseToIntArray("[43024,99908]"), Parse.parseToIntArray("[1864]")));
+        System.out.println(new N2().numTriplets(Parse.toIntArr("[43024,99908]"), Parse.toIntArr("[1864]")));
     }
 
     public int numTriplets(int[] nums1, int[] nums2) {

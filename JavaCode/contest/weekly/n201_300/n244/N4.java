@@ -9,8 +9,8 @@ public class N4 {
     //TODO: TimeOut
     public static void main(String[] args) {
         System.out.println(new N4().minWastedSpace(
-                Parse.parseToIntArray("[2,3,5]"),
-                Parse.parseToIntTwoArray("[[4,8],[2,8]]")
+                Parse.toIntArr("[2,3,5]"),
+                Parse.toIntTwoArr("[[4,8],[2,8]]")
         ));
     }
     private final static int MOD= (int) (Math.pow(10,9)+7);

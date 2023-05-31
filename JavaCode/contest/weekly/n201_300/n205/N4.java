@@ -12,7 +12,7 @@ public class N4 {
     public static void main(String[] args) {
         //4
         //[[3,1,2],[3,2,3],[1,1,3],[1,2,4],[1,1,2],[2,3,4]]
-        System.out.println(new N4().maxNumEdgesToRemove(4, Parse.parseToIntTwoArray("[[3,1,2],[3,2,3],[1,1,3],[1,2,4],[1,1,2],[2,3,4]]")));
+        System.out.println(new N4().maxNumEdgesToRemove(4, Parse.toIntTwoArr("[[3,1,2],[3,2,3],[1,1,3],[1,2,4],[1,1,2],[2,3,4]]")));
     }
 
     public int maxNumEdgesToRemove(int n, int[][] edges) {

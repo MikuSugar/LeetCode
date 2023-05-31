@@ -2,7 +2,6 @@ package JavaCode.contest.weekly.n201_300.n244;
 
 import utils.Parse;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -10,7 +9,7 @@ import java.util.PriorityQueue;
 public class N2 {
     public static void main(String[] args) {
         System.out.println(new N2().reductionOperations(
-                Parse.parseToIntArray("[1,1,2,2,3]")
+                Parse.toIntArr("[1,1,2,2,3]")
         ));
     }
     public int reductionOperations(int[] nums) {

@@ -14,8 +14,8 @@ public class N1 {
     public static void main(String[] args) {
         //[1,3,5,7]
         //[[2,4,6,8]]
-        System.out.println(new N1().canFormArray(Parse.parseToIntArray("[1,3,5,7]"),
-                Parse.parseToIntTwoArray("[[2,4,6,8]]")));
+        System.out.println(new N1().canFormArray(Parse.toIntArr("[1,3,5,7]"),
+                Parse.toIntTwoArr("[[2,4,6,8]]")));
     }
     public boolean canFormArray(int[] arr, int[][] pieces) {
         Map<Integer,Integer> map=new HashMap<>();

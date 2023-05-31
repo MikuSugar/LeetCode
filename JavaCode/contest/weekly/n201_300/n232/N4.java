@@ -2,8 +2,6 @@ package JavaCode.contest.weekly.n201_300.n232;
 
 import utils.Parse;
 
-import java.util.Arrays;
-
 /**
  * author: fangjie
  * email: syfangjie@live.cn
@@ -12,7 +10,7 @@ import java.util.Arrays;
 public class N4 {
     public static void main(String[] args) {
         System.out.println(new N4().maximumScore(
-                Parse.parseToIntArray("[8182,1273,9847,6230,52,1467,6062,726,4852,4507,2460,2041,500,1025,5524]"),
+                Parse.toIntArr("[8182,1273,9847,6230,52,1467,6062,726,4852,4507,2460,2041,500,1025,5524]"),
                 8
         ));
     }

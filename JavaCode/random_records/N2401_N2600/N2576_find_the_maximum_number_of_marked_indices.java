@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class N2576_find_the_maximum_number_of_marked_indices {
     public static void main(String[] args) {
         System.out.println(new N2576_find_the_maximum_number_of_marked_indices().maxNumOfMarkedIndices(
-                Parse.parseToIntArray("[1,78,27,48,14,8" +
+                Parse.toIntArr("[1,78,27,48,14,8" +
                         "6,79,68,77,20,57,21,18,67,5,51,70,85,47,56,22,79,41,8,39,81,59,74,14,45," +
                         "49,15,10,28,16,77,22,65,8,36,79,94,44,80,72,8,96,78,39,92,69,55,9,44,26,76,40,77,16,69,40,64,12,48,66,7,59,10]")
         ));

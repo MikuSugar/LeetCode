@@ -12,8 +12,8 @@ public class N4 {
         //[2,1,5,4,4]
         //[[1,4],[0,1],[3,4],[0,1],[1,2]]
         System.out.println(Arrays.toString(new N4().minDifference(
-                Parse.parseToIntArray("[2,1,5,4,4]"),
-                Parse.parseToIntTwoArray("[[1,2]]")
+                Parse.toIntArr("[2,1,5,4,4]"),
+                Parse.toIntTwoArr("[[1,2]]")
         )));
     }
     public int[] minDifference(int[] nums, int[][] queries) {

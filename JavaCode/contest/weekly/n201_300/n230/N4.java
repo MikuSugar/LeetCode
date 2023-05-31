@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class N4 {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(new N4().getCollisionTimes(Parse.parseToIntTwoArray("[[3,1],[9,4],[19,4]]"))));
+        System.out.println(Arrays.toString(new N4().getCollisionTimes(Parse.toIntTwoArr("[[3,1],[9,4],[19,4]]"))));
     }
     public double[] getCollisionTimes(int[][] cars) {
         double[] res=new double[cars.length];

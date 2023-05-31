@@ -17,7 +17,7 @@ public class N1627_graph_connectivity_with_threshold {
         //2
         //[[1,4],[2,5],[3,6]]
         System.out.println(new N1627_graph_connectivity_with_threshold().areConnected(6,2,
-                Parse.parseToIntTwoArray("[[1,4],[2,5],[3,6]]")));
+                Parse.toIntTwoArr("[[1,4],[2,5],[3,6]]")));
     }
 
     public List<Boolean> areConnected(int n, int threshold, int[][] queries) {

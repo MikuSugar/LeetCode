@@ -6,8 +6,8 @@ import utils.Parse;
 public class N1 {
     public static void main(String[] args) {
         System.out.println(new N1().findRotation(
-                Parse.parseToIntTwoArray("[[0,1],[1,0]]"),
-                Parse.parseToIntTwoArray("[[1,0],[0,1]]")
+                Parse.toIntTwoArr("[[0,1],[1,0]]"),
+                Parse.toIntTwoArr("[[1,0],[0,1]]")
         ));
     }
     public boolean findRotation(int[][] mat, int[][] target) {

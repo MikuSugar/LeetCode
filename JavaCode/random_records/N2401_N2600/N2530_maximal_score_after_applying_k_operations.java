@@ -14,8 +14,8 @@ import java.util.PriorityQueue;
 public class N2530_maximal_score_after_applying_k_operations {
     public static void main(String[] args) {
         final N2530_maximal_score_after_applying_k_operations algo = new N2530_maximal_score_after_applying_k_operations();
-        CheckUtil.check(algo.maxKelements(Parse.parseToIntArray("[10,10,10,10,10]"), 5), 50L);
-        CheckUtil.check(algo.maxKelements(Parse.parseToIntArray("[1,10,3,3,3]"), 3), 17L);
+        CheckUtil.check(algo.maxKelements(Parse.toIntArr("[10,10,10,10,10]"), 5), 50L);
+        CheckUtil.check(algo.maxKelements(Parse.toIntArr("[1,10,3,3,3]"), 3), 17L);
     }
 
     public long maxKelements(int[] nums, int k) {

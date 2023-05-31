@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class N3 {
     public static void main(String[] args) {
         System.out.println(new N3().maximumCandies(
-                Parse.parseToIntArray("[9,10,1,2,10,9,9,10,2,2]"),
+                Parse.toIntArr("[9,10,1,2,10,9,9,10,2,2]"),
                 3
         ));
     }

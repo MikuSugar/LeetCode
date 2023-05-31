@@ -8,7 +8,7 @@ import utils.Parse;
 public class N4 {
     public static void main(String[] args) {
         System.out.println(new N4().securityCheck(
-                Parse.parseToIntArray("[2,2,3]"), 2
+                Parse.toIntArr("[2,2,3]"), 2
         ));
     }
 

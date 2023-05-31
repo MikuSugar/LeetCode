@@ -3,7 +3,6 @@ package JavaCode.contest.weekly.n201_300.n232;
 import utils.Parse;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -14,7 +13,7 @@ import java.util.PriorityQueue;
 public class N3 {
     public static void main(String[] args) {
         System.out.println(new N3().maxAverageRatio(
-                Parse.parseToIntTwoArray("[[1,2],[3,5],[2,2]]")
+                Parse.toIntTwoArr("[[1,2],[3,5],[2,2]]")
                 ,2
         ));
     }

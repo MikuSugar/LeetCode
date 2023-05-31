@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class N1626_best_team_with_no_conflicts {
     public static void main(String[] args) {
         System.out.println(new N1626_best_team_with_no_conflicts()
-                .bestTeamScore(Parse.parseToIntArray("[1,2,3,5]"),Parse.parseToIntArray("[8,9,10,1]")));
+                .bestTeamScore(Parse.toIntArr("[1,2,3,5]"),Parse.toIntArr("[8,9,10,1]")));
     }
     public int bestTeamScore(int[] scores, int[] ages) {
 

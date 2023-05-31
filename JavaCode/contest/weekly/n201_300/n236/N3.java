@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class N3 {
     public static void main(String[] args) {
         System.out.println(new N3().minSideJumps(
-                Parse.parseToIntArray("[0,1,2,3,0]")
+                Parse.toIntArr("[0,1,2,3,0]")
         ));
     }
     public int minSideJumps(int[] obstacles) {

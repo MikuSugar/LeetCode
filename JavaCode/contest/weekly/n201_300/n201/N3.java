@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class N3 {
     public static void main(String[] args) {
-        System.out.println(new N3().maxNonOverlapping(Parse.parseToIntArray("[-1,3,5,1,4,2,-9]"),6));
+        System.out.println(new N3().maxNonOverlapping(Parse.toIntArr("[-1,3,5,1,4,2,-9]"),6));
     }
     public int maxNonOverlapping(int[] nums, int target) {
         int res=0,sum=0;

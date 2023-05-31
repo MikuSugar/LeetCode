@@ -12,7 +12,7 @@ public class N2 {
     public static void main(String[] args) {
         //[3,1,3,2,4,3]
         //[2,2,2,2,2]
-        System.out.println(new N2().minimumOperations(Parse.parseToIntArray("[2,2,2,2,2]")));
+        System.out.println(new N2().minimumOperations(Parse.toIntArr("[2,2,2,2,2]")));
     }
 
     public int minimumOperations(int[] nums) {

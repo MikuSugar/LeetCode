@@ -1,7 +1,6 @@
 package JavaCode.contest.weekly.n201_300.n284;
 
 import utils.Parse;
-import utils.Show;
 
 /**
  * @author mikusugar
@@ -11,8 +10,8 @@ public class N2 {
     public static void main(String[] args) {
         System.out.println(new N2().digArtifacts(
                 2,
-                Parse.parseToIntTwoArray("[[0,0,0,0],[0,1,1,1]]"),
-                Parse.parseToIntTwoArray("[[0,0],[0,1]]")
+                Parse.toIntTwoArr("[[0,0,0,0],[0,1,1,1]]"),
+                Parse.toIntTwoArr("[[0,0],[0,1]]")
         ));
     }
 

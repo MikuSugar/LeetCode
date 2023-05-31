@@ -13,7 +13,7 @@ public class N2049_count_nodes_with_the_highest_score {
 
     public static void main(String[] args) {
         System.out.println(new N2049_count_nodes_with_the_highest_score().countHighestScoreNodes(
-                Parse.parseToIntArray("[-1,3,3,5,7,6,0,0]")
+                Parse.toIntArr("[-1,3,3,5,7,6,0,0]")
         ));
     }
 

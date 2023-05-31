@@ -11,8 +11,8 @@ import utils.Parse;
 public class N2527_find_xor_beauty_of_array {
     public static void main(String[] args) {
         final N2527_find_xor_beauty_of_array algo = new N2527_find_xor_beauty_of_array();
-        CheckUtil.check(algo.xorBeauty(Parse.parseToIntArray("[1,4]")), 5);
-        CheckUtil.check(algo.xorBeauty(Parse.parseToIntArray("[15,45,20,2,34,35,5,44,32,30]")), 34);
+        CheckUtil.check(algo.xorBeauty(Parse.toIntArr("[1,4]")), 5);
+        CheckUtil.check(algo.xorBeauty(Parse.toIntArr("[15,45,20,2,34,35,5,44,32,30]")), 34);
     }
 
     public int xorBeauty(int[] nums) {

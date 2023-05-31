@@ -16,7 +16,7 @@ public class N4 {
     //11
     public static void main(String[] args) {
         System.out.println(new N4().minChanges(
-                Parse.parseToIntArray("[26,19,19,28,13,14,6,25,28,19,0,15,25,11]"),
+                Parse.toIntArr("[26,19,19,28,13,14,6,25,28,19,0,15,25,11]"),
                 3));
     }
     private final int MAX=Integer.MAX_VALUE>>1;

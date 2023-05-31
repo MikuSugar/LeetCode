@@ -3,7 +3,6 @@ package utils;
 import JavaCode.linked_list.ListNode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -13,7 +12,7 @@ import java.util.List;
  */
 public class Parse {
 
-    public static int[] parseToIntArray(String str) {
+    public static int[] toIntArr(String str) {
         str=str.replaceAll("\n","");
         String[] strs=str.substring(1, str.length()-1).split(",");
         int[] res=new int[strs.length];
@@ -21,7 +20,7 @@ public class Parse {
         return res;
     }
 
-    public static int[][] parseToIntTwoArray(String str){
+    public static int[][] toIntTwoArr(String str){
         char[] strs=str.substring(1, str.length()-1)
                 .trim()
                 .replaceAll(" +", "")
@@ -46,13 +45,13 @@ public class Parse {
         int[][] res=new int[list.size()][];
         for (int i=0;i<list.size();i++)
         {
-            res[i]=parseToIntArray(list.get(i));
+            res[i]= toIntArr(list.get(i));
         }
         return res;
     }
 
 
-    public static char[] parseToCharArray(String str){
+    public static char[] toCharArr(String str){
         //['E', 'E', 'E', 'E', 'E']
         String[] strs=str.substring(1, str.length()-1)
                 .replaceAll(" +","")
@@ -67,7 +66,7 @@ public class Parse {
         return res;
     }
 
-    public static char[][] parseToCharTwoArray(String str){
+    public static char[][] toCharTwoArr(String str){
         char[] strs=str.substring(1, str.length()-1)
                 .trim()
                 .replaceAll(" +", "")
@@ -91,17 +90,17 @@ public class Parse {
         char[][] res=new char[list.size()][];
         for (int i=0;i<list.size();i++)
         {
-            res[i]=parseToCharArray(list.get(i));
+            res[i]= toCharArr(list.get(i));
         }
         return res;
     }
 
-    public static String[] parseToStringArray(String str) {
+    public static String[] toStrArr(String str) {
         return str.substring(1, str.length()-1).split(",");
     }
 
 
-    public static ListNode parserToListNode(String str) {
+    public static ListNode toListNode(String str) {
         ListNode head=new ListNode(-1);
         String[] strs=str.split("->");
         ListNode p=head;

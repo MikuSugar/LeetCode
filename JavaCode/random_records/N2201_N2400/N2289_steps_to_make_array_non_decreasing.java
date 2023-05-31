@@ -17,12 +17,12 @@ public class N2289_steps_to_make_array_non_decreasing {
 
     public static void main(String[] args) throws IOException {
         final N2289_steps_to_make_array_non_decreasing n2289 = new N2289_steps_to_make_array_non_decreasing();
-        CheckUtil.check(n2289.totalSteps(Parse.parseToIntArray("[5,3,4,4,7,3,6,11,8,5,11]")), 3);
-        CheckUtil.check(n2289.totalSteps(Parse.parseToIntArray("[4,5,7,7,13]")), 0);
-        CheckUtil.check(n2289.totalSteps(Parse.parseToIntArray("[10,6,5,10,15]")), 1);
+        CheckUtil.check(n2289.totalSteps(Parse.toIntArr("[5,3,4,4,7,3,6,11,8,5,11]")), 3);
+        CheckUtil.check(n2289.totalSteps(Parse.toIntArr("[4,5,7,7,13]")), 0);
+        CheckUtil.check(n2289.totalSteps(Parse.toIntArr("[10,6,5,10,15]")), 1);
 
         final String bigArray = Files.readString(new File("src/JavaCode/random_records/N2201_N2400/2289.txt").toPath());
-        CheckUtil.check(n2289.totalSteps(Parse.parseToIntArray(bigArray)), 99999);
+        CheckUtil.check(n2289.totalSteps(Parse.toIntArr(bigArray)), 99999);
     }
 
     public int totalSteps(int[] nums) {

@@ -9,7 +9,7 @@ import utils.Parse;
 public class N4 {
     public static void main(String[] args) {
         System.out.println(new N4().maximumANDSum(
-                Parse.parseToIntArray("[1,3,10,4,7,1]"),9
+                Parse.toIntArr("[1,3,10,4,7,1]"),9
 
         ));
     }

@@ -12,7 +12,7 @@ import java.util.*;
 public class N3 {
     //TODO: rejudge error
     public static void main(String[] args) {
-        System.out.println(new N3().furthestBuilding(Parse.parseToIntArray("[4,2,7,6,9,14,12]"),5,1));
+        System.out.println(new N3().furthestBuilding(Parse.toIntArr("[4,2,7,6,9,14,12]"),5,1));
     }
     public int furthestBuilding(int[] heights, int bricks, int ladders) {
         PriorityQueue<Integer> pb=new PriorityQueue<>((o1, o2)->Integer.compare(o2,o1));

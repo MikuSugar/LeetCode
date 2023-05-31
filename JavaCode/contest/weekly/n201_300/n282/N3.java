@@ -11,7 +11,7 @@ public class N3 {
 
     public static void main(String[] args) {
         System.out.println(new N3().minimumTime(
-                Parse.parseToIntArray("[10,7,4,2]"), 7
+                Parse.toIntArr("[10,7,4,2]"), 7
         ));
     }
 

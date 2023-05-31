@@ -12,7 +12,7 @@ import java.util.*;
 public class N4 {
     public static void main(String[] args) {
         System.out.println(new N4().countDifferentSubsequenceGCDs(
-                Parse.parseToIntArray("[19,3,9]")
+                Parse.toIntArr("[19,3,9]")
         ));
     }
 

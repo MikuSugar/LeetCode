@@ -7,8 +7,8 @@ public class N4 {
 
     public static void main(String[] args) {
         System.out.println(new N4().getXORSum(
-                Parse.parseToIntArray("[1,2,3]"),
-                Parse.parseToIntArray("[6,5]")
+                Parse.toIntArr("[1,2,3]"),
+                Parse.toIntArr("[6,5]")
         ));
     }
     public int getXORSum(int[] arr1, int[] arr2) {

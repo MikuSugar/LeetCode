@@ -8,7 +8,7 @@ import utils.Parse;
 public class N1219_path_with_maximum_gold {
     public static void main(String[] args) {
         System.out.println(new N1219_path_with_maximum_gold()
-                .getMaximumGold(Parse.parseToIntTwoArray("[[0,6,0],[5,8,7],[0,9,0]]")));
+                .getMaximumGold(Parse.toIntTwoArr("[[0,6,0],[5,8,7],[0,9,0]]")));
     }
 
     private int res;

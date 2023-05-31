@@ -13,8 +13,8 @@ public class N3 {
 
     public static void main(String[] args) {
         System.out.println(new N3().minAbsoluteSumDiff(
-                Parse.parseToIntArray("[1,7,5]"),
-                Parse.parseToIntArray("[2,3,5]")
+                Parse.toIntArr("[1,7,5]"),
+                Parse.toIntArr("[2,3,5]")
         ));
     }
     private final static int MOD=(int) (1e9+7);

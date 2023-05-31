@@ -8,7 +8,7 @@ public class N4 {
 
     public static void main(String[] args) {
         System.out.println(new N4().minSkips(
-                Parse.parseToIntArray("[1,3,2]")
+                Parse.toIntArr("[1,3,2]")
                 ,4,2
         ));
     }

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class N3 {
     public static void main(String[] args) {
-        System.out.println(new N3().minCostConnectPoints(Parse.parseToIntTwoArray("[[-1000000,-1000000],[1000000,1000000]]")));
+        System.out.println(new N3().minCostConnectPoints(Parse.toIntTwoArr("[[-1000000,-1000000],[1000000,1000000]]")));
     }
 
     public int minCostConnectPoints(int[][] points) {

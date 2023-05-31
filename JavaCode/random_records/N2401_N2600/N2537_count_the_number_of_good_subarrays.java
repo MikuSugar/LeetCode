@@ -15,8 +15,8 @@ public class N2537_count_the_number_of_good_subarrays {
 
     public static void main(String[] args) {
         final N2537_count_the_number_of_good_subarrays algo = new N2537_count_the_number_of_good_subarrays();
-        CheckUtil.check(algo.countGood(Parse.parseToIntArray("[1,1,1,1,1]"), 10), 1L);
-        CheckUtil.check(algo.countGood(Parse.parseToIntArray("[3,1,4,3,2,2,4]"), 2), 4L);
+        CheckUtil.check(algo.countGood(Parse.toIntArr("[1,1,1,1,1]"), 10), 1L);
+        CheckUtil.check(algo.countGood(Parse.toIntArr("[3,1,4,3,2,2,4]"), 2), 4L);
     }
 
     public long countGood(int[] nums, int k) {

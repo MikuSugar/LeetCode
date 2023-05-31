@@ -12,8 +12,8 @@ public class N2391_minimum_amount_of_time_to_collect_garbage {
 
     public static void main(String[] args) {
         final N2391_minimum_amount_of_time_to_collect_garbage algo = new N2391_minimum_amount_of_time_to_collect_garbage();
-        CheckUtil.check(21, algo.garbageCollection(Parse.parseToStringArray("[\"G\",\"P\",\"GP\",\"GG\"]"), Parse.parseToIntArray("[2,4,3]")));
-        CheckUtil.check(37,algo.garbageCollection(Parse.parseToStringArray("[\"MMM\",\"PGM\",\"GP\"]"),Parse.parseToIntArray("[3,10]")));
+        CheckUtil.check(21, algo.garbageCollection(Parse.toStrArr("[\"G\",\"P\",\"GP\",\"GG\"]"), Parse.toIntArr("[2,4,3]")));
+        CheckUtil.check(37,algo.garbageCollection(Parse.toStrArr("[\"MMM\",\"PGM\",\"GP\"]"),Parse.toIntArr("[3,10]")));
     }
 
     public int garbageCollection(String[] garbage, int[] travel) {

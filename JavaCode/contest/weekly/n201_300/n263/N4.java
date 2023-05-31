@@ -15,7 +15,7 @@ public class N4 {
         //2
         System.out.println(new N4().secondMinimum(
                 2,
-                Parse.parseToIntTwoArray("[[1,2]]"),
+                Parse.toIntTwoArr("[[1,2]]"),
                 1,
                 2
         ));

@@ -12,7 +12,7 @@ public class N3 {
 
     public static void main(String[] args) {
         System.out.println(new N3().countDistinct(
-                Parse.parseToIntArray("[2,3,3,2,2]"),
+                Parse.toIntArr("[2,3,3,2,2]"),
                 2,
                 2
         ));

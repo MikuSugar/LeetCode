@@ -13,7 +13,7 @@ import java.util.Queue;
 public class N1765_map_of_highest_peak {
 
     public static void main(String[] args) {
-        final int[][] res = new N1765_map_of_highest_peak().highestPeak(Parse.parseToIntTwoArray("[[0,1],[0,0]]"));
+        final int[][] res = new N1765_map_of_highest_peak().highestPeak(Parse.toIntTwoArr("[[0,1],[0,0]]"));
         Show.show(res);
 
     }

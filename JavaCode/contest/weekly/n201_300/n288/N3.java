@@ -12,7 +12,7 @@ public class N3 {
 
     public static void main(String[] args) {
         System.out.println(new N3().maximumProduct(
-                Parse.parseToIntArray("[24,5,64,53,26,38]")
+                Parse.toIntArr("[24,5,64,53,26,38]")
                 , 54
         ));
         System.out.println(fastPow(8, 2));

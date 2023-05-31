@@ -13,7 +13,7 @@ public class N3 {
     public static void main(String[] args) {
         System.out.println(new N3().countRestrictedPaths(
                 5,
-                Parse.parseToIntTwoArray("[[1,2,3],[1,3,3],[2,3,1],[1,4,2],[5,2,2],[3,5,1],[5,4,10]]")
+                Parse.toIntTwoArr("[[1,2,3],[1,3,3],[2,3,1],[1,4,2],[5,2,2],[3,5,1],[5,4,10]]")
         ));
     }
     private final static int MOD=(int) (1e9+7);

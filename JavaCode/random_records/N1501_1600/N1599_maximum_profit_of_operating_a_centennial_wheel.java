@@ -13,7 +13,7 @@ public class N1599_maximum_profit_of_operating_a_centennial_wheel {
         //3
         //8
         System.out.println(new N1599_maximum_profit_of_operating_a_centennial_wheel().minOperationsMaxProfit(
-                Parse.parseToIntArray("[10,10,6,4,7]"),3,8
+                Parse.toIntArr("[10,10,6,4,7]"),3,8
         ));
     }
     public int minOperationsMaxProfit(int[] customers, int boardingCost, int runningCost) {

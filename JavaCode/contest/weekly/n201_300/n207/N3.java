@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class N3 {
 
     public static void main(String[] args) {
-        System.out.println(new N3().maxProductPath(Parse.parseToIntTwoArray("[[-1,-2,-3],[-2,-3,-3],[-3,-3,-2]]")));
+        System.out.println(new N3().maxProductPath(Parse.toIntTwoArr("[[-1,-2,-3],[-2,-3,-3],[-3,-3,-2]]")));
     }
 
     public int maxProductPath(int[][] grid) {

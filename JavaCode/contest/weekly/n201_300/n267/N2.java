@@ -8,7 +8,7 @@ import utils.Parse;
  */
 public class N2 {
     public static void main(String[] args) {
-        final ListNode head = Parse.parserToListNode("5->2->6->3->9->1->7->3->8->4");
+        final ListNode head = Parse.toListNode("5->2->6->3->9->1->7->3->8->4");
         System.out.println(new N2().reverseEvenLengthGroups(head));
     }
 

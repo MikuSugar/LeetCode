@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class N3 {
     public static void main(String[] args) {
         System.out.println(new N3().minimumRemoval(
-                Parse.parseToIntArray(
+                Parse.toIntArr(
                         "[53,2,94,12,96,78,17,71,78,67,1,5,61,30,13,98,96,63,92,7,52,22,27,23,62,79,36,67,33,52,96,6,15,32,90,53,55,21,55,80,3,80,50,78,51,78,99,19,91,87,41,11,7,62,5,98,18,13]"
                 )
         ));

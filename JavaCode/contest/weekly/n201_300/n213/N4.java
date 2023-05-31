@@ -1,7 +1,6 @@
 package JavaCode.contest.weekly.n201_300.n213;
 
 import utils.Parse;
-import utils.Show;
 
 /**
  * author: fangjie
@@ -11,7 +10,7 @@ import utils.Show;
 public class N4 {
 
     public static void main(String[] args) {
-        System.out.println(new N4().kthSmallestPath(Parse.parseToIntArray("[2,3]"),1));
+        System.out.println(new N4().kthSmallestPath(Parse.toIntArr("[2,3]"),1));
     }
     public String kthSmallestPath(int[] destination, int k) {
         int[][] book=new int[destination[0]+destination[1]+5][destination[0]+destination[1]+5];

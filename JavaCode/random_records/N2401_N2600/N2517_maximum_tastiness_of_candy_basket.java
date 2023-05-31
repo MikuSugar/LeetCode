@@ -13,7 +13,7 @@ public class N2517_maximum_tastiness_of_candy_basket {
 
     public static void main(String[] args) {
         System.out.println(new N2517_maximum_tastiness_of_candy_basket().maximumTastiness(
-                Parse.parseToIntArray("[13,5,1,8,21,2]"), 3
+                Parse.toIntArr("[13,5,1,8,21,2]"), 3
         ));
     }
 

@@ -9,7 +9,7 @@ import utils.Parse;
  */
 public class N4 {
     public static void main(String[] args) {
-        System.out.println(new N4().numOfWays(Parse.parseToIntArray("[3,4,5,1,2]")));
+        System.out.println(new N4().numOfWays(Parse.toIntArr("[3,4,5,1,2]")));
     }
 
     private final static long[][] dp;
