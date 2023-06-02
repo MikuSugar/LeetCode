@@ -3,7 +3,9 @@ package utils;
 import JavaCode.linked_list.ListNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -30,18 +32,17 @@ public class Parse {
 
     public static int[] toIntArr(String str) {
         str = str.replaceAll("\n", "");
-        String[] strs = str.substring(1, str.length() - 1).split(",");
-        int[] res = new int[strs.length];
-        for (int i = 0; i < strs.length; i++) res[i] = Integer.parseInt(strs[i]);
+        // @formatter:off
+        final List<String> strs = Arrays.stream(str.substring(1, str.length() - 1).split(","))
+                .map(String::trim).filter(s -> !s.isEmpty()).collect(Collectors.toList());
+        // @formatter:on
+        final int[] res = new int[strs.size()];
+        for (int i = 0; i < strs.size(); i++) res[i] = Integer.parseInt(strs.get(i));
         return res;
     }
 
     public static int[][] toIntTwoArr(String str) {
-        char[] strs = str.substring(1, str.length() - 1)
-                .trim()
-                .replaceAll(" +", "")
-                .replaceAll("\n", "")
-                .toCharArray();
+        char[] strs = str.substring(1, str.length() - 1).trim().replaceAll(" +", "").replaceAll("\n", "").toCharArray();
         List<String> list = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         for (char c : strs) {
@@ -64,11 +65,7 @@ public class Parse {
 
     public static char[] toCharArr(String str) {
         //['E', 'E', 'E', 'E', 'E']
-        String[] strs = str.substring(1, str.length() - 1)
-                .replaceAll(" +", "")
-                .replaceAll("'", "")
-                .replaceAll("\"", "")
-                .split(",");
+        String[] strs = str.substring(1, str.length() - 1).replaceAll(" +", "").replaceAll("'", "").replaceAll("\"", "").split(",");
         char[] res = new char[strs.length];
         for (int i = 0; i < strs.length; i++) {
             res[i] = strs[i].charAt(0);
@@ -77,11 +74,7 @@ public class Parse {
     }
 
     public static char[][] toCharTwoArr(String str) {
-        char[] strs = str.substring(1, str.length() - 1)
-                .trim()
-                .replaceAll(" +", "")
-                .replaceAll("\n", "")
-                .toCharArray();
+        char[] strs = str.substring(1, str.length() - 1).trim().replaceAll(" +", "").replaceAll("\n", "").toCharArray();
         List<String> list = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         for (char c : strs) {
