@@ -50,8 +50,8 @@ public class N478_generate_random_point_in_a_circle {
     }
 
 /**
- * Your Solution object will be instantiated and called as such:
- * Solution obj = new Solution(radius, x_center, y_center);
+ * Your n2342 object will be instantiated and called as such:
+ * n2342 obj = new n2342(radius, x_center, y_center);
  * double[] param_1 = obj.randPoint();
  */
 }
@@ -67,18 +67,18 @@ public class N478_generate_random_point_in_a_circle {
  * 示例 1：
  *
  * 输入:
- * ["Solution","randPoint","randPoint","randPoint"]
+ * ["n2342","randPoint","randPoint","randPoint"]
  * [[1,0,0],[],[],[]]
  * 输出: [null,[-0.72939,-0.65505],[-0.78502,-0.28626],[-0.83119,-0.19803]]
  * 示例 2：
  *
  * 输入:
- * ["Solution","randPoint","randPoint","randPoint"]
+ * ["n2342","randPoint","randPoint","randPoint"]
  * [[10,5,-7.5],[],[],[]]
  * 输出: [null,[11.52438,-8.33273],[2.46992,-16.21705],[11.13430,-12.42337]]
  * 输入语法说明：
  *
- * 输入是两个列表：调用成员函数名和调用的参数。Solution 的构造函数有三个参数，圆的半径、圆心的 x 坐标、圆心的 y 坐标。randPoint 没有参数。输入参数是一个列表，即使参数为空，也会输入一个 [] 空列表。
+ * 输入是两个列表：调用成员函数名和调用的参数。n2342 的构造函数有三个参数，圆的半径、圆心的 x 坐标、圆心的 y 坐标。randPoint 没有参数。输入参数是一个列表，即使参数为空，也会输入一个 [] 空列表。
  *
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/generate-random-point-in-a-circle

@@ -35,8 +35,8 @@ public class ShuffleAnArray
 
 
 /**
- * Your Solution object will be instantiated and called as such:
- * Solution obj = new Solution(nums);
+ * Your n2342 object will be instantiated and called as such:
+ * n2342 obj = new n2342(nums);
  * int[] param_1 = obj.reset();
  * int[] param_2 = obj.shuffle();
  */
@@ -48,7 +48,7 @@ public class ShuffleAnArray
  * 示例:
  * // 以数字集合 1, 2 和 3 初始化数组。
  * int[] nums = {1,2,3};
- * Solution solution = new Solution(nums);
+ * n2342 solution = new n2342(nums);
  *
  * // 打乱数组 [1,2,3] 并返回结果。任何 [1,2,3]的排列返回的概率应该相同。
  * solution.shuffle();

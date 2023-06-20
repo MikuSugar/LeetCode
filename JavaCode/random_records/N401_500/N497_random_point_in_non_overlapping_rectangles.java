@@ -60,14 +60,14 @@ pick 最多被调用10000次。
 示例 1：
 
 输入:
-["Solution","pick","pick","pick"]
+["n2342","pick","pick","pick"]
 [[[[1,1,5,5]]],[],[],[]]
 输出:
 [null,[4,1],[4,1],[3,3]]
 示例 2：
 
 输入:
-["Solution","pick","pick","pick","pick","pick"]
+["n2342","pick","pick","pick","pick","pick"]
 [[[[-2,-2,-1,-1],[1,0,3,0]]],[],[],[],[],[]]
 输出:
 [null,[-1,-2],[2,0],[-2,-1],[3,0],[-2,-2]]
@@ -75,7 +75,7 @@ pick 最多被调用10000次。
 
 输入语法的说明：
 
-输入是两个列表：调用的子例程及其参数。Solution 的构造函数有一个参数，即矩形数组 rects。pick 没有参数。参数总是用列表包装的，即使没有也是如此。
+输入是两个列表：调用的子例程及其参数。n2342 的构造函数有一个参数，即矩形数组 rects。pick 没有参数。参数总是用列表包装的，即使没有也是如此。
 
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/random-point-in-non-overlapping-rectangles

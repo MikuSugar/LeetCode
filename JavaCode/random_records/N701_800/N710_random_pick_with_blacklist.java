@@ -35,8 +35,8 @@ public class N710_random_pick_with_blacklist {
     }
 
 /*
- * Your Solution object will be instantiated and called as such:
- * Solution obj = new Solution(N, blacklist);
+ * Your n2342 object will be instantiated and called as such:
+ * n2342 obj = new n2342(N, blacklist);
  * int param_1 = obj.pick();
  */
 }
@@ -53,25 +53,25 @@ public class N710_random_pick_with_blacklist {
 示例 1:
 
 输入:
-["Solution","pick","pick","pick"]
+["n2342","pick","pick","pick"]
 [[1,[]],[],[],[]]
 输出: [null,0,0,0]
 示例 2:
 
 输入:
-["Solution","pick","pick","pick"]
+["n2342","pick","pick","pick"]
 [[2,[]],[],[],[]]
 输出: [null,1,1,1]
 示例 3:
 
 输入:
-["Solution","pick","pick","pick"]
+["n2342","pick","pick","pick"]
 [[3,[1]],[],[],[]]
 Output: [null,0,0,2]
 示例 4:
 
 输入:
-["Solution","pick","pick","pick"]
+["n2342","pick","pick","pick"]
 [[4,[2]],[],[],[]]
 输出: [null,1,3,1]
 输入语法说明：

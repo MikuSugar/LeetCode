@@ -42,8 +42,8 @@ public class N382_linked_list_random_node {
     }
 
 /**
- * Your Solution object will be instantiated and called as such:
- * Solution obj = new Solution(head);
+ * Your n2342 object will be instantiated and called as such:
+ * n2342 obj = new n2342(head);
  * int param_1 = obj.getRandom();
  */
 }
@@ -59,7 +59,7 @@ public class N382_linked_list_random_node {
 ListNode head = new ListNode(1);
 head.next = new ListNode(2);
 head.next.next = new ListNode(3);
-Solution solution = new Solution(head);
+n2342 solution = new n2342(head);
 
 // getRandom()方法应随机返回1,2,3中的一个，保证每个元素被返回的概率相等。
 solution.getRandom();

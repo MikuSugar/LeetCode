@@ -26,8 +26,8 @@ public class N398_random_pick_index {
     }
 
 /**
- * Your Solution object will be instantiated and called as such:
- * Solution obj = new Solution(nums);
+ * Your n2342 object will be instantiated and called as such:
+ * n2342 obj = new n2342(nums);
  * int param_1 = obj.pick(target);
  */
 }
@@ -40,7 +40,7 @@ public class N398_random_pick_index {
  * 示例:
  *
  * int[] nums = new int[] {1,2,3,3,3};
- * Solution solution = new Solution(nums);
+ * n2342 solution = new n2342(nums);
  *
  * // pick(3) 应该返回索引 2,3 或者 4。每个索引的返回概率应该相等。
  * solution.pick(3);

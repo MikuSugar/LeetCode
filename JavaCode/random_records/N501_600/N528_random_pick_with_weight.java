@@ -27,8 +27,8 @@ public class N528_random_pick_with_weight {
     }
 
 /**
- * Your Solution object will be instantiated and called as such:
- * Solution obj = new Solution(w);
+ * Your n2342 object will be instantiated and called as such:
+ * n2342 obj = new n2342(w);
  * int param_1 = obj.pickIndex();
  */
 }
@@ -43,18 +43,18 @@ public class N528_random_pick_with_weight {
  * 示例1:
  *
  * 输入:
- * ["Solution","pickIndex"]
+ * ["n2342","pickIndex"]
  * [[[1]],[]]
  * 输出: [null,0]
  * 示例2:
  *
  * 输入:
- * ["Solution","pickIndex","pickIndex","pickIndex","pickIndex","pickIndex"]
+ * ["n2342","pickIndex","pickIndex","pickIndex","pickIndex","pickIndex"]
  * [[[1,3]],[],[],[],[],[]]
  * 输出: [null,0,1,1,1,0]
  * 输入语法说明：
  *
- * 输入是两个列表：调用成员函数名和调用的参数。Solution 的构造函数有一个参数，即数组 w。pickIndex 没有参数。输入参数是一个列表，即使参数为空，也会输入一个 [] 空列表。
+ * 输入是两个列表：调用成员函数名和调用的参数。n2342 的构造函数有一个参数，即数组 w。pickIndex 没有参数。输入参数是一个列表，即使参数为空，也会输入一个 [] 空列表。
  *
  *
  *
