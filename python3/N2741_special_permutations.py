@@ -8,12 +8,12 @@ class N2741_special_permutations:
     def specialPerm(self, nums: List[int]) -> int:
         for i in range(0, len(nums)):
             self.target = 1 << i | self.target
-        res = 0
+        result = 0
         dp = {}
         for i in range(0, len(nums)):
-            res += self.dfs(i, 0, nums, dp)
-            res %= self.mod
-        return int(res)
+            result += self.dfs(i, 0, nums, dp)
+            result %= self.mod
+        return int(result)
 
     def dfs(self, i: int, state: int, nums: List[int], dp: dict) -> int:
         state = (1 << i) | state
@@ -25,24 +25,22 @@ class N2741_special_permutations:
         if state in dp:
             return dp[state]
 
-        res = 0
+        result = 0
         for ni in range(0, len(nums)):
             if ni == i:
                 continue
             if (1 << ni) & state == (1 << ni):
                 continue
             if nums[i] % nums[ni] == 0 or nums[ni] % nums[i] == 0:
-                res += self.dfs(ni, state, nums, dp)
-                res %= self.mod
-        dp[state] = res
-        return res
+                result += self.dfs(ni, state, nums, dp)
+                result %= self.mod
+        dp[state] = result
+        return result
 
 
 algo = N2741_special_permutations()
-res = algo.specialPerm([2, 3, 6])
-print(res)
-res2 = algo.specialPerm([1, 4, 3])
-print(res2)
+assert algo.specialPerm([2, 3, 6]) == 2
+assert algo.specialPerm([1, 4, 3]) == 2
 
 """
 给你一个下标从 0 开始的整数数组 nums ，它包含 n 个 互不相同 的正整数。如果 nums 的一个排列满足以下条件，我们称它是一个特别的排列：
