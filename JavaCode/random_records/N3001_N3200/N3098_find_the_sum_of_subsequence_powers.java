@@ -6,7 +6,6 @@ import utils.Parse;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 
 /**
@@ -37,7 +36,6 @@ public class N3098_find_the_sum_of_subsequence_powers {
     private int[] nums;
 
     public int sumOfPowers(int[] nums, int k) {
-        //todo timeout!!!
         Arrays.sort(nums);
         this.nums = nums;
         this.dp = new HashMap<>();
@@ -48,7 +46,7 @@ public class N3098_find_the_sum_of_subsequence_powers {
         if (k == 0) {
             return power % MOD;
         }
-        if (index >= nums.length || nums.length < k) {
+        if (index >= nums.length || nums.length - index < k) {
             return 0;
         }
         final long key = getKey(index, k, last, power);
