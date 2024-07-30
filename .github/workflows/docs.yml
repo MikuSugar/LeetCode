@@ -14,5 +14,6 @@ jobs:
       - run: pip install mkdocs-material
       - run: mkdocs gh-deploy --force
       - run: |
-          curl https://api.day.app/jv8zA635EkHt4BTrGnNzYh/leetcode-note更新成功～
-          curl https://api.day.app/aekqRwEEdLkatYjmtVcHxZ/leetcode-note更新成功～
+          - echo "更新成功～"
+#          curl https://api.day.app/jv8zA635EkHt4BTrGnNzYh/leetcode-note更新成功～
+#          curl https://api.day.app/aekqRwEEdLkatYjmtVcHxZ/leetcode-note更新成功～
