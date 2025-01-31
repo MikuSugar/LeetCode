@@ -25,6 +25,7 @@
 > * contest包为竞赛记录。[专题地址](https://leetcode-cn.com/contest/)
 > * 部分题目用cpp实现,在C++目录下。
 > * 部分题目用python3实现，在python3目录下。
+> * rust目录为rust实现
 > * 在JavaCode目录下部分题目用Scala。
 > * sql包为数据库题目(mysql实现)。
 > * lcof包为《剑指offer》专题。[专题地址](https://leetcode-cn.com/problemset/lcof/)
@@ -32,4 +33,4 @@
 > * utils包为工具类。
 > * 我的部分题解笔记。[地址](https://mikusugar.me/LeetCode)
 > 
-By MikuSugar. 2023/06/20
+By MikuSugar. 2025/01/31
