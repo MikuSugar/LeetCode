@@ -4,6 +4,8 @@ mod n3364_minimum_positive_sum_subarray;
 mod n3423_maximum_difference_between_adjacent_elements_in_a_circular_array;
 mod n350_intersection_of_two_arrays_ii;
 mod n541_reverse_string_ii;
+mod n3432_count_partitions_with_even_sum_difference;
+mod n3427_sum_of_variable_length_subarrays;
 
 fn main() {
     // let res =
