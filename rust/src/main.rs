@@ -6,6 +6,7 @@ mod n350_intersection_of_two_arrays_ii;
 mod n541_reverse_string_ii;
 mod n3432_count_partitions_with_even_sum_difference;
 mod n3427_sum_of_variable_length_subarrays;
+mod n598_range_addition_ii;
 
 fn main() {
     // let res =
